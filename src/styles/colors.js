@@ -10,6 +10,6 @@ export const Theme = {
     text_fourth: "#fafafa",
     background_first: "#FAFAFF",
     background_second: "#F5F6FA",
-    background_third: "#FFEFE3"
-  }
+    background_third: "#FFEFE3",
+  },
 };

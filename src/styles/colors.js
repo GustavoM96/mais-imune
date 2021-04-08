@@ -7,6 +7,7 @@ export const Theme = {
     text_first: "rgba(20, 20, 20, 0.8)",
     text_second: "#6C62FF",
     text_third: "#9BA3EB",
+    text_fourth: "#fafafa",
     background_first: "#FAFAFF",
     background_second: "#F5F6FA",
     background_third: "#FFEFE3"

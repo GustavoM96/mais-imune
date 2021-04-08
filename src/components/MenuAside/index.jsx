@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import passbook from "../../assets/passbook.svg";
 import medical from "../../assets/medical.svg";
-import logout from "../../assets/logout.svg";
 import seringa from "../../assets/seringa.svg";
 import report from "../../assets/report.svg";
 import dashboard from "../../assets/dashboard.svg";
+
+import { ImExit } from "react-icons/im";
 
 import {
   Container,
@@ -13,21 +13,25 @@ import {
   CollapseIconContainer,
   IconContainer,
 } from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import { openMenuThunk } from "../../store/modules/MenuOpen/thunks";
 
 function MenuAside() {
-  const props = { open: false, level: 3 };
+  const open = useSelector((state) => state.open);
 
-  const { level } = props;
-  // recebo da store
-  const [open, setOpen] = useState(true);
+  //pegar level do user
+
+  const level = 3;
+
+  const dispatch = useDispatch();
 
   return (
     <Container open={open} level={level}>
       <CollapseIconContainer>
         {open ? (
-          <ArrowLeft onClick={() => setOpen(!open)} />
+          <ArrowLeft onClick={() => dispatch(openMenuThunk(open))} />
         ) : (
-          <ArrowRight onClick={() => setOpen(!open)} />
+          <ArrowRight onClick={() => dispatch(openMenuThunk(open))} />
         )}
       </CollapseIconContainer>
 
@@ -44,7 +48,9 @@ function MenuAside() {
           </div>
           <div>
             <IconContainer level={level} open={open}>
-              <img src={logout} alt="Logout" />
+              <div>
+                <ImExit />
+              </div>
               <span>Logout</span>
             </IconContainer>
           </div>
@@ -63,7 +69,9 @@ function MenuAside() {
           </div>
           <div>
             <IconContainer level={level} open={open}>
-              <img src={logout} alt="Logout" />
+              <div>
+                <ImExit />
+              </div>
               <span>Logout</span>
             </IconContainer>
           </div>
@@ -82,7 +90,9 @@ function MenuAside() {
           </div>
           <div>
             <IconContainer level={level} open={open}>
-              <img src={logout} alt="Logout" />
+              <div>
+                <ImExit />
+              </div>
               <span>Logout</span>
             </IconContainer>
           </div>

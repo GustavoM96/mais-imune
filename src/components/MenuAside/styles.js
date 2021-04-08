@@ -14,7 +14,7 @@ export const Container = styled.div`
       ? Theme.colors.main_healthEmployee
       : Theme.colors.main_admin};
 
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,7 +37,10 @@ export const IconContainer = styled.div`
     margin: 0 1.3rem;
     width: 27px;
   }
-
+  svg {
+    font-size: 2rem;
+    margin: 0 1.3rem;
+  }
   span {
     visibility: ${(props) => (props.open ? "visible" : "hidden")};
   }

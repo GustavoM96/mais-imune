@@ -6,7 +6,7 @@ import { Theme } from '../../styles/colors'
 
 export const ButtonStyled = styled.button`
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
     min-width: 150px;
     box-sizing: border-box;
     outline: none;

@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import passbook from "../../assets/passbook.svg";
+import medical from "../../assets/medical.svg";
+import logout from "../../assets/logout.svg";
+import seringa from "../../assets/seringa.svg";
+import report from "../../assets/report.svg";
+import dashboard from "../../assets/dashboard.svg";
 
 import {
   Container,
@@ -9,37 +15,77 @@ import {
 } from "./styles";
 
 function MenuAside() {
-  const props = { open: true, level: 1 };
+  const props = { open: false, level: 3 };
 
   const { level } = props;
   // recebo da store
   const [open, setOpen] = useState(true);
+
   return (
     <Container open={open} level={level}>
-      {open ? (
+      <CollapseIconContainer>
+        {open ? (
+          <ArrowLeft onClick={() => setOpen(!open)} />
+        ) : (
+          <ArrowRight onClick={() => setOpen(!open)} />
+        )}
+      </CollapseIconContainer>
+
+      {level === 1 ? (
         <>
-          <CollapseIconContainer onClick={() => setOpen(!open)}>
-            <ArrowLeft />
-          </CollapseIconContainer>
           <div>
-            <IconContainer>
-              <span>Dashboard</span>
+            <IconContainer level={level} open={open}>
+              <img src={passbook} alt="Caderneta" /> <span>Minhas Vacinas</span>
             </IconContainer>
-            <IconContainer>
-              <ArrowLeft /> <span>Dashboard</span>
+            <IconContainer level={level} open={open}>
+              <img src={medical} alt="Vacinas Eletivas" />
+              <span>Vacinas Eletivas</span>
             </IconContainer>
           </div>
           <div>
-            <IconContainer onClick={() => setOpen(!open)}>
-              <ArrowLeft />
+            <IconContainer level={level} open={open}>
+              <img src={logout} alt="Logout" />
+              <span>Logout</span>
+            </IconContainer>
+          </div>
+        </>
+      ) : level === 2 ? (
+        <>
+          <div>
+            <IconContainer level={level} open={open}>
+              <img src={seringa} alt="Seringa" />{" "}
+              <span>Registro de Vacinação</span>
+            </IconContainer>
+            <IconContainer level={level} open={open}>
+              <img src={report} alt="Vacinas Eletivas" />
+              <span>Relatório</span>
+            </IconContainer>
+          </div>
+          <div>
+            <IconContainer level={level} open={open}>
+              <img src={logout} alt="Logout" />
+              <span>Logout</span>
             </IconContainer>
           </div>
         </>
       ) : (
         <>
-          <IconContainer onClick={() => setOpen(!open)}>
-            <ArrowRight />
-          </IconContainer>
+          <div>
+            <IconContainer level={level} open={open}>
+              <img src={dashboard} alt="Dashboard" />
+              <span>Dashboard</span>
+            </IconContainer>
+            <IconContainer level={level} open={open}>
+              <img src={report} alt="Vacinas Eletivas" />
+              <span>Relatório</span>
+            </IconContainer>
+          </div>
+          <div>
+            <IconContainer level={level} open={open}>
+              <img src={logout} alt="Logout" />
+              <span>Logout</span>
+            </IconContainer>
+          </div>
         </>
       )}
     </Container>

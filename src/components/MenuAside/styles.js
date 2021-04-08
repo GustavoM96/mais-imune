@@ -5,14 +5,14 @@ import { Theme } from "../../styles/colors";
 import { darken } from "polished";
 
 export const Container = styled.div`
-  width: ${(props) => (props.open ? "16rem" : "8rem")};
+  width: ${(props) => (props.open ? "16rem" : "5rem")};
   height: 100vh;
   background-color: ${(props) =>
     props.level === 1
       ? Theme.colors.main_user
       : props.level === 2
-      ? Theme.colors.main_user
-      : Theme.colors.main_user};
+      ? Theme.colors.main_healthEmployee
+      : Theme.colors.main_admin};
 
   transition: 0.3s ease-in-out;
   display: flex;
@@ -22,24 +22,39 @@ export const Container = styled.div`
 
 export const CollapseIconContainer = styled.div`
   width: 100%;
-  text-align: right;
+  text-align: center;
 `;
 export const IconContainer = styled.div`
   width: 100%;
-  height: 3rem;
+  height: 5rem;
   display: flex;
-  justify-content: space-around;
+
   align-items: center;
+  transition: 0.3s ease-in-out;
+  text-align: center;
+
+  img {
+    margin: 0 1.3rem;
+    width: 27px;
+  }
+
+  span {
+    visibility: ${(props) => (props.open ? "visible" : "hidden")};
+  }
 
   :hover {
     cursor: pointer;
-    background-color: ${darken(0.08, Theme.colors.main_user)};
+    background-color: ${(props) =>
+      props.level === 1
+        ? darken(0.04, Theme.colors.main_user)
+        : props.level === 2
+        ? darken(0.04, Theme.colors.main_healthEmployee)
+        : darken(0.04, Theme.colors.main_admin)};
   }
 `;
 
 export const ArrowLeft = styled(BiArrowFromRight)`
   font-size: 2rem;
-
   :hover {
     cursor: pointer;
   }

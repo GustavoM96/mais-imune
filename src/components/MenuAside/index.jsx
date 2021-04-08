@@ -21,7 +21,7 @@ function MenuAside() {
 
   //pegar level do user
 
-  const level = 3;
+  const level = 1;
 
   const dispatch = useDispatch();
 

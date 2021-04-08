@@ -9,6 +9,6 @@ export const Theme = {
     text_third: "#9BA3EB",
     background_first: "#FAFAFF",
     background_second: "#F5F6FA",
-    background_third: "#FFEFE3"
-  }
+    background_third: "#FFEFE3",
+  },
 };

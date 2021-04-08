@@ -23,13 +23,10 @@ function MenuAside() {
           </CollapseIconContainer>
           <div>
             <IconContainer>
-              <ArrowLeft />
+              <span>Dashboard</span>
             </IconContainer>
             <IconContainer>
-              <ArrowLeft />
-            </IconContainer>
-            <IconContainer>
-              <ArrowLeft />
+              <ArrowLeft /> <span>Dashboard</span>
             </IconContainer>
           </div>
           <div>

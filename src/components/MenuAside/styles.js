@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import { BiArrowFromLeft, BiArrowFromRight } from "react-icons/bi";
 
-import { colors } from "../../styles/colors";
+import { Theme } from "../../styles/colors";
+import { darken } from "polished";
 
 export const Container = styled.div`
   width: ${(props) => (props.open ? "16rem" : "8rem")};
   height: 100vh;
   background-color: ${(props) =>
     props.level === 1
-      ? colors.fourth
+      ? Theme.colors.main_user
       : props.level === 2
-      ? colors.fifth
-      : colors.sixty};
+      ? Theme.colors.main_user
+      : Theme.colors.main_user};
 
   transition: 0.3s ease-in-out;
   display: flex;
@@ -20,15 +21,20 @@ export const Container = styled.div`
 `;
 
 export const CollapseIconContainer = styled.div`
-  padding-top: 1rem;
-  padding-right: 1rem;
   width: 100%;
   text-align: right;
 `;
 export const IconContainer = styled.div`
-  padding-top: 1rem;
-  padding-right: 1rem;
   width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  :hover {
+    cursor: pointer;
+    background-color: ${darken(0.08, Theme.colors.main_user)};
+  }
 `;
 
 export const ArrowLeft = styled(BiArrowFromRight)`

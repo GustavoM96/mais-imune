@@ -1,27 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Container, ArrowLeft, ArrowRight } from "./styles";
+import {
+  Container,
+  ArrowLeft,
+  ArrowRight,
+  CollapseIconContainer,
+  IconContainer,
+} from "./styles";
 
 function MenuAside() {
-  //BiArrowFromLeft
-  //BiArrowFromRight
+  const props = { open: true, level: 1 };
 
-  const props = { open: false, level: 1 };
-
-  const { open, level } = props;
+  const { level } = props;
+  // recebo da store
+  const [open, setOpen] = useState(true);
   return (
     <Container open={open} level={level}>
       {open ? (
         <>
-          <div>
+          <CollapseIconContainer onClick={() => setOpen(!open)}>
             <ArrowLeft />
+          </CollapseIconContainer>
+          <div>
+            <IconContainer>
+              <ArrowLeft />
+            </IconContainer>
+            <IconContainer>
+              <ArrowLeft />
+            </IconContainer>
+            <IconContainer>
+              <ArrowLeft />
+            </IconContainer>
+          </div>
+          <div>
+            <IconContainer onClick={() => setOpen(!open)}>
+              <ArrowLeft />
+            </IconContainer>
           </div>
         </>
       ) : (
         <>
-          <div>
+          <IconContainer onClick={() => setOpen(!open)}>
             <ArrowRight />
-          </div>
+          </IconContainer>
         </>
       )}
     </Container>

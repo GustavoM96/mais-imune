@@ -1,71 +1,50 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+import calculateVac from "./calculateVac";
+
+import Button from "../Button";
+import {
+  SelectInput,
+  InputData,
+  LabelStyled,
+  StyledForm,
+  FormConteiner,
+  ErrorMessage,
+} from "./style";
+//este token sera substituido apos feita a pagina de login
+let token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1Y2FzQG1haWwuY29tIiwiaWF0IjoxNjE3OTg5NzE1LCJleHAiOjE2MTc5OTMzMTUsInN1YiI6IjMifQ.uII_fGxViVsz8lCHcvwoLG0wtjnYlq_7SfpIfjbYVXQ";
+const headers = { headers: { Authorization: `Bearer ${token}` } };
 
 const FormVacinaUser = ({ userInfo }) => {
   const [vacines, setVacines] = useState([]);
   const [vacine, setVacine] = useState();
 
-  const calculateVac = (vacList) => {
-    let check = false;
-    let vacinasDisponiveis = [];
-    for (let i = 0; i < vacList.length; i++) {
-      check = false;
-      for (let j = 0; j < userInfo.vaccines.length; j++) {
-        if (vacList[i].id === userInfo.vaccines[j]) {
-          check = true;
-        }
-      }
-      if (check === false) {
-        vacinasDisponiveis.push(vacList[i]);
-      }
-    }
-    return vacinasDisponiveis;
-  };
+  const schema = yup.object().shape({
+    id: yup
+      .string("Este campo deve ser preenchido")
+      .required("Este campo deve ser preenchido"),
+    aplication: yup.string().required("Este campo deve ser preenchido"),
+  });
 
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    let listaVac = [
-      {
-        id: 1,
-        name: "H1N1",
-        required: true,
-        doses: 1,
-        description: "mensagem de descricao teste",
-      },
-      {
-        id: 2,
-        name: "COVID",
-        required: true,
-        doses: 1,
-        description: "mensagem de descricao teste",
-      },
-      {
-        id: 3,
-        name: "Hepatite B",
-        required: true,
-        doses: 1,
-        description: "mensagem de descricao teste",
-      },
-      {
-        id: 4,
-        name: "Tetano",
-        required: true,
-        doses: 1,
-        description: "mensagem de descricao teste",
-      },
-      {
-        id: 5,
-        name: "Influenza",
-        required: false,
-        doses: 1,
-        description: "mensagem de descricao teste",
-      },
-    ];
-
-    setVacines(calculateVac(listaVac));
+    axios
+      .get(`https://mais-imune.herokuapp.com/vaccines`, headers)
+      .then((response) => {
+        setVacines(calculateVac(response.data, userInfo));
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   const handleChange = (event) => {
@@ -73,41 +52,53 @@ const FormVacinaUser = ({ userInfo }) => {
   };
 
   const handleData = (data) => {
-    let vacina = userInfo.vaccines;
-    vacina.push(parseInt(data.vaccines));
-    data.vaccines = vacina;
-    console.log(data);
+    let vacina = {};
+    vacina.vaccines = userInfo.vaccines;
+    data.id = parseInt(data.id);
+    vacina.vaccines.push(data);
+    data = vacina;
+
+    axios
+      .patch(
+        `https://mais-imune.herokuapp.com/users/${userInfo.id}`,
+        data,
+        headers
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
-    <form onSubmit={handleSubmit(handleData)}>
-      <label>Vacina</label>
-      <select
-        name="vaccines"
-        value={vacine}
-        onChange={handleChange}
-        {...register("vaccines")}
-      >
-        {vacines.map((vacine, index) => (
-          <option value={vacine.id} key={index}>
-            {vacine.name}
-          </option>
-        ))}
-      </select>
-      {/* <input type="date" {...register("data")}></input> */}
-      <button type="submit">enviar</button>
-    </form>
+    <FormConteiner>
+      <h3>Registrar vacinação</h3>
+      <form onSubmit={handleSubmit(handleData)}>
+        <StyledForm>
+          <LabelStyled>Vacina</LabelStyled>
+          <SelectInput
+            value={vacine}
+            onChange={handleChange}
+            {...register("id", { required: true })}
+          >
+            <option value=""></option>
+            {vacines.map((vacine, index) => (
+              <option value={vacine.id} key={index}>
+                {vacine.name}
+              </option>
+            ))}
+          </SelectInput>
+          <ErrorMessage>{errors.id?.message}</ErrorMessage>
+          <LabelStyled>Data da aplicação</LabelStyled>
+          <InputData
+            type="date"
+            {...register("aplication", { required: true })}
+          ></InputData>
+          <ErrorMessage>{errors.aplication?.message}</ErrorMessage>
+          <Button type="submit" text={"Confirmar"}></Button>
+        </StyledForm>
+      </form>
+    </FormConteiner>
   );
 };
 export default FormVacinaUser;
-
-// //------------------------------------------------------------------//
-// let token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1Y2FzQG1haWwuY29tIiwiaWF0IjoxNjE3OTU5NTU5LCJleHAiOjE2MTc5NjMxNTksInN1YiI6IjMifQ.ni3ztIhy9pLUp7-uyRK-OvLRqW05xxVyayLmC3lGNQU";
-// const headers = { headers: `Bearer: ${token}` };
-// axios
-//   .get(`https://mais-imune.herokuapp.com/vaccines`, headers)
-//   .then((response) => console.log(response.data))
-//   .catch((error) => console.log(error));
-// //--------------------------------------------------------------------//
-//

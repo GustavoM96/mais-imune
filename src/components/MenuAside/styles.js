@@ -6,7 +6,7 @@ import { darken } from "polished";
 
 export const Container = styled.div`
   width: ${(props) => (props.open ? "16rem" : "5rem")};
-  height: 100vh;
+  min-height: 100vh;
   background-color: ${(props) =>
     props.level === 1
       ? Theme.colors.main_user
@@ -42,7 +42,7 @@ export const IconContainer = styled.div`
     margin: 0 1.3rem;
   }
   span {
-    visibility: ${(props) => (props.open ? "visible" : "hidden")};
+    display: ${(props) => (props.open ? "block" : "none")};
   }
 
   :hover {

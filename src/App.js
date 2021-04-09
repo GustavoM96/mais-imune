@@ -1,11 +1,17 @@
 import MenuAside from "./components/MenuAside";
+import MenuProfile from "./components/MenuProfile";
 import Routes from "./routes";
-
-import Header from './components/Header'
+import "./styles/globals.css";
+// import {} from "./components/";
+// import CardVaccine from "./components/CardVaccine";
 
 function App() {
   return (
-    <Header title='teste'/>
+    <div className="flex">
+      <MenuAside />
+      <Routes />
+      <MenuProfile />
+    </div>
   );
 }
 

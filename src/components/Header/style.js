@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 import { Theme } from '../../styles/colors'
+import { motion } from 'framer-motion'
+
 
 export const Container = styled.header`
 
@@ -31,7 +33,6 @@ export const MainArea = styled.div`
                                             (Theme.colors.main_healthEmployee) 
                                             : 
                                             (Theme.colors.main_user))};
-
     max-width: 1000px;
     height: 210px;
     padding: 30px 50px 15px 50px;
@@ -43,6 +44,9 @@ export const MainArea = styled.div`
 export const TextArea = styled.div`
     width: 58%;
     height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
 `
 
 export const WelcomeText = styled.h2`
@@ -51,7 +55,7 @@ export const WelcomeText = styled.h2`
     color: ${Theme.colors.text_fourth};
 `
 
-export const CampaignText = styled.p`
+export const CampaignText = styled(motion.p)`
     font-size: 16px;
     color: ${Theme.colors.text_fourth};
 `
@@ -75,4 +79,17 @@ export const CheckBox = styled.div`
     background-color: ${Theme.colors.background_third};
     margin: 5px;
     cursor: pointer;
+    position: relative;
+`
+
+export const Checked = styled.div`
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    background-color: ${Theme.colors.text_third};
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
 `

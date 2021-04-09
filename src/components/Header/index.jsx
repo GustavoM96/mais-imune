@@ -2,7 +2,7 @@ import doc_kid from '../../assets/doc_kid.svg'
 import { messages } from '../../mock/data'
 
 
-import { 
+import {    
         Container,
         Title,
         DateText,
@@ -13,13 +13,14 @@ import {
         CampaignText,
         Img,
         CheckBoxArea,
-        CheckBox
+        CheckBox,
+        Checked
         } from './style'
 
 import { useState } from 'react'
 
 const Header = ({ title }) => {
-    const [message, setMessage] = useState(messages.campaigns[0])
+    const [checkedBox, setCheckedBox] = useState(0)
 
     const userName = 'luciano feder' //retirar da store quando tiver
     const permission = 2
@@ -49,6 +50,10 @@ const Header = ({ title }) => {
         return `${dd}/${mm}/${yyyy}`
     }
 
+    const handleCheckBox = (id) => {
+        setCheckedBox(id)
+    }
+
     return (
         <Container>
             <Title>{title}</Title>
@@ -56,9 +61,13 @@ const Header = ({ title }) => {
             <MainArea permission={permission}>
                 <TextArea>
                     <WelcomeText>Olá, {capitalize(userName)}</WelcomeText>
-                    <CampaignText>{message}</CampaignText>
+                    <CampaignText initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>{messages.campaigns[checkedBox]}</CampaignText>
                     <CheckBoxArea>
-                        {messages.campaigns.map((msg,index) => <CheckBox onClick={console.log(index)}/>)}
+                        {messages.campaigns.map((msg,index) => (
+                            <CheckBox key={index} onClick={() => handleCheckBox(index)}>
+                                {index === checkedBox && <Checked />}
+                            </CheckBox>
+                        ))}
                     </CheckBoxArea>
                 </TextArea>
                 <Img src={doc_kid} alt='Ilustracao de um doutor com uma crianca' />

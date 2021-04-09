@@ -13,6 +13,6 @@ export const Theme = {
     background_third: "#FFEFE3",
     error: "#FF6347",
     error_boxShadow: "#ffd4cc",
-    boxShadow_primary: 'rgba(20, 20, 20, 0.4)'
-  }
+    boxShadow_primary: "rgba(20, 20, 20, 0.4)",
+  },
 };

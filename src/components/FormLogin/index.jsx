@@ -20,7 +20,7 @@ function FormLogin() {
     email: yup.string().required("Campo obrigatório"),
     password: yup
       .string()
-      .min(6, "Mínimo de 8 dígitos")
+      .min(6, "Mínimo de 6 dígitos")
       .required("Campo obrigatório"),
   });
 
@@ -31,6 +31,7 @@ function FormLogin() {
   const onError = (errors, e) => console.log(errors);
 
   const dataForm = (data) => {
+    console.log(data);
     api
       .post("/login", data)
       .then((response) => console.log(response.data))

@@ -15,6 +15,8 @@ import {
 function MenuProfile() {
   const open = useSelector((state) => state.open);
 
+  const level = [1, 2, 3];
+
   const dispatch = useDispatch((state) => state.open);
 
   return (
@@ -39,11 +41,17 @@ function MenuProfile() {
         </div>
       </div>
       <div className="cards">
-        <div>
-          <span> Pŕoximas vacinas </span>
-          <Separator />
-          <span> Últimas Vacinas</span>
-        </div>
+        {level[0] === 1 ? (
+          <div>
+            <span> Pŕoximas vacinas </span>
+            <Separator />
+            <span> Últimas Vacinas</span>
+          </div>
+        ) : (
+          <div>
+            <span>Instruções</span>
+          </div>
+        )}
       </div>
     </Container>
   );

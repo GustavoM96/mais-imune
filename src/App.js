@@ -1,4 +1,8 @@
 import FormVacinaUser from "./components/form-vacina-user";
+import MenuAside from "./components/MenuAside";
+import MenuProfile from "./components/MenuProfile";
+import Routes from "./routes";
+import "./styles/globals.css";
 
 function App() {
   let userInfo = {
@@ -11,8 +15,11 @@ function App() {
     vaccines: [5, 4, 2],
   };
   return (
-    <div>
+    <div className="flex">
       <FormVacinaUser userInfo={userInfo}></FormVacinaUser>
+      <MenuAside />
+      <Routes />
+      <MenuProfile />
     </div>
   );
 }

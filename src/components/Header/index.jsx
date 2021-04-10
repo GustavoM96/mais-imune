@@ -17,7 +17,7 @@ import {
         Checked
         } from './style'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Header = ({ title }) => {
     const [checkedBox, setCheckedBox] = useState(0)
@@ -29,6 +29,21 @@ const Header = ({ title }) => {
         str = str.trim().split(' ')
         str = str.map((word) => word[0].toUpperCase() + word.slice(1))
         return str.join(' ')
+    }
+
+    const createLinkedObj = () => {
+        let result = {}
+        for (let i = 0; i < messages.campaigns.length - 1; i++) {
+            result[i] = i + 1
+        }
+        result[messages.campaigns.length - 1] = 0
+        return result
+    }
+
+    const updateMessage = () => {
+        const linkedObj = createLinkedObj()
+        console.log(checkedBox)
+        setTimeout(() => setCheckedBox(linkedObj[checkedBox]), 5000)
     }
 
     const currentWeekDay = () => {
@@ -50,9 +65,9 @@ const Header = ({ title }) => {
         return `${dd}/${mm}/${yyyy}`
     }
 
-    const handleCheckBox = (id) => {
-        setCheckedBox(id)
-    }
+    useEffect(() => {
+        updateMessage()
+    })
 
     return (
         <Container>
@@ -64,7 +79,7 @@ const Header = ({ title }) => {
                     <CampaignText initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>{messages.campaigns[checkedBox]}</CampaignText>
                     <CheckBoxArea>
                         {messages.campaigns.map((msg,index) => (
-                            <CheckBox key={index} onClick={() => handleCheckBox(index)}>
+                            <CheckBox key={index}>
                                 {index === checkedBox && <Checked />}
                             </CheckBox>
                         ))}

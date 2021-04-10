@@ -40,24 +40,39 @@ export const MainArea = styled.div`
     box-sizing: border-box;
     position: relative;
     margin-top: 50px;
+    @media (max-width: 450px) {
+        padding: 17px 35px 10px 35px;
+        border-radius: 30px;
+        margin-top: 30px;   
+    }
 `
 export const TextArea = styled.div`
     width: 58%;
     height: 100%;
     display: flex;
+    box-sizing: border-box;
     flex-flow: column;
     justify-content: space-between;
+    @media (max-width: 600px) {
+        width: 100%;
+    }
 `
 
 export const WelcomeText = styled.h2`
     font-size: 25px;
     margin: 0;
     color: ${Theme.colors.text_fourth};
+    @media (max-width: 450px) {
+        font-size: 22px;
+    }
 `
 
 export const CampaignText = styled(motion.p)`
     font-size: 16px;
     color: ${Theme.colors.text_fourth};
+    @media (max-width: 450px) {
+        font-size: 14px;
+    }
 `
 
 export const Img = styled.img`
@@ -65,6 +80,9 @@ export const Img = styled.img`
     position: absolute;
     right: 0;
     bottom: 0;
+    @media (max-width: 600px) {
+        display: none;
+    }
 `
 
 export const CheckBoxArea = styled.div`
@@ -78,8 +96,11 @@ export const CheckBox = styled.div`
     border-radius: 50%;
     background-color: ${Theme.colors.background_third};
     margin: 5px;
-    cursor: pointer;
     position: relative;
+    @media (max-width: 450px) {
+        width: 12px;
+        height: 12px;   
+    }
 `
 
 export const Checked = styled.div`

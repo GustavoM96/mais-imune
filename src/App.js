@@ -15,13 +15,15 @@ function App() {
 
   return (
     <div className="flex">
-      <ToastContainer />
-
       {page === "/login" || page === "/registro" || page === "/home" ? (
-        <Routes />
+        <>
+          <ToastContainer />
+          <Routes />
+        </>
       ) : (
         <>
           <MenuAside />
+          <ToastContainer />
           <Routes />
           <MenuProfile />
         </>

@@ -50,7 +50,7 @@ function FormLogin() {
           progress: undefined,
         });
         localStorage.setItem("token", JSON.stringify(response.data));
-        console.log(response.data);
+        history.push("/");
       })
       .catch((e) => {
         toast.error("😵 Falha ao logar !!", {

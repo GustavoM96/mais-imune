@@ -1,4 +1,3 @@
-import React from "react";
 import CardVaccine from "../CardVaccine";
 import { GrFormSearch } from "react-icons/gr";
 
@@ -10,7 +9,7 @@ import {
   SearchBar,
 } from "./styles";
 
-function UserCardContainer() {
+function UserCardContainer({ user, vaccines }) {
   return (
     <Container>
       <Header>
@@ -24,15 +23,23 @@ function UserCardContainer() {
           <GrFormSearch />
         </SearchBar>
       </Header>
-      <VaccinesContainer>
-        <CardVaccine />
-        <CardVaccine />
-        <CardVaccine />
-        <CardVaccine />
-        <CardVaccine />
-        <CardVaccine />
-        <CardVaccine />
-      </VaccinesContainer>
+      <>
+        {vaccines?.length > 0 && (
+          <VaccinesContainer>
+            {vaccines.map((vaccine, index) => (
+              <CardVaccine
+                key={index}
+                date={
+                  user.vaccines.filter((vac) => vac.id === vaccine.id)[0]
+                    .aplication
+                }
+                vaccine={vaccine.name}
+                description={vaccine.description}
+              />
+            ))}
+          </VaccinesContainer>
+        )}
+      </>
     </Container>
   );
 }

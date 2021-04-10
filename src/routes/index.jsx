@@ -10,7 +10,7 @@ function routes() {
       <Route exact path="/" component="Welcome" />
       <Route path="/login" component={Login} />
       <Route path="/registro" component="Register" />
-      <Route path="/dashboard" component={UserVaccines} />
+      <Route path="/minhas_vacinas" component={UserVaccines} />
       // usuario comum
       <Route path="/minhas-vacinas" component="Vaccines" />
       <Route path="/vacinas-eletivas" component="VaccinesElectives" />

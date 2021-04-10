@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import { Route, Switch } from "react-router";
+import Login from "../pages/Login";
 
 function routes() {
   return (
     <Switch>
       <Route exact path="/" component="Welcome" />
-      <Route path="/login" component="Login" />
+      <Route path="/login" component={Login} />
       <Route path="/registro" component="Register" />
       <Route path="/home" component="Home" />
       // usuario comum

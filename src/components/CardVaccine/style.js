@@ -4,8 +4,8 @@ import { Theme } from "../../styles/colors";
 
 export const CardStyled = styled.div`
   background-color: ${Theme.colors.background_third};
-  width: 190px;
-  height: 160px;
+  width: 200px;
+  height: 180px;
   border-radius: 5px;
   box-shadow: 0px 5px 10px -5px;
   margin: 0.5rem;

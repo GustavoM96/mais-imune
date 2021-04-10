@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import { Route, Switch } from "react-router";
-import Dashboard from "../pages/Dashboard";
+import UserVaccines from "../pages/UserVaccines";
 import Login from "../pages/Login";
 
 function routes() {
@@ -10,7 +10,7 @@ function routes() {
       <Route exact path="/" component="Welcome" />
       <Route path="/login" component={Login} />
       <Route path="/registro" component="Register" />
-      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/dashboard" component={UserVaccines} />
       // usuario comum
       <Route path="/minhas-vacinas" component="Vaccines" />
       <Route path="/vacinas-eletivas" component="VaccinesElectives" />

@@ -64,7 +64,6 @@ const FormRegister = () => {
           draggable: true,
           progress: undefined,
         });
-        console.log("response", response);
         console.log("response.data", response.data);
         history.push("/login");
       })

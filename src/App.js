@@ -7,6 +7,7 @@ import MenuProfile from "./components/MenuProfile";
 import Routes from "./routes";
 import "./styles/globals.css";
 
+
 function App() {
   const history = useHistory();
   const page = history.location.pathname;

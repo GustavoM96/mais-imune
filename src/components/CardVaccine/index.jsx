@@ -1,11 +1,11 @@
 import { CardStyled, TitleStyled } from "./style";
 
-const CardVaccine = ({ vaccine, lot, data }) => {
+const CardVaccine = ({ vaccine, description, date }) => {
   return (
     <CardStyled>
       <TitleStyled>Vacina: {vaccine}</TitleStyled>
-      <TitleStyled>Lote: {lot}</TitleStyled>
-      <TitleStyled>Data: {data}</TitleStyled>
+      <TitleStyled>Descrição: {description}</TitleStyled>
+      <TitleStyled>Data: {date}</TitleStyled>
     </CardStyled>
   );
 };

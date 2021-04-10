@@ -49,8 +49,13 @@ function FormLogin() {
           draggable: true,
           progress: undefined,
         });
-        localStorage.setItem("token", JSON.stringify(response.data));
-        history.push("/");
+        localStorage.clear();
+        console.log(response.data.accessToken);
+        localStorage.setItem(
+          "token",
+          JSON.stringify(response.data.accessToken)
+        );
+        history.push("/minhas_vacinas");
       })
       .catch((e) => {
         toast.error("😵 Falha ao logar !!", {

@@ -1,18 +1,27 @@
-import { Container, InputStyled, Header, Text, ErrorMessage, SelectContainer, Select, CheckBoxContainer } from "./style";
+import {
+  Container,
+  InputStyled,
+  Header,
+  Text,
+  ErrorMessage,
+  SelectContainer,
+  Select,
+  CheckBoxContainer,
+} from "./style";
 
 const Input = ({ text, name, error, type = "text", register, options }) => {
   return (
     <Container>
-      {type === 'select' ? 
-      (
+      {type === "select" ? (
         <SelectContainer>
           <Text>{text}</Text>
-          <Select name={name} {...register(name)} >
-              {options.map((value) => <option value={value}>{value}</option>)}
+          <Select name={name} {...register(name)}>
+            {options.map((value) => (
+              <option value={value}>{value}</option>
+            ))}
           </Select>
         </SelectContainer>
-      ) : (type === 'checkbox' ? 
-      (
+      ) : type === "checkbox" ? (
         <CheckBoxContainer>
           <Text>{text}</Text>
           <InputStyled type={type} name={name} {...register(name)} />
@@ -22,15 +31,17 @@ const Input = ({ text, name, error, type = "text", register, options }) => {
           <Header>
             <Text>{text}</Text>
             <ErrorMessage>{error}</ErrorMessage>
-          </Header> 
-          <InputStyled type={type} name={name} {...register(name)} error={error} />
+          </Header>
+          <InputStyled
+            type={type}
+            name={name}
+            {...register(name)}
+            error={error}
+          />
         </>
-      )
       )}
     </Container>
   );
 };
 
 export default Input;
-
-

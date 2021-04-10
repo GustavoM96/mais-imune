@@ -14,6 +14,8 @@ function Dashboard() {
   const user_id = jwt_decode(token).sub;
 
   useEffect(() => {
+    console.log(user_id);
+
     api
       .get(`/users/${user_id}`, {
         headers: {

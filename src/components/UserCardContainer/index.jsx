@@ -10,6 +10,10 @@ import {
 } from "./styles";
 
 function UserCardContainer({ user }) {
+  console.log(
+    "🚀 ~ file: index.jsx ~ line 13 ~ UserCardContainer ~ user",
+    user
+  );
   return (
     <Container>
       <Header>
@@ -24,7 +28,7 @@ function UserCardContainer({ user }) {
         </SearchBar>
       </Header>
       <>
-        {user.vaccines && (
+        {user && (
           <VaccinesContainer>
             {user.vaccines.map((vaccine, index) => (
               <CardVaccine

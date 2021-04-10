@@ -87,6 +87,7 @@ function FormLogin() {
             errors={errors}
             name="password"
             text="Password"
+            type="password"
             error={errors.password?.message}
             register={register}
           />

@@ -1,8 +1,8 @@
 import { ButtonStyled } from "./style";
 
-const Button = ({ text, handleClick, type = "button" }) => {
+const Button = ({ text, handleClick, type }) => {
   return (
-    <ButtonStyled type={type} onClick={handleClick}>
+    <ButtonStyled onClick={!type && handleClick} type={type}>
       {text}
     </ButtonStyled>
   );

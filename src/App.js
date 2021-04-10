@@ -1,4 +1,7 @@
 import { useHistory } from "react-router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import MenuAside from "./components/MenuAside";
 import MenuProfile from "./components/MenuProfile";
 import Routes from "./routes";
@@ -12,6 +15,8 @@ function App() {
 
   return (
     <div className="flex">
+      <ToastContainer />
+
       {page === "/login" || page === "/registro" || page === "/home" ? (
         <Routes />
       ) : (

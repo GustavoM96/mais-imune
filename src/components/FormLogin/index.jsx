@@ -1,56 +1,84 @@
 import Input from "../Input";
 import Button from "../Button";
+import loginImg from "../../assets/login.svg";
+import { AiOutlineForm } from "react-icons/ai";
 
 import * as yup from "yup";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Container } from "./styles";
 
 import api from "../../services/api";
+import { toast } from "react-toastify";
 
 function FormLogin() {
-  const dispatch = useDispatch();
-
   const history = useHistory();
 
   const schema = yup.object().shape({
-    email: yup.string().required("Campo obrigatório"),
+    email: yup.string().email("Email Invalido").required("Campo obrigatório"),
+
     password: yup
       .string()
       .min(6, "Mínimo de 6 dígitos")
       .required("Campo obrigatório"),
   });
 
-  const { register, handleSubmit, setError, errors, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const onError = (errors, e) => console.log(errors);
 
   const dataForm = (data) => {
     console.log(data);
     api
       .post("/login", data)
-      .then((response) => console.log(response.data))
-      .catch((e) => console.log(e));
+      .then((response) => {
+        toast.dark("💉  Bem vindo !!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        localStorage.setItem("token", JSON.stringify(response.data));
+        console.log(response.data);
+      })
+      .catch((e) => {
+        toast.error("😵 Falha ao logar !!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log(e);
+      });
+
     reset();
   };
 
   return (
     <Container>
-      <h3>Login</h3>
-      <form onSubmit={handleSubmit(dataForm, onError)}>
+      <form onSubmit={handleSubmit(dataForm)}>
+        <h3>Login</h3>
         <div>
           <Input
             setError={setError}
-            errors={errors}
             name="email"
             text="Email"
             register={register}
-            error={errors}
+            error={errors.email?.message}
           />
         </div>
         <div>
@@ -59,13 +87,20 @@ function FormLogin() {
             errors={errors}
             name="password"
             text="Password"
+            error={errors.password?.message}
             register={register}
           />
         </div>
         <div>
-          <Button text="Submit" type="submit"></Button>
+          <Button text="Logar" type="submit"></Button>
         </div>
+        <span className="register" onClick={() => history.push("/registro")}>
+          Ainda não é cadastrado? Faça seu resgistro aqui <AiOutlineForm />
+        </span>
       </form>
+      <figure>
+        <img src={loginImg} alt="" />
+      </figure>
     </Container>
   );
 }

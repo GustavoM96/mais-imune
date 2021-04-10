@@ -35,7 +35,8 @@ export const InputStyled = styled.input`
   outline: none;
   margin-left: ${({type}) => type === 'checkbox' && '10px'};
   padding: 0 5px;
-  border: 1px solid;
+  box-sizing: border-box;
+  border: 1px solid transparent;
   cursor: ${({type}) => type === 'checkbox' && 'pointer'};
     ${({ error }) => (error ? Theme.colors.error : "transparent")};
   box-shadow: 0 4px 6px

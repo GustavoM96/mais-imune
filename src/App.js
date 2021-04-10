@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="flex">
-      {page === "/login" || page === "/registro" || page === "/home" ? (
+      {page === "/login" || page === "/registro" || page === "/" ? (
         <>
           <ToastContainer />
           <Routes />

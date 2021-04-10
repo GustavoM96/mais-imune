@@ -1,6 +1,6 @@
 import { Container, InputStyled, Header, Text, ErrorMessage } from "./style";
 
-const Input = ({ text, name, error, type = "text", register }) => {
+const Input = ({ text, name, error, type = "text", register = {} }) => {
   return (
     <Container>
       <Header>

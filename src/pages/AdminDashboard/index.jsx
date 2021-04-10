@@ -7,40 +7,39 @@ import vaccineBondRegisterIcon from "../../assets/register_vaccine_bond_icon.svg
 
 import Header from "../../components/Header";
 import CardDashboard from "../../components/CardDashboard";
+import FormRegister from "../../components/FormRegister";
+
+import { useState } from "react";
 
 const Dashboard = () => {
-  const handleClick = () => {
-    console.log("clicou");
-  };
-
   const cards = [
     [
       registerUserIcon,
       "Cadastro de Profissionais de Saúde",
       "Cadastre perfis de profissionais de saúde",
       "Cadastrar",
-      handleClick,
+      "formRegister",
     ],
     [
       vaccineRegisterIcon,
       "Cadastro de vacinas",
       "Cadastre novas vacinas",
       "Cadastrar",
-      handleClick,
+      "formRegister",
     ],
     [
       stablishmentRegisterIcon,
       "Cadastro de estabelecimentos",
       "Cadastre novos estabelecimentos",
       "Cadastrar",
-      handleClick,
+      "formRegister",
     ],
     [
       vaccineBondRegisterIcon,
       "Vínculo de vacinas",
       "Vincule a vacina a um estabelecimento de saúde",
       "Adicionar",
-      handleClick,
+      "formRegister",
     ],
   ];
 
@@ -58,7 +57,7 @@ const Dashboard = () => {
               title={card[1]}
               text={card[2]}
               buttonText={card[3]}
-              handleClick={card[4]}
+              form={card[4]}
             />
           </>
         ))}

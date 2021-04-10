@@ -9,7 +9,7 @@ import {
   SearchBar,
 } from "./styles";
 
-function UserCardContainer({ user, vaccines }) {
+function UserCardContainer({ user }) {
   return (
     <Container>
       <Header>
@@ -24,15 +24,12 @@ function UserCardContainer({ user, vaccines }) {
         </SearchBar>
       </Header>
       <>
-        {vaccines?.length > 0 && (
+        {user.vaccines && (
           <VaccinesContainer>
-            {vaccines.map((vaccine, index) => (
+            {user.vaccines.map((vaccine, index) => (
               <CardVaccine
                 key={index}
-                date={
-                  user.vaccines.filter((vac) => vac.id === vaccine.id)[0]
-                    .aplication
-                }
+                date={vaccine.aplication}
                 vaccine={vaccine.name}
                 description={vaccine.description}
               />

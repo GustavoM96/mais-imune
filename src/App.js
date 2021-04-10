@@ -6,7 +6,6 @@ import MenuAside from "./components/MenuAside";
 import MenuProfile from "./components/MenuProfile";
 import Routes from "./routes";
 import "./styles/globals.css";
-import Header from './components/Header'
 
 function App() {
   const history = useHistory();
@@ -14,7 +13,19 @@ function App() {
 
   return (
     <div className="flex">
-      <Header />
+      {page === "/login" || page === "/registro" || page === "/" ? (
+        <>
+          <ToastContainer />
+          <Routes />
+        </>
+      ) : (
+        <>
+          <MenuAside />
+          <ToastContainer />
+          <Routes />
+          <MenuProfile />
+        </>
+      )}
     </div>
   );
 }

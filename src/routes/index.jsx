@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Dashboard from "../pages/AdminDashboard";
 
 function routes() {
   return (
@@ -17,7 +18,7 @@ function routes() {
       //profissional de saude
       <Route path="/registro-vacina" component="VaccineRegister" />
       //admin
-      <Route path="/dashboard" component="DashboardAdmin" />
+      <Route path="/dashboard" component={Dashboard} />
       //error
       <Route component="404" />
     </Switch>

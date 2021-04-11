@@ -34,6 +34,7 @@ const FormRegister = () => {
 
     cpf: yup
       .string()
+      // eslint-disable-next-line no-useless-escape
       .matches(/^(\d{3}\.){2}\d{3}\-\d{2}$/, "Digite um CPF válido!")
       .required("Campo obrigatório!"),
 

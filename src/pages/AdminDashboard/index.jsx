@@ -7,9 +7,9 @@ import vaccineBondRegisterIcon from "../../assets/register_vaccine_bond_icon.svg
 
 import Header from "../../components/Header";
 import CardDashboard from "../../components/CardDashboard";
-import FormRegister from "../../components/FormRegister";
 
-import { useState } from "react";
+import MenuAside from "../../components/MenuAside";
+import MenuProfile from "../../components/MenuProfile";
 
 const Dashboard = () => {
   const cards = [
@@ -44,25 +44,29 @@ const Dashboard = () => {
   ];
 
   return (
-    <Container>
-      <h2>Dashboard</h2>
-      <Header />
-      <h3>Cadastros</h3>
-      <CardContainer>
-        {cards.map((card, index) => (
-          <>
-            <CardDashboard
-              key={index}
-              icon={card[0]}
-              title={card[1]}
-              text={card[2]}
-              buttonText={card[3]}
-              form={card[4]}
-            />
-          </>
-        ))}
-      </CardContainer>
-    </Container>
+    <div className="flex">
+      <MenuAside />
+      <Container>
+        <h2>Dashboard</h2>
+        <Header />
+        <h3>Cadastros</h3>
+        <CardContainer>
+          {cards.map((card, index) => (
+            <>
+              <CardDashboard
+                key={index}
+                icon={card[0]}
+                title={card[1]}
+                text={card[2]}
+                buttonText={card[3]}
+                form={card[4]}
+              />
+            </>
+          ))}
+        </CardContainer>
+      </Container>
+      <MenuProfile />
+    </div>
   );
 };
 

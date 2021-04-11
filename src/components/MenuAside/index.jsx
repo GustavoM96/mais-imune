@@ -16,15 +16,22 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import { openMenuThunk } from "../../store/modules/MenuOpen/thunks";
+import { useHistory } from "react-router";
 
 function MenuAside() {
   const open = useSelector((state) => state.open);
+  const history = useHistory();
 
   //pegar level do user
 
   const level = 1;
 
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    history.push("/login");
+  };
 
   return (
     <Container open={open} level={level}>
@@ -39,16 +46,24 @@ function MenuAside() {
       {level === 1 ? (
         <>
           <div>
-            <IconContainer level={level} open={open}>
+            <IconContainer
+              onClick={() => history.push("/minhas_vacinas")}
+              level={level}
+              open={open}
+            >
               <img src={passbook} alt="Caderneta" /> <span>Minhas Vacinas</span>
             </IconContainer>
-            <IconContainer level={level} open={open}>
+            <IconContainer
+              onClick={() => history.push("/vacinas-eletivas")}
+              level={level}
+              open={open}
+            >
               <img src={medical} alt="Vacinas Eletivas" />
               <span>Vacinas Eletivas</span>
             </IconContainer>
           </div>
           <div>
-            <IconContainer level={level} open={open}>
+            <IconContainer onClick={handleLogout} level={level} open={open}>
               <div>
                 <ImExit />
               </div>
@@ -69,7 +84,7 @@ function MenuAside() {
             </IconContainer>
           </div>
           <div>
-            <IconContainer level={level} open={open}>
+            <IconContainer onClick={handleLogout} level={level} open={open}>
               <div>
                 <ImExit />
               </div>
@@ -90,7 +105,7 @@ function MenuAside() {
             </IconContainer>
           </div>
           <div>
-            <IconContainer level={level} open={open}>
+            <IconContainer onClick={handleLogout} level={level} open={open}>
               <div>
                 <ImExit />
               </div>

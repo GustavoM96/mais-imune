@@ -23,6 +23,10 @@ export const Container = styled.div`
       text-align: left;
       margin-left: 1rem;
     }
+    figure img {
+      width: 8rem;
+      border-radius: 50%;
+    }
   }
   div.cards {
     width: 100%;

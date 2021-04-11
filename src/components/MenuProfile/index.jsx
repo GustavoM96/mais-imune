@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openMenuThunk } from "../../store/modules/MenuOpen/thunks";
 
-import profile from "../../assets/profile.png";
+import profile from "../../assets/profile-picture.jpeg";
 
 import {
   ArrowLeft,
@@ -14,7 +14,7 @@ import {
 import CardAside from "../CardAside";
 import CardAsideList from "../CardAsideList";
 
-function MenuProfile() {
+function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
 
   const level = [1, 2, 3];
@@ -37,7 +37,7 @@ function MenuProfile() {
             <img src={profile} alt="Profile" />
           </figure>
           <div>
-            <span>User Name</span>
+            <span>{user.name[0].toUpperCase() + user.name.slice(1)}</span>
             <EditIcon />
           </div>
         </div>

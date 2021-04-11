@@ -38,7 +38,7 @@ function Dashboard() {
         <Header />
         <UserCardContainer user={user} />
       </Container>
-      <MenuProfile />
+      <MenuProfile user={user} />
     </div>
   );
 }

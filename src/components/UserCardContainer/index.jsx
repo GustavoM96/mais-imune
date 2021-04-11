@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import api from "../../services/api";
 
 function UserCardContainer({ user }) {
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const [allVaccines, setAllVaccines] = useState(false);
   const [vaccines, setVaccines] = useState([]);
   const [userVaccines, setUserVaccines] = useState([]);

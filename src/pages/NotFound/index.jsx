@@ -8,7 +8,7 @@ function NotFound() {
   const history = useHistory();
   return (
     <Container>
-      <Button text="Home" handleClick={() => history.push("/login")} />
+      <Button text="Home" handleClick={() => history.push("/")} />
     </Container>
   );
 }

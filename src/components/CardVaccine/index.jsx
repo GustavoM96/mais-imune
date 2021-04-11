@@ -5,7 +5,7 @@ const CardVaccine = ({ vaccine, description, date }) => {
     <CardStyled>
       <TitleStyled>Vacina: {vaccine}</TitleStyled>
       <TitleStyled>Descrição: {description}</TitleStyled>
-      <TitleStyled>Data: {date}</TitleStyled>
+      {date && <TitleStyled>Data: {date}</TitleStyled>}
     </CardStyled>
   );
 };

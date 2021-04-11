@@ -7,7 +7,6 @@ import vaccineBondRegisterIcon from "../../assets/register_vaccine_bond_icon.svg
 
 import Header from "../../components/Header";
 import CardDashboard from "../../components/CardDashboard";
-
 import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
 
@@ -18,28 +17,28 @@ const Dashboard = () => {
       "Cadastro de Profissionais de Saúde",
       "Cadastre perfis de profissionais de saúde",
       "Cadastrar",
-      "formRegister",
+      "formRegisterEmployee",
     ],
     [
       vaccineRegisterIcon,
       "Cadastro de vacinas",
       "Cadastre novas vacinas",
       "Cadastrar",
-      "formRegister",
+      "formCreateVaccine",
     ],
     [
       stablishmentRegisterIcon,
       "Cadastro de estabelecimentos",
       "Cadastre novos estabelecimentos",
       "Cadastrar",
-      "formRegister",
+      "formRegisterLocal",
     ],
     [
       vaccineBondRegisterIcon,
       "Vínculo de vacinas",
       "Vincule a vacina a um estabelecimento de saúde",
       "Adicionar",
-      "formRegister",
+      "formVaccineBond",
     ],
   ];
 

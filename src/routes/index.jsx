@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/AdminDashboard";
 import Home from "../pages/Home";
+import NotFound from "../pages/NotFound";
 
 function routes() {
   return (
@@ -16,7 +17,7 @@ function routes() {
       <Route path="/vacinas-eletivas" component="VaccinesElectives" />
       <Route path="/registro-vacina" component="VaccineRegister" />
       <Route path="/dashboard" component={Dashboard} />
-      <Route component="404" />
+      <Route component={NotFound} />
     </Switch>
   );
 }

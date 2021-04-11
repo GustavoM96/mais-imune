@@ -5,6 +5,8 @@ import jwt_decode from "jwt-decode";
 
 import { Container } from "./styles";
 import api from "../../services/api";
+import MenuAside from "../../components/MenuAside";
+import MenuProfile from "../../components/MenuProfile";
 
 function Dashboard() {
   const [user, setUser] = useState();
@@ -30,10 +32,14 @@ function Dashboard() {
   }, []);
 
   return (
-    <Container>
-      <Header />
-      <UserCardContainer user={user} />
-    </Container>
+    <div className="flex">
+      <MenuAside />
+      <Container>
+        <Header />
+        <UserCardContainer user={user} />
+      </Container>
+      <MenuProfile />
+    </div>
   );
 }
 

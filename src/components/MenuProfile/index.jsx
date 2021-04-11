@@ -11,6 +11,8 @@ import {
   EditIcon,
   Separator,
 } from "./styles";
+import CardAside from "../CardAside";
+import CardAsideList from "../CardAsideList";
 
 function MenuProfile() {
   const open = useSelector((state) => state.open);
@@ -43,9 +45,7 @@ function MenuProfile() {
       <div className="cards">
         {level[0] === 1 ? (
           <div>
-            <span> Pŕoximas vacinas </span>
-            <Separator />
-            <span> Últimas Vacinas</span>
+            <CardAsideList />
           </div>
         ) : (
           <div>

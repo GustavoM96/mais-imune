@@ -1,9 +1,13 @@
 import { Container } from "./styles";
-import Button from "../Button";
-import TransitionModal from "../../components/Modal";
-import { useState } from "react";
 
-import FormRegister from "../FormRegister";
+import Button from "../Button";
+import FormCreateVaccine from "../FormCreateVaccine";
+import FormRegisterEmployee from "../FormRegisterEmployee";
+import FormVaccineBond from "../FormVaccineBond";
+import TransitionModal from "../../components/Modal";
+import FormRegisterLocal from "../../components/FormRegisterLocal";
+
+import { useState } from "react";
 
 const CardDashboard = ({ icon, title, text, buttonText, form }) => {
   const [open, setOpen] = useState(false);
@@ -19,7 +23,15 @@ const CardDashboard = ({ icon, title, text, buttonText, form }) => {
       <p> {text}</p>
       <Button handleClick={handleClose} text={buttonText} />
       <TransitionModal open={open} handleClose={handleClose}>
-        {form === "formRegister" && <FormRegister />}
+        {form === "formRegisterEmployee" ? (
+          <FormRegisterEmployee />
+        ) : form === "formCreateVaccine" ? (
+          <FormCreateVaccine />
+        ) : form === "formVaccineBond" ? (
+          <FormVaccineBond handleClose={handleClose} />
+        ) : (
+          <FormRegisterLocal />
+        )}
       </TransitionModal>
     </Container>
   );

@@ -5,6 +5,7 @@ import { useState } from "react";
 import FormRegister from "../FormRegister";
 
 import ListAltIcon from "../../assets/list_alt.svg";
+import LocalRequiredVaccine from "../LocalRequiredVaccine";
 
 const CardAside = ({ vaccine, hasLocal = true }) => {
   const [open, setOpen] = useState(false);
@@ -16,11 +17,11 @@ const CardAside = ({ vaccine, hasLocal = true }) => {
   return (
     <Container>
       <div>
-        <h6>{vaccine}</h6>
+        <h6>{vaccine.name}</h6>
       </div>
 
       <TransitionModal open={open} handleClose={handleClose}>
-        <FormRegister />
+        <LocalRequiredVaccine vaccine={vaccine} />
       </TransitionModal>
       {hasLocal && (
         <figure>

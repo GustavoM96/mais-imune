@@ -78,7 +78,7 @@ function CardAsideList({ user }) {
             {vaccines.map((vaccine, index) => (
               <CardAside
                 key={index}
-                vaccine={vaccine.name}
+                vaccine={vaccine}
                 description={vaccine.description}
               />
             ))}
@@ -91,7 +91,7 @@ function CardAsideList({ user }) {
                   hasLocal={false}
                   key={index}
                   date={vaccine.aplication}
-                  vaccine={vaccine.name}
+                  vaccine={vaccine}
                   description={vaccine.description}
                 />
               ))}

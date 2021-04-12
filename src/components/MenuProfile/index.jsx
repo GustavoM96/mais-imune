@@ -20,7 +20,8 @@ function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
   const [openModal, setOpenModal] = useState(false);
 
-  const level = [1, 2, 3];
+  const level = JSON.parse(localStorage.getItem("permission")) || 1;
+  const userName = JSON.parse(localStorage.getItem("name")) || 1;
 
   const handleClose = () => {
     setOpenModal(!openModal);
@@ -47,13 +48,13 @@ function MenuProfile({ user = { name: "usuario" } }) {
             <img src={profile} alt="Profile" />
           </figure>
           <div>
-            <span>{user.name[0].toUpperCase() + user.name.slice(1)}</span>
+            <span>{userName[0].toUpperCase() + userName.slice(1)}</span>
             <EditIcon onClick={handleClose} />
           </div>
         </div>
       </div>
       <div className="cards">
-        {level[0] === 1 ? (
+        {level === 1 ? (
           <div>
             <CardAsideList user={user} />
           </div>

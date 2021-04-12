@@ -2,7 +2,7 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import { InputEdit } from "./style";
 import Button from "../Button";
 import Input from "../Input";
 
@@ -12,9 +12,13 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
+import { Text } from "../Input/style";
+import { useState } from "react";
 
 const FormEditProfile = ({ user }) => {
   const token = JSON.parse(localStorage.getItem("token"));
+  const [valueInputName, setValueInputName] = useState(`${user.name}`);
+  const [valueInputEmail, setValueInputEmail] = useState(`${user.email}`);
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -46,22 +50,35 @@ const FormEditProfile = ({ user }) => {
     <Container>
       <Title>Editar Perfil</Title>
       <Form onSubmit={handleSubmit(handleData)}>
-        <Input
-          name="name"
-          text="Nome Completo"
-          error={errors.name?.message}
-          register={register}
-        />
-        <Input
-          name="email"
-          text="Email"
-          type="email"
-          error={errors.email?.message}
-          register={register}
-        />
+        <div>
+          <Text>Nome Completo</Text>
+          <InputEdit
+            // onChange={(event) => {
+            //   setValueInputName(event.target.value);
+            // }}
+            // value={valueInputName}
+            name="name"
+            error={errors.name?.message}
+            {...register("name")}
+          />
+        </div>
+
+        <div>
+          <Text>Email</Text>
+          <InputEdit
+            // onChange={(event) => {
+            //   setValueInputEmail(event.target.value);
+            // }}
+            // value={valueInputEmail}
+            name="email"
+            type="email"
+            error={errors.email?.message}
+            {...register("email")}
+          />
+        </div>
 
         <ButtonContainer>
-          <Button text="Cadastrar" type="submit" marginTop="20" />
+          <Button text="Salvar" type="submit" marginTop="20" />
         </ButtonContainer>
       </Form>
     </Container>

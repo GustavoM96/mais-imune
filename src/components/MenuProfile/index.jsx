@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openMenuThunk } from "../../store/modules/MenuOpen/thunks";
-
+import TransitionModal from "../../components/Modal";
 import profile from "../../assets/profile-picture.jpeg";
+import FormEditProfile from "../FormEditProfile";
 
 import {
   ArrowLeft,
@@ -13,16 +14,25 @@ import {
 } from "./styles";
 import CardAside from "../CardAside";
 import CardAsideList from "../CardAsideList";
+import { useState } from "react";
 
 function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
+  const [openModal, setOpenModal] = useState(false);
 
   const level = [1, 2, 3];
+
+  const handleClose = () => {
+    setOpenModal(!openModal);
+  };
 
   const dispatch = useDispatch((state) => state.open);
 
   return (
     <Container open={open}>
+      <TransitionModal open={openModal} handleClose={handleClose}>
+        <FormEditProfile user={user} />
+      </TransitionModal>
       <div>
         {open ? (
           <ArrowLeft onClick={() => dispatch(openMenuThunk(open))} />
@@ -38,7 +48,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
           </figure>
           <div>
             <span>{user.name[0].toUpperCase() + user.name.slice(1)}</span>
-            <EditIcon />
+            <EditIcon onClick={handleClose} />
           </div>
         </div>
       </div>

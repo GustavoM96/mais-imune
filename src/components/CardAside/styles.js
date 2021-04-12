@@ -15,7 +15,7 @@ export const Container = styled.div`
     width: 32px;
     &:hover {
       cursor: pointer;
-      background-color: ${darken(0.08, Theme.colors.background_second)};
+      /* background-color: ${darken(0.08, Theme.colors.background_second)}; */
     }
   }
   figure {

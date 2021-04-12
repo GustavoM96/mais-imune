@@ -61,7 +61,7 @@ const FormVaccineBond = ({ handleClose }) => {
       api
         .patch(`/locals/${local[0].id}`, newData, headers)
         .then((response) => {
-          toast.dark("🥳  Registro realizado com sucesso !!", {
+          toast.dark("🥳  Vínculo realizado com sucesso !!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,

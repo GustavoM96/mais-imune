@@ -96,11 +96,19 @@ function MenuAside() {
       ) : (
         <>
           <div>
-            <IconContainer level={level} open={open}>
+            <IconContainer
+              level={level}
+              open={open}
+              onClick={() => history.push("/dashboard")}
+            >
               <img src={dashboard} alt="Dashboard" />
               <span>Dashboard</span>
             </IconContainer>
-            <IconContainer level={level} open={open}>
+            <IconContainer
+              level={level}
+              open={open}
+              onClick={() => history.push("/relatorio")}
+            >
               <img src={report} alt="Vacinas Eletivas" />
               <span>Relatório</span>
             </IconContainer>

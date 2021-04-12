@@ -1,9 +1,7 @@
 import { Container } from "./styles";
 
 import { useState, useEffect } from "react";
-
 import api from "../../services/api";
-
 import { cpfFormat, nameFormat } from "../../utils";
 
 const ReportComponent = () => {
@@ -45,8 +43,6 @@ const ReportComponent = () => {
 
     getUsers();
   }, []);
-
-  console.log(users);
 
   return (
     <Container>

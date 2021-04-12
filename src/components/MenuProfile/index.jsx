@@ -31,7 +31,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
   return (
     <Container open={open}>
       <TransitionModal open={openModal} handleClose={handleClose}>
-        <FormEditProfile userID={user.id} />
+        <FormEditProfile user={user} />
       </TransitionModal>
       <div>
         {open ? (

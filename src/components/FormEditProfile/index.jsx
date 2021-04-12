@@ -13,7 +13,7 @@ import {
   ButtonContainer,
 } from "../FormCreateVaccine/style";
 
-const FormEditProfile = ({ userID }) => {
+const FormEditProfile = ({ user }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
@@ -26,10 +26,6 @@ const FormEditProfile = ({ userID }) => {
       .string("Campo deve ser preenchido com texto")
       .email("Deve ser preenchido um e-mail")
       .required("Campo obrigatório"),
-    cpf: yup
-      .string("")
-      .matches(/^(\d{3}.){2}\d{3}-\d{2}$/, "CPF inválido")
-      .required("Campo obrigatório"),
   });
 
   const {
@@ -40,9 +36,9 @@ const FormEditProfile = ({ userID }) => {
 
   const handleData = (data) => {
     console.log(data);
-    if (userID) {
+    if (user.id) {
       api
-        .patch(`/users/${userID}`, data, headers)
+        .patch(`/users/${user.id}`, data, headers)
         .catch((error) => console.log(error));
     }
   };
@@ -61,12 +57,6 @@ const FormEditProfile = ({ userID }) => {
           text="Email"
           type="email"
           error={errors.email?.message}
-          register={register}
-        />
-        <Input
-          name="cpf"
-          text="CPF"
-          error={errors.cpf?.message}
           register={register}
         />
 

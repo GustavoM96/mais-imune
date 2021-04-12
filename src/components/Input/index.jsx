@@ -17,6 +17,7 @@ const Input = ({
   register,
   options,
   handleChange,
+  children,
 }) => {
   return (
     <Container>
@@ -25,14 +26,19 @@ const Input = ({
           <Text>{text}</Text>
           {register ? (
             <Select name={name} {...register(name)}>
-              {options.map((value) => (
-                <option value={value}>{value}</option>
+              {options.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
               ))}
             </Select>
           ) : (
             <Select onChange={handleChange} name={name}>
-              {options.map((value) => (
-                <option value={value}>{value}</option>
+              {children}
+              {options.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
               ))}
             </Select>
           )}

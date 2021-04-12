@@ -32,7 +32,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
   return (
     <Container open={open}>
       <TransitionModal open={openModal} handleClose={handleClose}>
-        <FormEditProfile user={user} />
+        <FormEditProfile handleClose={handleClose} />
       </TransitionModal>
       <div>
         {open ? (

@@ -15,10 +15,12 @@ import {
 import { Text } from "../Input/style";
 import { useState } from "react";
 
-const FormEditProfile = ({ user }) => {
+const FormEditProfile = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const [valueInputName, setValueInputName] = useState(`${user.name}`);
-  const [valueInputEmail, setValueInputEmail] = useState(`${user.email}`);
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const [valueInputName, setValueInputName] = useState("user.name");
+  const [valueInputEmail, setValueInputEmail] = useState("user.email");
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -40,12 +42,25 @@ const FormEditProfile = ({ user }) => {
 
   const handleData = (data) => {
     console.log(data);
-    if (user.id) {
-      api
-        .patch(`/users/${user.id}`, data, headers)
-        .catch((error) => console.log(error));
-    }
+
+    api
+      .patch(`/users/${user.id}`, data, headers)
+      .then((resp) => {
+        console.log(resp);
+        handleClose();
+      })
+      .catch((error) => console.log(error));
   };
+
+  const handleValueName = (e) => {
+    setValueInputName(e.target.value);
+    console.log("e.target.value");
+  };
+  const handleValueEmail = (e) => {
+    setValueInputEmail(e.target.value);
+    console.log("e.target.value");
+  };
+
   return (
     <Container>
       <Title>Editar Perfil</Title>
@@ -53,23 +68,18 @@ const FormEditProfile = ({ user }) => {
         <div>
           <Text>Nome Completo</Text>
           <InputEdit
-            // onChange={(event) => {
-            //   setValueInputName(event.target.value);
-            // }}
-            // value={valueInputName}
+            defaultValue={user.name}
             name="name"
+            type="name"
             error={errors.name?.message}
             {...register("name")}
           />
         </div>
-
         <div>
           <Text>Email</Text>
           <InputEdit
-            // onChange={(event) => {
-            //   setValueInputEmail(event.target.value);
-            // }}
-            // value={valueInputEmail}
+            onInput={handleValueEmail}
+            defaultValue={user.email}
             name="email"
             type="email"
             error={errors.email?.message}

@@ -46,6 +46,8 @@ function FormLogin() {
         },
       })
       .then((response) => {
+        localStorage.setItem("user", JSON.stringify(response.data));
+
         localStorage.setItem("name", JSON.stringify(response.data.name));
         localStorage.setItem(
           "permission",

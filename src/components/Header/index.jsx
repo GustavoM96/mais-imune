@@ -24,11 +24,11 @@ const Header = ({ title }) => {
   const permission = JSON.parse(localStorage.getItem("permission")) || 1;
   const userName = JSON.parse(localStorage.getItem("name")) || 1;
 
-  const capitalize = (str) => {
-    str = str.trim().split(" ");
-    str = str.map((word) => word[0].toUpperCase() + word.slice(1));
-    return str.join(" ");
-  };
+  // const capitalize = (str) => {
+  //   str = str.trim().split(" ");
+  //   str = str.map((word) => word[0].toUpperCase() + word.slice(1));
+  //   return str.join(" ");
+  // };
 
   const createLinkedObj = () => {
     let result = {};
@@ -75,7 +75,7 @@ const Header = ({ title }) => {
       </DateText>
       <MainArea permission={permission}>
         <TextArea>
-          <WelcomeText>Olá, {capitalize(userName)}</WelcomeText>
+          <WelcomeText>Olá, {userName}</WelcomeText>
           <CampaignText
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

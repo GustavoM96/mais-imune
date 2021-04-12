@@ -21,10 +21,11 @@ import { useHistory } from "react-router";
 function MenuAside() {
   const open = useSelector((state) => state.open);
   const history = useHistory();
+  const level = JSON.parse(localStorage.getItem("permission")) || 1;
 
   //pegar level do user
 
-  const level = 1;
+  // const level = 1;
 
   const dispatch = useDispatch();
 

@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import jwt_decode from "jwt-decode";
 
 import { Container } from "./styles";
 
@@ -35,8 +36,33 @@ function FormLogin() {
     resolver: yupResolver(schema),
   });
 
+  const redirect = (token) => {
+    const user_id = jwt_decode(token).sub;
+
+    api
+      .get(`/users/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        localStorage.setItem("name", JSON.stringify(response.data.name));
+        localStorage.setItem(
+          "permission",
+          JSON.stringify(response.data.permission)
+        );
+        if (response.data.permission === 3) {
+          history.push("/dashboard");
+        } else if (response.data.permission === 2) {
+          history.push("/registro-vacina");
+        } else {
+          history.push("/minhas_vacinas");
+        }
+      })
+      .catch((e) => console.log(e));
+  };
+
   const dataForm = (data) => {
-    console.log(data);
     api
       .post("/login", data)
       .then((response) => {
@@ -50,12 +76,11 @@ function FormLogin() {
           progress: undefined,
         });
         localStorage.clear();
-        console.log(response.data.accessToken);
         localStorage.setItem(
           "token",
           JSON.stringify(response.data.accessToken)
         );
-        history.push("/minhas_vacinas");
+        redirect(response.data.accessToken);
       })
       .catch((e) => {
         toast.error("😵 Falha ao logar !!", {

@@ -6,6 +6,8 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/AdminDashboard";
 import UserReport from "../pages/UserReport";
 import Home from "../pages/Home";
+import NotFound from "../pages/NotFound";
+import ElectiveVaccines from "../pages/ElectiveVaccines";
 
 function routes() {
   return (
@@ -14,11 +16,11 @@ function routes() {
       <Route path="/login" component={Login} />
       <Route path="/minhas_vacinas" component={UserVaccines} />
       <Route path="/registro" component={Register} />
-      <Route path="/vacinas-eletivas" component="VaccinesElectives" />
+      <Route path="/vacinas-eletivas" component={ElectiveVaccines} />
       <Route path="/registro-vacina" component="VaccineRegister" />
       <Route path="/relatorio" component={UserReport} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route component="404" />
+      <Route component={NotFound} />
     </Switch>
   );
 }

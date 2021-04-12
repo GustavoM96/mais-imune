@@ -32,7 +32,7 @@ export const IconContainer = styled.div`
   align-items: center;
   transition: 0.3s ease-in-out;
   text-align: center;
-
+  flex-wrap: wrap;
   img {
     margin: 0 1.3rem;
     width: 27px;
@@ -42,7 +42,9 @@ export const IconContainer = styled.div`
     margin: 0 1.3rem;
   }
   span {
-    display: ${(props) => (props.open ? "block" : "none")};
+    opacity: ${(props) => (props.open ? "1" : "0")};
+    visibility: ${(props) => (props.open ? "visible" : "hidden")};
+    transition: 0.4s ease-in-out;
   }
 
   :hover {

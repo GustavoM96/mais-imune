@@ -41,7 +41,6 @@ const Header = ({ title }) => {
 
   const updateMessage = () => {
     const linkedObj = createLinkedObj();
-    // console.log(checkedBox);
     setTimeout(() => setCheckedBox(linkedObj[checkedBox]), 5000);
   };
 

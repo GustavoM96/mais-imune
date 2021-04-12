@@ -9,17 +9,39 @@ import {
   CheckBoxContainer,
 } from "./style";
 
-const Input = ({ text, name, error, type = "text", register, options }) => {
+const Input = ({
+  text,
+  name,
+  error,
+  type = "text",
+  register,
+  options,
+  handleChange,
+  children,
+}) => {
   return (
     <Container>
       {type === "select" ? (
         <SelectContainer>
           <Text>{text}</Text>
-          <Select name={name} {...register(name)}>
-            {options.map((value) => (
-              <option value={value}>{value}</option>
-            ))}
-          </Select>
+          {register ? (
+            <Select name={name} {...register(name)}>
+              {options.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </Select>
+          ) : (
+            <Select onChange={handleChange} name={name}>
+              {children}
+              {options.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </Select>
+          )}
         </SelectContainer>
       ) : type === "checkbox" ? (
         <CheckBoxContainer>

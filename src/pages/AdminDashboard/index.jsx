@@ -9,8 +9,22 @@ import Header from "../../components/Header";
 import CardDashboard from "../../components/CardDashboard";
 import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
+import { useHistory } from "react-router";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+  const history = useHistory();
+  const permission = JSON.parse(localStorage.getItem("permission")) || 1;
+
+  useEffect(() => {
+    if (permission === 1) {
+      history.push("/minhas_vacinas");
+    }
+    if (permission === 2) {
+      history.push("/registro-vacina");
+    }
+  }, []);
+
   const cards = [
     [
       registerUserIcon,

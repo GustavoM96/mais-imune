@@ -7,6 +7,7 @@ export const Container = styled.div`
   width: 70%;
   max-width: 800px;
   height: 70%;
+  min-height: 655px;
 
   opacity: 80%;
 

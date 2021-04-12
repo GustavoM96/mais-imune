@@ -21,8 +21,8 @@ import { useState, useEffect } from "react";
 const Header = ({ title }) => {
   const [checkedBox, setCheckedBox] = useState(0);
 
-  const userName = "luciano feder"; //retirar da store quando tiver
-  const permission = 1;
+  const permission = JSON.parse(localStorage.getItem("permission")) || 1;
+  const userName = JSON.parse(localStorage.getItem("name")) || 1;
 
   const capitalize = (str) => {
     str = str.trim().split(" ");

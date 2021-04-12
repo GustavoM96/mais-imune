@@ -6,7 +6,7 @@ import FormRegister from "../FormRegister";
 
 import ListAltIcon from "../../assets/list_alt.svg";
 
-const CardAside = ({ vaccine, text, buttonText, form }) => {
+const CardAside = ({ vaccine, hasLocal = true }) => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -22,9 +22,11 @@ const CardAside = ({ vaccine, text, buttonText, form }) => {
       <TransitionModal open={open} handleClose={handleClose}>
         <FormRegister />
       </TransitionModal>
-      <figure>
-        <img onClick={handleClose} src={ListAltIcon} alt="list" />
-      </figure>
+      {hasLocal && (
+        <figure>
+          <img onClick={handleClose} src={ListAltIcon} alt="list" />
+        </figure>
+      )}
     </Container>
   );
 };

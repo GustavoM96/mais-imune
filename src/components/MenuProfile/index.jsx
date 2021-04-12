@@ -45,7 +45,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
       <div className="cards">
         {level[0] === 1 ? (
           <div>
-            <CardAsideList />
+            <CardAsideList user={user} />
           </div>
         ) : (
           <div>

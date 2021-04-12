@@ -2,7 +2,9 @@ import { FaGripLinesVertical } from "react-icons/fa";
 import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  padding: 5px;
+`;
 
 export const VaccinesContainer = styled.div`
   display: flex;

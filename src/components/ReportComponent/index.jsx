@@ -1,6 +1,10 @@
 import { Container } from "./styles";
+
 import { useState, useEffect } from "react";
+
 import api from "../../services/api";
+
+import { cpfFormat, nameFormat } from "../../utils";
 
 const ReportComponent = () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -14,12 +18,13 @@ const ReportComponent = () => {
 
     for (let i = 0; i < array.length; i++) {
       let user = array[i].name || array[i].user;
-      let userCpf = array[i].cpf;
+      let userCpf = cpfFormat(array[i].cpf);
 
       if (array[i].vaccines.length > 0) {
         for (let j = 0; j < array[i].vaccines.length; j++) {
           let vaccine = {};
-          vaccine.user = user;
+
+          vaccine.user = nameFormat(user);
           vaccine.userCpf = userCpf;
           vaccine.name = array[i].vaccines[j].name;
           vaccine.date = array[i].vaccines[j].aplication;
@@ -41,6 +46,8 @@ const ReportComponent = () => {
     getUsers();
   }, []);
 
+  console.log(users);
+
   return (
     <Container>
       <table>
@@ -54,14 +61,18 @@ const ReportComponent = () => {
         </thead>
         <tbody>
           {users &&
-            users.map((elem, index) => (
-              <tr key={index}>
-                <td>{elem.date}</td>
-                <td>{elem.user}</td>
-                <td>{elem.userCpf}</td>
-                <td>{elem.name}</td>
-              </tr>
-            ))}
+            users
+              .sort((a, b) => {
+                return a.date - b.date;
+              })
+              .map((elem, index) => (
+                <tr key={index}>
+                  <td>{elem.date}</td>
+                  <td>{elem.user}</td>
+                  <td>{elem.userCpf}</td>
+                  <td>{elem.name}</td>
+                </tr>
+              ))}
         </tbody>
       </table>
     </Container>

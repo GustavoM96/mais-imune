@@ -12,6 +12,8 @@ import { getUser } from "../../services/getUser";
 
 function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
+  const user_id = localStorage.getItem("user_id") || "";
+
   const { permission } = useSelector((state) => state.user);
   const { name } = useSelector((state) => state.user);
 
@@ -29,7 +31,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
   const dispatchUser = useDispatch((state) => state.user);
 
   useEffect(() => {
-    getUser(dispatchUser);
+    getUser(dispatchUser, user_id);
   }, []);
 
   return (

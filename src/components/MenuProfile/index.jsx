@@ -4,6 +4,7 @@ import { openMenuThunk } from "../../store/modules/MenuOpen/thunks";
 import TransitionModal from "../../components/Modal";
 import profile from "../../assets/profile-picture.jpeg";
 import FormEditProfile from "../FormEditProfile";
+import Instructions from "../Instructions";
 
 import { ArrowLeft, ArrowRight, Container, EditIcon } from "./styles";
 import CardAsideList from "../CardAsideList";
@@ -74,7 +75,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
           </div>
         ) : (
           <div>
-            <span>Instruções</span>
+            <Instructions permission={permission} />
           </div>
         )}
       </div>

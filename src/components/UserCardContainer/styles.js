@@ -2,11 +2,26 @@ import { FaGripLinesVertical } from "react-icons/fa";
 import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  @media (max-width: 800px) {
+    height: 100vh;
+  }
+  height: 50vh;
+  @media (min-height: 800px) {
+    height: 63vh;
+  }
+`;
 
 export const VaccinesContainer = styled.div`
   display: flex;
-  max-height: 53vh;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow-y: auto;
+    flex-wrap: nowrap;
+  }
+  max-height: 85%;
   flex-wrap: wrap;
   overflow-y: auto;
 `;
@@ -17,6 +32,12 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   span {
     font-size: 1.2rem;
@@ -47,6 +68,9 @@ export const SearchBar = styled.div`
   align-items: center;
   padding: 0 0.5rem;
   margin-right: 4.3rem;
+  @media (max-width: 800px) {
+    margin-right: 0;
+  }
   width: 300px;
   height: 40px;
   background-color: ${Theme.colors.background_second};

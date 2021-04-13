@@ -4,7 +4,8 @@ import { Theme } from "../../styles/colors";
 
 export const Conteiner = styled.div`
   min-height: 50px;
-  min-width: 1000px;
+  /* min-width: 1000px; */
+  border-radius: 15px;
   padding: 30px;
   background-color: ${Theme.colors.background_first};
   box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.62);

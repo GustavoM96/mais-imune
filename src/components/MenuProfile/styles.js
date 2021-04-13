@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
 export const Container = styled.div`
+  @media (max-width: 800px) {
+    width: 100%;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,6 +53,9 @@ export const Separator = styled(FaGripLinesVertical)`
 `;
 
 export const ArrowLeft = styled(BiArrowFromRight)`
+  @media (max-width: 800px) {
+    display: none;
+  }
   font-size: 2rem;
 
   :hover {
@@ -58,6 +64,9 @@ export const ArrowLeft = styled(BiArrowFromRight)`
 `;
 
 export const ArrowRight = styled(BiArrowFromLeft)`
+  @media (max-width: 800px) {
+    display: none;
+  }
   font-size: 2rem;
 
   :hover {

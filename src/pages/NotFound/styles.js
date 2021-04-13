@@ -4,15 +4,12 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: url("/404.png");
-  background-size: cover;
-
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   button {
-    margin-left: 10rem;
-    margin-bottom: 10rem;
+    position: absolute;
   }
 `;

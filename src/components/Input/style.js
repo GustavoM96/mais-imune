@@ -19,6 +19,9 @@ export const Header = styled.div`
 export const Text = styled.span`
   color: ${Theme.colors.text_first};
   font-size: 20px;
+  @media (max-width: 800px) {
+    font-size: 14px;
+  }
 `;
 
 export const ErrorMessage = styled.span`
@@ -28,17 +31,17 @@ export const ErrorMessage = styled.span`
 `;
 
 export const InputStyled = styled.input`
-  width: ${({type}) => type !== 'checkbox' ? '100%' : '20px'};
-  height: ${({type}) => type !== 'checkbox' ? '30px' : '20px'};
+  width: ${({ type }) => (type !== "checkbox" ? "100%" : "20px")};
+  height: ${({ type }) => (type !== "checkbox" ? "30px" : "20px")};
   color: ${Theme.colors.text_first};
   background-color: ${Theme.colors.background_second};
   outline: none;
-  margin-left: ${({type}) => type === 'checkbox' && '10px'};
+  margin-left: ${({ type }) => type === "checkbox" && "10px"};
   padding: 0 5px;
   box-sizing: border-box;
   border: 1px solid transparent;
-  cursor: ${({type}) => type === 'checkbox' && 'pointer'};
-    ${({ error }) => (error ? Theme.colors.error : "transparent")};
+  cursor: ${({ type }) => type === "checkbox" && "pointer"};
+  ${({ error }) => (error ? Theme.colors.error : "transparent")};
   box-shadow: 0 4px 6px
     ${({ error }) =>
       error ? Theme.colors.error_boxShadow : Theme.colors.boxShadow_primary};
@@ -57,10 +60,9 @@ export const SelectContainer = styled.div`
   display: flex;
   flex-flow: row;
   align-items: center;
+`;
 
-`
-
-export const CheckBoxContainer = styled(SelectContainer)``
+export const CheckBoxContainer = styled(SelectContainer)``;
 
 export const Select = styled.select`
   height: 30px;
@@ -72,11 +74,11 @@ export const Select = styled.select`
   color: ${Theme.colors.text_first};
   background-color: ${Theme.colors.background_second};
   padding: 0 5px;
-  border: 1px solid 'transparent';
+  border: 1px solid "transparent";
   &:hover {
     border-color: ${darken(0.04, Theme.colors.main_user)};
   }
   &:focus {
     border-color: ${Theme.colors.main_user};
   }
-`
+`;

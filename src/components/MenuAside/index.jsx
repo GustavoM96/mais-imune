@@ -12,6 +12,8 @@ import {
   ArrowRight,
   CollapseIconContainer,
   IconContainer,
+  DivMenu,
+  CollapseIconContainerMobile,
 } from "./styles";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -23,10 +25,6 @@ function MenuAside() {
   const history = useHistory();
   const level = JSON.parse(localStorage.getItem("permission")) || 1;
 
-  //pegar level do user
-
-  // const level = 1;
-
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -35,103 +33,113 @@ function MenuAside() {
   };
 
   return (
-    <Container open={open} level={level}>
-      <CollapseIconContainer>
+    <>
+      <CollapseIconContainerMobile open={open}>
         {open ? (
           <ArrowLeft onClick={() => dispatch(openMenuThunk(open))} />
         ) : (
           <ArrowRight onClick={() => dispatch(openMenuThunk(open))} />
         )}
-      </CollapseIconContainer>
+      </CollapseIconContainerMobile>
+      <Container open={open} level={level}>
+        <CollapseIconContainer>
+          {open ? (
+            <ArrowLeft onClick={() => dispatch(openMenuThunk(open))} />
+          ) : (
+            <ArrowRight onClick={() => dispatch(openMenuThunk(open))} />
+          )}
+        </CollapseIconContainer>
 
-      {level === 1 ? (
-        <>
-          <div>
-            <IconContainer
-              onClick={() => history.push("/minhas_vacinas")}
-              level={level}
-              open={open}
-            >
-              <img src={passbook} alt="Caderneta" /> <span>Minhas Vacinas</span>
-            </IconContainer>
-            <IconContainer
-              onClick={() => history.push("/vacinas-eletivas")}
-              level={level}
-              open={open}
-            >
-              <img src={medical} alt="Vacinas Eletivas" />
-              <span>Vacinas Eletivas</span>
-            </IconContainer>
-          </div>
-          <div>
-            <IconContainer onClick={handleLogout} level={level} open={open}>
-              <div>
-                <ImExit />
-              </div>
-              <span>Logout</span>
-            </IconContainer>
-          </div>
-        </>
-      ) : level === 2 ? (
-        <>
-          <div>
-            <IconContainer
-              level={level}
-              open={open}
-              onClick={() => history.push("/vacinas-eletivas")}
-            >
-              <img src={seringa} alt="Seringa" />
-              <span>Registro de Vacinação</span>
-            </IconContainer>
-            <IconContainer
-              level={level}
-              open={open}
-              onClick={() => history.push("/relatorio")}
-            >
-              <img src={report} alt="Vacinas Eletivas" />
-              <span>Relatório</span>
-            </IconContainer>
-          </div>
-          <div>
-            <IconContainer onClick={handleLogout} level={level} open={open}>
-              <div>
-                <ImExit />
-              </div>
-              <span>Logout</span>
-            </IconContainer>
-          </div>
-        </>
-      ) : (
-        <>
-          <div>
-            <IconContainer
-              level={level}
-              open={open}
-              onClick={() => history.push("/dashboard")}
-            >
-              <img src={dashboard} alt="Dashboard" />
-              <span>Dashboard</span>
-            </IconContainer>
-            <IconContainer
-              level={level}
-              open={open}
-              onClick={() => history.push("/relatorio")}
-            >
-              <img src={report} alt="Vacinas Eletivas" />
-              <span>Relatório</span>
-            </IconContainer>
-          </div>
-          <div>
-            <IconContainer onClick={handleLogout} level={level} open={open}>
-              <div>
-                <ImExit />
-              </div>
-              <span>Logout</span>
-            </IconContainer>
-          </div>
-        </>
-      )}
-    </Container>
+        {level === 1 ? (
+          <>
+            <DivMenu>
+              <IconContainer
+                onClick={() => history.push("/minhas_vacinas")}
+                level={level}
+                open={open}
+              >
+                <img src={passbook} alt="Caderneta" />{" "}
+                <span>Minhas Vacinas</span>
+              </IconContainer>
+              <IconContainer
+                onClick={() => history.push("/vacinas-eletivas")}
+                level={level}
+                open={open}
+              >
+                <img src={medical} alt="Vacinas Eletivas" />
+                <span>Vacinas Eletivas</span>
+              </IconContainer>
+            </DivMenu>
+            <DivMenu>
+              <IconContainer onClick={handleLogout} level={level} open={open}>
+                <div>
+                  <ImExit />
+                </div>
+                <span>Logout</span>
+              </IconContainer>
+            </DivMenu>
+          </>
+        ) : level === 2 ? (
+          <>
+            <DivMenu>
+              <IconContainer
+                onClick={() => history.push("/registro-vacina")}
+                level={level}
+                open={open}
+              >
+                <img src={seringa} alt="Seringa" />
+                <span>Registro de Vacinação</span>
+              </IconContainer>
+              <IconContainer
+                level={level}
+                open={open}
+                onClick={() => history.push("/relatorio")}
+              >
+                <img src={report} alt="Vacinas Eletivas" />
+                <span>Relatório</span>
+              </IconContainer>
+            </DivMenu>
+            <DivMenu>
+              <IconContainer onClick={handleLogout} level={level} open={open}>
+                <div>
+                  <ImExit />
+                </div>
+                <span>Logout</span>
+              </IconContainer>
+            </DivMenu>
+          </>
+        ) : (
+          <>
+            <DivMenu>
+              <IconContainer
+                level={level}
+                open={open}
+                onClick={() => history.push("/dashboard")}
+              >
+                <img src={dashboard} alt="Dashboard" />
+                <span>Dashboard</span>
+              </IconContainer>
+              <IconContainer
+                level={level}
+                open={open}
+                onClick={() => history.push("/relatorio")}
+              >
+                <img src={report} alt="Vacinas Eletivas" />
+                <span>Relatório</span>
+              </IconContainer>
+            </DivMenu>
+            <DivMenu>
+              <IconContainer onClick={handleLogout} level={level} open={open}>
+                <div>
+                  <ImExit />
+                </div>
+                <span>Logout</span>
+              </IconContainer>
+            </DivMenu>
+          </>
+        )}
+      </Container>
+    </>
   );
 }
 

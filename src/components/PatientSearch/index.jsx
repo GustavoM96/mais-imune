@@ -36,6 +36,10 @@ const PatientSearch = () => {
     console.log(user);
   }, [user]);
 
+  const handleClose = () => {
+    setOpen(!open);
+  };
+
   return (
     <div>
       <InputConteiner>
@@ -55,8 +59,11 @@ const PatientSearch = () => {
               <BoldText>CPF: {user[0]?.cpf}</BoldText>
             </TextConteiner>
 
-            <Modal open={open} handleClose={() => setOpen(!open)}>
-              <FormVacinaUser userInfo={user}></FormVacinaUser>
+            <Modal open={open} handleClose={handleClose}>
+              <FormVacinaUser
+                userInfo={user}
+                handleClose={handleClose}
+              ></FormVacinaUser>
             </Modal>
             <Button
               text="Registrar Vacinação"

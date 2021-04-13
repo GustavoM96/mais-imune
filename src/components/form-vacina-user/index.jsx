@@ -16,10 +16,11 @@ import {
   FormConteiner,
   ErrorMessage,
 } from "./style";
+import { toast } from "react-toastify";
 
 let token = localStorage.getItem("token");
 
-const FormVacinaUser = ({ userInfo, setOpen }) => {
+const FormVacinaUser = ({ userInfo, handleClose }) => {
   const [vacinesList, setVacinesList] = useState([]);
   const [vacine, setVacine] = useState();
 
@@ -71,7 +72,6 @@ const FormVacinaUser = ({ userInfo, setOpen }) => {
     vacina.vaccines.push(data);
     data = vacina;
 
-    console.log(data);
     api
       .patch(`/users/${userInfo[0].id}`, data, {
         headers: {
@@ -79,9 +79,30 @@ const FormVacinaUser = ({ userInfo, setOpen }) => {
         },
       })
       .then((response) => {
+        toast.info("Registro de vacina realizado com sucesso !", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         console.log(response.data);
+        handleClose();
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        toast.error("Falha ao registrar vacina, tente novamente", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log(e);
+      });
   };
 
   return (
@@ -109,11 +130,7 @@ const FormVacinaUser = ({ userInfo, setOpen }) => {
             {...register("aplication", { required: true })}
           ></InputData>
           <ErrorMessage>{errors.aplication?.message}</ErrorMessage>
-          <Button
-            type="submit"
-            text={"Confirmar"}
-            handleClick={() => setOpen(false)}
-          ></Button>
+          <Button type="submit" text={"Confirmar"}></Button>
         </StyledForm>
       </form>
     </FormConteiner>

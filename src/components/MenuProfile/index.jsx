@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openMenuThunk } from "../../store/modules/MenuOpen/thunks";
 import TransitionModal from "../../components/Modal";
@@ -15,6 +15,7 @@ import {
 import CardAside from "../CardAside";
 import CardAsideList from "../CardAsideList";
 import { useState } from "react";
+import { getUser } from "../../services/getUser";
 
 function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
@@ -30,6 +31,12 @@ function MenuProfile({ user = { name: "usuario" } }) {
   };
 
   const dispatch = useDispatch((state) => state.open);
+
+  const dispatchUser = useDispatch((state) => state.user);
+
+  useEffect(() => {
+    getUser(dispatchUser);
+  }, []);
 
   return (
     <Container open={open}>

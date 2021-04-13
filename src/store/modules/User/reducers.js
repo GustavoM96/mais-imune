@@ -1,15 +1,16 @@
 import api from "../../../services/api";
 const token = localStorage.getItem("token") || "";
 const user_id = localStorage.getItem("user_id") || "";
+const name = localStorage.getItem("name") || "";
 
 const defaultState = {
   token: token,
   id: user_id,
-  name: "sem nome",
-  permission: "sem permissao",
-  email: "sem email",
-  permission: "sem email",
-  vaccine: "sem vacina",
+  name: name,
+  permission: "carregando",
+  email: "carregando",
+  permission: "carregando",
+  vaccine: "carregando",
 };
 
 const userReducer = (state = defaultState, action) => {

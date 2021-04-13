@@ -7,6 +7,7 @@ import api from "../../services/api";
 import jwt_decode from "jwt-decode";
 
 import { Container } from "./styles";
+import { useHistory } from "react-router";
 
 function ElectiveVaccines() {
   const [user, setUser] = useState();
@@ -14,9 +15,16 @@ function ElectiveVaccines() {
   const token = localStorage.getItem("token") || "";
 
   const user_id = jwt_decode(token).sub;
+  const history = useHistory();
+  const permission = JSON.parse(localStorage.getItem("permission")) || 1;
 
   useEffect(() => {
-    console.log(user_id);
+    if (permission === 3) {
+      history.push("/dashboard");
+    }
+    if (permission === 2) {
+      history.push("/registro-vacina");
+    }
 
     api
       .get(`/users/${user_id}`, {

@@ -132,7 +132,7 @@ function FormLogin() {
           <Button text="Logar" type="submit"></Button>
         </div>
         <span className="register" onClick={() => history.push("/registro")}>
-          Ainda não é cadastrado? Faça seu resgistro aqui <AiOutlineForm />
+          Ainda não é cadastrado? Faça seu registro aqui <AiOutlineForm />
         </span>
       </form>
       <figure>

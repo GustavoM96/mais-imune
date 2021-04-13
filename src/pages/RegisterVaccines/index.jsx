@@ -6,23 +6,24 @@ import stablishmentRegisterIcon from "../../assets/register_stablishment_icon.sv
 import vaccineBondRegisterIcon from "../../assets/register_vaccine_bond_icon.svg";
 
 import Header from "../../components/Header";
-import CardDashboard from "../../components/CardDashboard";
+import PatientSearch from "../../components/PatientSearch";
 import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
 
-const Dashboard = () => {
+const RegisterVacine = () => {
   const history = useHistory();
   const permission = JSON.parse(localStorage.getItem("permission")) || 1;
 
   useEffect(() => {
+    if (permission === 3) {
+      history.push("/dashboard");
+    }
     if (permission === 1) {
       history.push("/minhas_vacinas");
     }
-    if (permission === 2) {
-      history.push("/registro-vacina");
-    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cards = [
@@ -60,27 +61,14 @@ const Dashboard = () => {
     <div className="flex">
       <MenuAside />
       <Container>
-        <h2>Dashboard</h2>
+        <h2>RegisterVacine</h2>
         <Header />
-        <h3>Cadastros</h3>
-        <CardContainer>
-          {cards.map((card, index) => (
-            <>
-              <CardDashboard
-                key={index}
-                icon={card[0]}
-                title={card[1]}
-                text={card[2]}
-                buttonText={card[3]}
-                form={card[4]}
-              />
-            </>
-          ))}
-        </CardContainer>
+        <h3>Busca por paciente</h3>
+        <PatientSearch></PatientSearch>
       </Container>
       <MenuProfile />
     </div>
   );
 };
 
-export default Dashboard;
+export default RegisterVacine;

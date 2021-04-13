@@ -7,6 +7,7 @@ import { Container } from "./styles";
 import api from "../../services/api";
 import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
+import { useHistory } from "react-router";
 
 function Dashboard() {
   const [user, setUser] = useState();
@@ -15,8 +16,16 @@ function Dashboard() {
 
   const user_id = jwt_decode(token).sub;
 
+  const history = useHistory();
+  const permission = JSON.parse(localStorage.getItem("permission")) || 1;
+
   useEffect(() => {
-    console.log(user_id);
+    if (permission === 3) {
+      history.push("/dashboard");
+    }
+    if (permission === 2) {
+      history.push("/registro-vacina");
+    }
 
     api
       .get(`/users/${user_id}`, {

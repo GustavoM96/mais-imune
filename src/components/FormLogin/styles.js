@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
 export const Container = styled.div`
+  @media (max-width: 800px) {
+    font-size: 0.8rem;
+  }
   background: ${Theme.colors.background_second};
 
   width: 70%;
@@ -25,6 +28,10 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: space-around;
     & h3 {
+      @media (max-width: 800px) {
+        font-size: 1rem;
+        font-weight: 600;
+      }
       font-size: 3rem;
       font-weight: 400;
     }
@@ -34,6 +41,9 @@ export const Container = styled.div`
   }
 
   figure {
+    @media (max-width: 800px) {
+      display: none;
+    }
     width: 50%;
     margin: 0;
     & img {

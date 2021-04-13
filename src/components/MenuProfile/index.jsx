@@ -5,14 +5,7 @@ import TransitionModal from "../../components/Modal";
 import profile from "../../assets/profile-picture.jpeg";
 import FormEditProfile from "../FormEditProfile";
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  Container,
-  EditIcon,
-  Separator,
-} from "./styles";
-import CardAside from "../CardAside";
+import { ArrowLeft, ArrowRight, Container, EditIcon } from "./styles";
 import CardAsideList from "../CardAsideList";
 import { useState } from "react";
 import { getUser } from "../../services/getUser";
@@ -40,16 +33,22 @@ function MenuProfile({ user = { name: "usuario" } }) {
 
   return (
     <Container open={open}>
+      <div>
+        {open ? (
+          <ArrowLeft
+            open={open}
+            onClick={() => dispatch(openMenuThunk(open))}
+          />
+        ) : (
+          <ArrowRight
+            open={open}
+            onClick={() => dispatch(openMenuThunk(open))}
+          />
+        )}
+      </div>
       <TransitionModal open={openModal} handleClose={handleClose}>
         <FormEditProfile handleClose={handleClose} />
       </TransitionModal>
-      <div>
-        {open ? (
-          <ArrowLeft onClick={() => dispatch(openMenuThunk(open))} />
-        ) : (
-          <ArrowRight onClick={() => dispatch(openMenuThunk(open))} />
-        )}
-      </div>
       <div open={open} className="header">
         <div>
           <h3>Meu Perfil</h3>

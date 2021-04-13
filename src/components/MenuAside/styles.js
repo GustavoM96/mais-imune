@@ -1,14 +1,25 @@
 import styled from "styled-components";
-import { BiArrowFromLeft, BiArrowFromRight } from "react-icons/bi";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
 import { Theme } from "../../styles/colors";
 import { darken } from "polished";
 
 export const Container = styled.div`
   @media (max-width: 800px) {
-    width: 80%;
+    width: ${(props) => (props.open ? "80%" : "10%")};
     position: fixed;
     z-index: 1;
+    background-color: ${(props) =>
+      props.level === 1
+        ? Theme.colors.main_user
+        : props.level === 2
+        ? Theme.colors.main_healthEmployee
+        : Theme.colors.main_admin};
+    opacity: 0.95;
+    box-shadow: 145px -1px 5px 27px rgba(0, 0, 0, 0.74);
+    -webkit-box-shadow: 145px -1px 5px 27px rgba(0, 0, 0, 0.74);
+    -moz-box-shadow: 145px -1px 5px 27px rgba(0, 0, 0, 0.74);
+    display: ${(props) => (props.open ? "flex" : "none")};
   }
 
   width: ${(props) => (props.open ? "16rem" : "5rem")};
@@ -27,11 +38,12 @@ export const Container = styled.div`
 `;
 
 export const CollapseIconContainer = styled.div`
-  @media (max-width: 800px) {
-    display: none;
-  }
   width: 100%;
   text-align: center;
+`;
+
+export const CollapseIconContainerMobile = styled.div`
+  display: ${(props) => (props.open ? "none" : "block")};
 `;
 
 export const DivMenu = styled.div``;
@@ -74,14 +86,14 @@ export const IconContainer = styled.div`
   }
 `;
 
-export const ArrowLeft = styled(BiArrowFromRight)`
+export const ArrowLeft = styled(RiArrowLeftSLine)`
   font-size: 2rem;
   :hover {
     cursor: pointer;
   }
 `;
 
-export const ArrowRight = styled(BiArrowFromLeft)`
+export const ArrowRight = styled(RiArrowRightSLine)`
   font-size: 2rem;
 
   :hover {

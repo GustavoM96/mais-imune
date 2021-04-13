@@ -12,6 +12,7 @@ import {
   ArrowRight,
   CollapseIconContainer,
   IconContainer,
+  DivMenu,
 } from "./styles";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -46,7 +47,7 @@ function MenuAside() {
 
       {level === 1 ? (
         <>
-          <div>
+          <DivMenu>
             <IconContainer
               onClick={() => history.push("/minhas_vacinas")}
               level={level}
@@ -62,19 +63,19 @@ function MenuAside() {
               <img src={medical} alt="Vacinas Eletivas" />
               <span>Vacinas Eletivas</span>
             </IconContainer>
-          </div>
-          <div>
+          </DivMenu>
+          <DivMenu>
             <IconContainer onClick={handleLogout} level={level} open={open}>
               <div>
                 <ImExit />
               </div>
               <span>Logout</span>
             </IconContainer>
-          </div>
+          </DivMenu>
         </>
       ) : level === 2 ? (
         <>
-          <div>
+          <DivMenu>
             <IconContainer
               onClick={() => history.push("/registro-vacina")}
               level={level}
@@ -91,19 +92,19 @@ function MenuAside() {
               <img src={report} alt="Vacinas Eletivas" />
               <span>Relatório</span>
             </IconContainer>
-          </div>
-          <div>
+          </DivMenu>
+          <DivMenu>
             <IconContainer onClick={handleLogout} level={level} open={open}>
               <div>
                 <ImExit />
               </div>
               <span>Logout</span>
             </IconContainer>
-          </div>
+          </DivMenu>
         </>
       ) : (
         <>
-          <div>
+          <DivMenu>
             <IconContainer
               level={level}
               open={open}
@@ -120,15 +121,15 @@ function MenuAside() {
               <img src={report} alt="Vacinas Eletivas" />
               <span>Relatório</span>
             </IconContainer>
-          </div>
-          <div>
+          </DivMenu>
+          <DivMenu>
             <IconContainer onClick={handleLogout} level={level} open={open}>
               <div>
                 <ImExit />
               </div>
               <span>Logout</span>
             </IconContainer>
-          </div>
+          </DivMenu>
         </>
       )}
     </Container>

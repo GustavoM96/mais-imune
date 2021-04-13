@@ -2,11 +2,16 @@ import { FaGripLinesVertical } from "react-icons/fa";
 import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  height: 50vh;
+  @media (min-height: 800px) {
+    height: 60vh;
+  }
+`;
 
 export const VaccinesContainer = styled.div`
   display: flex;
-  max-height: 53vh;
+  max-height: 85%;
   flex-wrap: wrap;
   overflow-y: auto;
 `;

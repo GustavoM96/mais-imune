@@ -31,9 +31,6 @@ function MenuProfile({ user = { name: "usuario" } }) {
 
   return (
     <Container open={open}>
-      <TransitionModal open={openModal} handleClose={handleClose}>
-        <FormEditProfile handleClose={handleClose} />
-      </TransitionModal>
       <div>
         {open ? (
           <ArrowLeft onClick={() => dispatch(openMenuThunk(open))} />
@@ -41,6 +38,9 @@ function MenuProfile({ user = { name: "usuario" } }) {
           <ArrowRight onClick={() => dispatch(openMenuThunk(open))} />
         )}
       </div>
+      <TransitionModal open={openModal} handleClose={handleClose}>
+        <FormEditProfile handleClose={handleClose} />
+      </TransitionModal>
       <div open={open} className="header">
         <div>
           <h3>Meu Perfil</h3>

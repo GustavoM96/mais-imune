@@ -22,7 +22,8 @@ export const Container = styled.div`
   }
 
   width: ${(props) => (props.open ? "16rem" : "5rem")};
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background-color: ${(props) =>
     props.level === 1
       ? Theme.colors.main_user

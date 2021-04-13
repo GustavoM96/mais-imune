@@ -5,6 +5,7 @@ export const Container = styled.div`
   padding: 1rem;
   margin: 1rem auto;
   width: 94%;
+
   @media (max-width: 800px) {
     width: 80%;
     overflow-x: auto;

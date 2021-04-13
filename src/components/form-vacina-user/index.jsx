@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import axios from "axios";
+import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -16,13 +16,11 @@ import {
   FormConteiner,
   ErrorMessage,
 } from "./style";
-//este token sera substituido apos feita a pagina de login
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1Y2FzQG1haWwuY29tIiwiaWF0IjoxNjE3OTg5NzE1LCJleHAiOjE2MTc5OTMzMTUsInN1YiI6IjMifQ.uII_fGxViVsz8lCHcvwoLG0wtjnYlq_7SfpIfjbYVXQ";
-const headers = { headers: { Authorization: `Bearer ${token}` } };
 
-const FormVacinaUser = ({ userInfo }) => {
-  const [vacines, setVacines] = useState([]);
+let token = localStorage.getItem("token");
+
+const FormVacinaUser = ({ userInfo, setOpen }) => {
+  const [vacinesList, setVacinesList] = useState([]);
   const [vacine, setVacine] = useState();
 
   const schema = yup.object().shape({
@@ -39,12 +37,17 @@ const FormVacinaUser = ({ userInfo }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    axios
-      .get(`https://mais-imune.herokuapp.com/vaccines`, headers)
-      .then((response) => {
-        setVacines(calculateVac(response.data, userInfo));
+    api
+      .get("/vaccines", {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
       })
-      .catch((error) => console.log(error));
+      .then((response) =>
+        setVacinesList(calculateVac(response.data, userInfo[0]))
+      )
+      .catch((e) => console.log(e));
+    console.log(userInfo[0]);
   }, []);
 
   const handleChange = (event) => {
@@ -53,21 +56,32 @@ const FormVacinaUser = ({ userInfo }) => {
 
   const handleData = (data) => {
     let vacina = {};
-    vacina.vaccines = userInfo.vaccines;
+    vacina.vaccines = userInfo[0].vaccines;
     data.id = parseInt(data.id);
+
+    for (let i = 0; i < vacinesList.length; i++) {
+      if (vacinesList[i].id === data.id) {
+        data.name = vacinesList[i].name;
+        data.required = vacinesList[i].required;
+        data.description = vacinesList[i].description;
+        data.doses = vacinesList[i].doses;
+      }
+    }
+
     vacina.vaccines.push(data);
     data = vacina;
 
-    axios
-      .patch(
-        `https://mais-imune.herokuapp.com/users/${userInfo.id}`,
-        data,
-        headers
-      )
-      .then((response) => {
-        console.log(response);
+    console.log(data);
+    api
+      .patch(`/users/${userInfo[0].id}`, data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
       })
-      .catch((error) => console.log(error));
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -82,7 +96,7 @@ const FormVacinaUser = ({ userInfo }) => {
             {...register("id", { required: true })}
           >
             <option value=""></option>
-            {vacines.map((vacine, index) => (
+            {vacinesList.map((vacine, index) => (
               <option value={vacine.id} key={index}>
                 {vacine.name}
               </option>
@@ -95,7 +109,11 @@ const FormVacinaUser = ({ userInfo }) => {
             {...register("aplication", { required: true })}
           ></InputData>
           <ErrorMessage>{errors.aplication?.message}</ErrorMessage>
-          <Button type="submit" text={"Confirmar"}></Button>
+          <Button
+            type="submit"
+            text={"Confirmar"}
+            handleClick={() => setOpen(false)}
+          ></Button>
         </StyledForm>
       </form>
     </FormConteiner>

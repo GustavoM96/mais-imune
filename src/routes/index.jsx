@@ -7,6 +7,7 @@ import Dashboard from "../pages/AdminDashboard";
 import UserReport from "../pages/UserReport";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
+import RegisterVacine from "../pages/RegisterVaccines";
 import ElectiveVaccines from "../pages/ElectiveVaccines";
 
 function routes() {
@@ -17,7 +18,7 @@ function routes() {
       <Route path="/minhas_vacinas" component={UserVaccines} />
       <Route path="/registro" component={Register} />
       <Route path="/vacinas-eletivas" component={ElectiveVaccines} />
-      <Route path="/registro-vacina" component="VaccineRegister" />
+      <Route path="/registro-vacina" component={RegisterVacine} />
       <Route path="/relatorio" component={UserReport} />
       <Route path="/dashboard" component={Dashboard} />
       <Route component={NotFound} />

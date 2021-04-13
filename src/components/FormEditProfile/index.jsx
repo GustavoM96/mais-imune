@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { InputEdit } from "./style";
 import Button from "../Button";
-import Input from "../Input";
+import { toast } from "react-toastify";
 
 import {
   Container,
@@ -14,10 +14,14 @@ import {
 } from "../FormCreateVaccine/style";
 import { Text } from "../Input/style";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeInfo } from "../../store/modules/User/actions";
 
 const FormEditProfile = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const user = JSON.parse(localStorage.getItem("user"));
+  // const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch((state) => state.user);
+  const user = useSelector((state) => state.user);
 
   const [valueInputName, setValueInputName] = useState("user.name");
   const [valueInputEmail, setValueInputEmail] = useState("user.email");
@@ -47,6 +51,16 @@ const FormEditProfile = ({ handleClose }) => {
       .patch(`/users/${user.id}`, data, headers)
       .then((resp) => {
         console.log(resp);
+        toast.dark("✔️ Alteração feita com sucesso", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        dispatch(changeInfo(data.name, data.email));
         handleClose();
       })
       .catch((error) => console.log(error));

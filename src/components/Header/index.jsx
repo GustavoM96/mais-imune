@@ -17,12 +17,14 @@ import {
 } from "./style";
 
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Header = ({ title }) => {
   const [checkedBox, setCheckedBox] = useState(0);
 
   const permission = JSON.parse(localStorage.getItem("permission")) || 1;
   const userName = JSON.parse(localStorage.getItem("name")) || 1;
+  const { name } = useSelector((state) => state.user);
 
   // const capitalize = (str) => {
   //   str = str.trim().split(" ");
@@ -75,7 +77,7 @@ const Header = ({ title }) => {
       </DateText>
       <MainArea permission={permission}>
         <TextArea>
-          <WelcomeText>Olá, {userName}</WelcomeText>
+          <WelcomeText>Olá, {name}</WelcomeText>
           <CampaignText
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

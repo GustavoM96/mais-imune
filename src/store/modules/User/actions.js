@@ -3,3 +3,8 @@ export const signIn = (token, user) => ({
   token,
   user,
 });
+export const changeInfo = (nameChange, emailChange) => ({
+  type: "@user/CHANGE_INFO",
+  nameChange,
+  emailChange,
+});

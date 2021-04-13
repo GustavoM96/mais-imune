@@ -12,15 +12,12 @@ function Home() {
   return (
     <Container>
       <div className="message">
-        <h1>The standard Lorem Ipsum passage, used since the 1500s</h1>
+        <h1>
+          +Imune<span>, a sua nova carteira de vacinação digital</span>
+        </h1>
         <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum."
+          Acesse os seus dados de vacinação, acompanhe as suas vacinas a
+          pendentes e veja os locais de vacinação disponíveis.
         </p>
         <Button text="Começar" handleClick={() => history.push("/login")} />
       </div>

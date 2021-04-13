@@ -10,7 +10,6 @@ export const Container = styled.div`
   width: 70%;
   max-width: 800px;
   height: 70%;
-  min-height: 655px;
 
   opacity: 80%;
 
@@ -18,6 +17,11 @@ export const Container = styled.div`
 
   display: flex;
   align-items: center;
+
+  @media (min-width: 800px) {
+    height: 65%;
+    min-height: 600px;
+  }
 
   form {
     width: 50%;

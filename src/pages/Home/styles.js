@@ -22,6 +22,19 @@ export const Container = styled.div`
     justify-content: space-around;
     align-items: center;
 
+    h1 {
+      text-align: center;
+
+      span {
+        font-weight: normal;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      text-align: center;
+    }
+
     @media (min-width: 900px) {
       justify-content: center;
       align-items: center;
@@ -29,6 +42,16 @@ export const Container = styled.div`
       height: 50%;
       width: 60%;
       margin: 3rem;
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 4.5vh;
+      }
     }
   }
   .nurse-doc img {

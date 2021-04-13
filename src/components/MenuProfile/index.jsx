@@ -21,7 +21,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
   const [openModal, setOpenModal] = useState(false);
 
   const level = JSON.parse(localStorage.getItem("permission")) || 1;
-  const userName = JSON.parse(localStorage.getItem("name")) || 1;
+  // const userName = JSON.parse(localStorage.getItem("name")) || 1;
 
   const handleClose = () => {
     setOpenModal(!openModal);
@@ -33,6 +33,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
 
   useEffect(() => {
     getUser(dispatchUser, user_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -8,12 +8,15 @@ export const Container = styled.div`
   @media (max-width: 800px) {
     width: 100%;
   }
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: ${(state) => (!state.open ? "17rem" : "5rem")};
   min-height: 100vh;
+  height: 100%;
+
   background-color: ${Theme.colors.background_second};
   transition: 0.5s ease-in-out;
 

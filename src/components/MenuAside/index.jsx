@@ -5,7 +5,6 @@ import report from "../../assets/report.svg";
 import dashboard from "../../assets/dashboard.svg";
 
 import { ImExit } from "react-icons/im";
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
 import {
   Container,

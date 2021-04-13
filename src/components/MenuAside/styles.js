@@ -15,11 +15,10 @@ export const Container = styled.div`
         : props.level === 2
         ? Theme.colors.main_healthEmployee
         : Theme.colors.main_admin};
-    opacity: 0.95;
-    box-shadow: 145px -1px 5px 27px rgba(0, 0, 0, 0.74);
-    -webkit-box-shadow: 145px -1px 5px 27px rgba(0, 0, 0, 0.74);
-    -moz-box-shadow: 145px -1px 5px 27px rgba(0, 0, 0, 0.74);
-    display: ${(props) => (props.open ? "flex" : "none")};
+    opacity: ${(props) => (props.open ? "0.95" : "0")};
+    box-shadow: 157px 2px 0px 2px rgba(0, 0, 0, 0.74);
+
+    transition: 0.1s linear;
   }
 
   width: ${(props) => (props.open ? "16rem" : "5rem")};
@@ -43,7 +42,11 @@ export const CollapseIconContainer = styled.div`
 `;
 
 export const CollapseIconContainerMobile = styled.div`
-  display: ${(props) => (props.open ? "none" : "block")};
+  position: fixed;
+  opacity: ${(props) => (props.open ? "0" : "1")};
+  @media (min-width: 800px) {
+    display: none;
+  }
 `;
 
 export const DivMenu = styled.div``;

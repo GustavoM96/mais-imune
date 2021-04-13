@@ -75,11 +75,19 @@ function MenuAside() {
       ) : level === 2 ? (
         <>
           <div>
-            <IconContainer level={level} open={open}>
-              <img src={seringa} alt="Seringa" />{" "}
+            <IconContainer
+              level={level}
+              open={open}
+              onClick={() => history.push("/vacinas-eletivas")}
+            >
+              <img src={seringa} alt="Seringa" />
               <span>Registro de Vacinação</span>
             </IconContainer>
-            <IconContainer level={level} open={open}>
+            <IconContainer
+              level={level}
+              open={open}
+              onClick={() => history.push("/relatorio")}
+            >
               <img src={report} alt="Vacinas Eletivas" />
               <span>Relatório</span>
             </IconContainer>

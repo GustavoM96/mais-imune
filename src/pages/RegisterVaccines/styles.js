@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  max-width: 65%;
+  width: 90%;
   padding: 1rem;
+
+  @media (min-width: 800px) {
+    width: 65%;
+  }
   h2,
   h3 {
     font-weight: 700;

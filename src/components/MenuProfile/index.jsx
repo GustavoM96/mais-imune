@@ -70,13 +70,13 @@ function MenuProfile({ user = { name: "usuario" } }) {
       </div>
       <div className="cards">
         {level === 1 ? (
-          <div>
+          <>
             <CardAsideList user={user} />
-          </div>
+          </>
         ) : (
-          <div>
+          <>
             <Instructions permission={permission} />
-          </div>
+          </>
         )}
       </div>
     </Container>

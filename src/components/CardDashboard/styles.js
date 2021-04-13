@@ -3,11 +3,10 @@ import { Theme } from "../../styles/colors";
 
 export const Container = styled.div`
   padding: 1rem;
-  margin: 0.25rem;
   width: 165px;
   background: ${Theme.colors.background_second};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
+  margin: 0.8rem;
   @media (max-height: 800px) {
     height: 15rem;
   }

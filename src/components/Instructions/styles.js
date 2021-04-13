@@ -3,7 +3,7 @@ import { Theme } from "../../styles/colors";
 
 export const Container = styled.div`
   width: 90%;
-  height: 500px;
+  height: 54vh;
   overflow-y: auto;
   margin: 5% auto;
   padding: 0.5rem;

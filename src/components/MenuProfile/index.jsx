@@ -18,6 +18,8 @@ import { useState } from "react";
 
 function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
+  const { permission } = useSelector((state) => state.user);
+
   const [openModal, setOpenModal] = useState(false);
 
   const level = JSON.parse(localStorage.getItem("permission")) || 1;
@@ -44,6 +46,9 @@ function MenuProfile({ user = { name: "usuario" } }) {
       <div open={open} className="header">
         <div>
           <h3>Meu Perfil</h3>
+          Vem do store/permission
+          <br />
+          {permission}
           <figure>
             <img src={profile} alt="Profile" />
           </figure>

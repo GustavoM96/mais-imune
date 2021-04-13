@@ -23,6 +23,10 @@ const userReducer = (state = defaultState, action) => {
 
       return { token, id, name, email, permission, vaccine };
 
+    case "@user/CHANGE_INFO":
+      const { nameChange, emailChange } = action;
+      return { ...state, name: nameChange, email: emailChange };
+
     default:
       return state;
   }

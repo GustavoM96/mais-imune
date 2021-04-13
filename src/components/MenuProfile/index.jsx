@@ -20,6 +20,7 @@ import { getUser } from "../../services/getUser";
 function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
   const { permission } = useSelector((state) => state.user);
+  const { name } = useSelector((state) => state.user);
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -60,7 +61,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
             <img src={profile} alt="Profile" />
           </figure>
           <div>
-            <span>{userName[0].toUpperCase() + userName.slice(1)}</span>
+            <span>{name}</span>
             <EditIcon onClick={handleClose} />
           </div>
         </div>

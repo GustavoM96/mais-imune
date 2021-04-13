@@ -25,26 +25,26 @@ const FormRegister = () => {
   const history = useHistory();
 
   const schema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório!"),
+    name: yup.string().required("Campo obrigatório"),
 
     email: yup
       .string()
-      .email("Informe um e-mail válido!")
-      .required("Campo obrigatório!"),
+      .email("Informe um e-mail válido")
+      .required("Campo obrigatório"),
 
     cpf: yup
       .string()
       // eslint-disable-next-line no-useless-escape
       .length(11, "Digite o CPF sem pontos e traços")
       // .matches(/^(\d{3}\.){2}\d{3}\-\d{2}$/, "Digite um CPF válido!")
-      .required("Campo obrigatório!"),
+      .required("Campo obrigatório"),
 
     password: yup
       .string()
       .min(8, "Mínimo de 8 dígitos")
       .matches(
         /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Escolha ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial!"
+        "Escolha ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial"
       )
       .required("Campo obrigatório"),
   });

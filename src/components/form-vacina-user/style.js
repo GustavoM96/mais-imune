@@ -31,7 +31,7 @@ export const LabelStyled = styled.div`
 export const StyledForm = styled.div`
   position: relative;
   top: 20%;
-  right: 50%;
+  right: 37%;
   background-color: ${Theme.colors.background_first};
   width: 250px;
   height: 300px;
@@ -45,6 +45,8 @@ export const FormConteiner = styled.div`
   justify-content: center;
   width: 500px;
   height: 500px;
+  background-color: ${Theme.colors.background_first};
+  box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.62);
 `;
 
 export const ErrorMessage = styled.p`

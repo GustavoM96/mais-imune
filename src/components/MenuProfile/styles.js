@@ -33,7 +33,7 @@ export const Container = styled.div`
   }
   div.cards {
     width: 100%;
-    min-height: 60vh;
+    min-height: 58vh;
     text-align: center;
     display: ${(props) => (!props.open ? "block" : "none")};
 

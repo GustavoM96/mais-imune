@@ -25,7 +25,13 @@ const FormRegister = () => {
   const history = useHistory();
 
   const schema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório"),
+    name: yup
+      .string()
+      .matches(
+        /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/,
+        "Seu nome deve conter apenas letras"
+      )
+      .required("Campo obrigatório!"),
 
     email: yup
       .string()
@@ -34,7 +40,7 @@ const FormRegister = () => {
 
     cpf: yup
       .string()
-      // eslint-disable-next-line no-useless-escape
+      //eslint-disable-next-line no-useless-escape
       .length(11, "Digite o CPF sem pontos e traços")
       // .matches(/^(\d{3}\.){2}\d{3}\-\d{2}$/, "Digite um CPF válido!")
       .required("Campo obrigatório"),
@@ -52,7 +58,21 @@ const FormRegister = () => {
   const handleData = (data) => {
     data.permission = 1;
     data.vaccines = [];
-    console.log(data);
+
+    let NameFormated = "";
+
+    for (let i = 0; i < data.name.length; i++) {
+      if (i === 0) {
+        NameFormated += data.name[i].toUpperCase();
+      }
+      if (data.name[i - 1] === " ") {
+        NameFormated += data.name[i].toUpperCase();
+      } else if (i !== 0 && data.name[i - 1] !== " ") {
+        NameFormated += data.name[i];
+      }
+    }
+
+    data.name = NameFormated.trim();
 
     api
       .post("/users", data)

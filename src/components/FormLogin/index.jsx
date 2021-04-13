@@ -49,7 +49,6 @@ function FormLogin() {
         },
       })
       .then((response) => {
-        getUser(dispatch);
         localStorage.setItem("user", JSON.stringify(response.data));
         localStorage.setItem("user_id", JSON.stringify(response.data.id));
         localStorage.setItem("name", JSON.stringify(response.data.name));
@@ -64,6 +63,7 @@ function FormLogin() {
         } else {
           history.push("/minhas_vacinas");
         }
+        getUser(dispatch);
       })
       .catch((e) => console.log(e));
   };

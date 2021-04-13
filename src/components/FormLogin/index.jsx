@@ -63,7 +63,7 @@ function FormLogin() {
         } else {
           history.push("/minhas_vacinas");
         }
-        getUser(dispatch);
+        getUser(dispatch, response.data.id);
       })
       .catch((e) => console.log(e));
   };

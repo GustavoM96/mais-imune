@@ -4,7 +4,7 @@ import api from "./api";
 const token = localStorage.getItem("token") || "";
 const user_id = localStorage.getItem("user_id") || "";
 
-export const getUser = (dispatch) => {
+export const getUser = (dispatch, id = user_id) => {
   if (user_id && token) {
     console.log(user_id);
     console.log(token);
@@ -13,7 +13,7 @@ export const getUser = (dispatch) => {
     };
 
     api
-      .get(`/users/${user_id}`, headers)
+      .get(`/users/${id}`, headers)
       .then((resp) => {
         console.log(resp);
         dispatch(signIn(token, resp.data));

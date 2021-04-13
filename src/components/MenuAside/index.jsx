@@ -85,9 +85,9 @@ function MenuAside() {
               <span>Registro de Vacinação</span>
             </IconContainer>
             <IconContainer
-              onClick={() => history.push("/relatorio")}
               level={level}
               open={open}
+              onClick={() => history.push("/relatorio")}
             >
               <img src={report} alt="Vacinas Eletivas" />
               <span>Relatório</span>

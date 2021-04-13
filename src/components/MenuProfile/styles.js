@@ -13,7 +13,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   width: ${(state) => (!state.open ? "17rem" : "5rem")};
-  min-height: 100vh;
+  height: 100vh;
   background-color: ${Theme.colors.background_second};
   transition: 0.5s ease-in-out;
 

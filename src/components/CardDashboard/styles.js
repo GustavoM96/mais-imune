@@ -18,7 +18,7 @@ export const Container = styled.div`
 
   p {
     margin-bottom: 25%;
-    @media (max-height: 768px) {
+    @media (max-height: 800px) {
       display: none;
     }
   }

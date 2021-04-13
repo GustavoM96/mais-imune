@@ -11,7 +11,5 @@ export const Container = styled.div`
 
   button {
     position: absolute;
-    /* margin-left: 10rem; */
-    /* margin-bottom: 10rem; */
   }
 `;

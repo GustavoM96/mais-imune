@@ -63,7 +63,7 @@ function MenuProfile({ user = { name: "usuario" } }) {
             <img src={profile} alt="Profile" />
           </figure>
           <div>
-            <span>{name}</span>
+            <span>{userName}</span>
             <EditIcon onClick={handleClose} />
           </div>
         </div>

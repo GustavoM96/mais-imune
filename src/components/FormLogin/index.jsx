@@ -56,6 +56,7 @@ function FormLogin() {
           "permission",
           JSON.stringify(response.data.permission)
         );
+        getUser(dispatch, response.data.id, true);
         if (response.data.permission === 3) {
           history.push("/dashboard");
         } else if (response.data.permission === 2) {
@@ -63,7 +64,6 @@ function FormLogin() {
         } else {
           history.push("/minhas_vacinas");
         }
-        getUser(dispatch, response.data.id);
       })
       .catch((e) => console.log(e));
   };

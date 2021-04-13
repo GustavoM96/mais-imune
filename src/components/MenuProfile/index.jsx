@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openMenuThunk } from "../../store/modules/MenuOpen/thunks";
 import TransitionModal from "../../components/Modal";
@@ -15,9 +15,12 @@ import {
 import CardAside from "../CardAside";
 import CardAsideList from "../CardAsideList";
 import { useState } from "react";
+import { getUser } from "../../services/getUser";
 
 function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
+  const { permission } = useSelector((state) => state.user);
+
   const [openModal, setOpenModal] = useState(false);
 
   const level = JSON.parse(localStorage.getItem("permission")) || 1;
@@ -28,6 +31,12 @@ function MenuProfile({ user = { name: "usuario" } }) {
   };
 
   const dispatch = useDispatch((state) => state.open);
+
+  const dispatchUser = useDispatch((state) => state.user);
+
+  useEffect(() => {
+    getUser(dispatchUser);
+  }, []);
 
   return (
     <Container open={open}>
@@ -44,6 +53,9 @@ function MenuProfile({ user = { name: "usuario" } }) {
       <div open={open} className="header">
         <div>
           <h3>Meu Perfil</h3>
+          Vem do store/permission
+          <br />
+          {permission}
           <figure>
             <img src={profile} alt="Profile" />
           </figure>

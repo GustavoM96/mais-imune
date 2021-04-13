@@ -13,9 +13,12 @@ import { Container } from "./styles";
 
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import { getUser } from "../../services/getUser";
+import { useDispatch } from "react-redux";
 
 function FormLogin() {
   const history = useHistory();
+  const dispatch = useDispatch((state) => state.user);
 
   const schema = yup.object().shape({
     email: yup.string().email("Email Invalido").required("Campo obrigatório"),
@@ -47,7 +50,7 @@ function FormLogin() {
       })
       .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data));
-
+        localStorage.setItem("user_id", JSON.stringify(response.data.id));
         localStorage.setItem("name", JSON.stringify(response.data.name));
         localStorage.setItem(
           "permission",
@@ -60,6 +63,7 @@ function FormLogin() {
         } else {
           history.push("/minhas_vacinas");
         }
+        getUser(dispatch);
       })
       .catch((e) => console.log(e));
   };

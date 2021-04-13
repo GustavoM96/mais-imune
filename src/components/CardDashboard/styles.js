@@ -8,6 +8,10 @@ export const Container = styled.div`
   background: ${Theme.colors.background_second};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+  @media (max-height: 800px) {
+    height: 15rem;
+  }
+
   h4,
   p {
     height: 15%;

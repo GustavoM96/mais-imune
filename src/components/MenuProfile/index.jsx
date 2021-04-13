@@ -5,14 +5,7 @@ import TransitionModal from "../../components/Modal";
 import profile from "../../assets/profile-picture.jpeg";
 import FormEditProfile from "../FormEditProfile";
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  Container,
-  EditIcon,
-  Separator,
-} from "./styles";
-import CardAside from "../CardAside";
+import { ArrowLeft, ArrowRight, Container, EditIcon } from "./styles";
 import CardAsideList from "../CardAsideList";
 import { useState } from "react";
 

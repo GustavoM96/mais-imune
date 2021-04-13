@@ -9,8 +9,23 @@ import Header from "../../components/Header";
 import PatientSearch from "../../components/PatientSearch";
 import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
+import { useHistory } from "react-router";
+import { useEffect } from "react";
 
 const RegisterVacine = () => {
+  const history = useHistory();
+  const permission = JSON.parse(localStorage.getItem("permission")) || 1;
+
+  useEffect(() => {
+    if (permission === 3) {
+      history.push("/dashboard");
+    }
+    if (permission === 1) {
+      history.push("/minhas_vacinas");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const cards = [
     [
       registerUserIcon,

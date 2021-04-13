@@ -24,7 +24,7 @@ function Dashboard() {
       history.push("/dashboard");
     }
     if (permission === 2) {
-      history.push("/registro_vacina");
+      history.push("/registro-vacina");
     }
 
     api

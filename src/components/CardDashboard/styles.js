@@ -8,7 +8,7 @@ export const Container = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0.8rem;
   @media (max-height: 800px) {
-    height: 15rem;
+    height: 10rem;
   }
 
   h4,
@@ -18,5 +18,8 @@ export const Container = styled.div`
 
   p {
     margin-bottom: 25%;
+    @media (max-height: 768px) {
+      display: none;
+    }
   }
 `;

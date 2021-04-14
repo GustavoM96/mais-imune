@@ -2,6 +2,9 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { toast } from "react-toastify";
+
+import { nameFormat } from "../../utils";
 
 import Button from "../Button";
 import Input from "../Input";
@@ -12,7 +15,6 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
-import { toast } from "react-toastify";
 
 const FormRegisterEmployee = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -45,29 +47,31 @@ const FormRegisterEmployee = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
+    data.name = nameFormat(data.name);
     data.permission = 2;
     data.vaccines = [];
 
-    let NameFormated = "";
-
-    for (let i = 0; i < data.name.length; i++) {
-      if (i === 0) {
-        NameFormated += data.name[i].toUpperCase();
-      }
-      if (data.name[i - 1] === " ") {
-        NameFormated += data.name[i].toUpperCase();
-      } else if (i !== 0 && data.name[i - 1] !== " ") {
-        NameFormated += data.name[i];
-      }
-    }
-
-    data.name = NameFormated.trim();
     console.log(data);
+
+    // let NameFormated = "";
+
+    // for (let i = 0; i < data.name.length; i++) {
+    //   if (i === 0) {
+    //     NameFormated += data.name[i].toUpperCase();
+    //   }
+    //   if (data.name[i - 1] === " ") {
+    //     NameFormated += data.name[i].toUpperCase();
+    //   } else if (i !== 0 && data.name[i - 1] !== " ") {
+    //     NameFormated += data.name[i];
+    //   }
+    // }
+
+    // data.name = NameFormated.trim();
 
     api
       .post("/users", data, headers)
       .then((response) => {
-        toast.dark("🥳  Registro realizado com sucesso !!", {
+        toast.dark(" ✔️  Cadastro realizado com sucesso", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -76,12 +80,12 @@ const FormRegisterEmployee = ({ handleClose }) => {
           draggable: true,
           progress: undefined,
         });
-        console.log(response);
+        console.log(response.data);
         handleClose();
       })
       .catch((error) => {
         console.log(error);
-        toast.error("🤯 Falha ao registrar. Tente novamente !!", {
+        toast.error(" ✖️ Falha ao cadastrar. Tente novamente", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

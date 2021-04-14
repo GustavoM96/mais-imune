@@ -56,7 +56,8 @@ function FormLogin() {
           "permission",
           JSON.stringify(response.data.permission)
         );
-        getUser(dispatch, response.data.id, true);
+
+        getUser(dispatch, response.data.id, token);
         if (response.data.permission === 3) {
           history.push("/dashboard");
         } else if (response.data.permission === 2) {

@@ -58,7 +58,7 @@ function MenuAside() {
                 level={level}
                 open={open}
               >
-                <img src={passbook} alt="Caderneta" />{" "}
+                <img src={passbook} alt="Caderneta" />
                 <span>Minhas Vacinas</span>
               </IconContainer>
               <IconContainer
@@ -117,6 +117,7 @@ function MenuAside() {
                 onClick={() => history.push("/dashboard")}
               >
                 <img src={dashboard} alt="Dashboard" />
+
                 <span>Dashboard</span>
               </IconContainer>
               <IconContainer

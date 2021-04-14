@@ -71,12 +71,11 @@ const Header = ({ title }) => {
 
   return (
     <Container>
-      <Title>{title}</Title>
       <DateText>
         <WeekDay>{currentWeekDay()}</WeekDay>, {currentDate()}
       </DateText>
       <MainArea permission={permission}>
-        <TextArea>
+        <TextArea permission={permission}>
           <WelcomeText>Olá, {name}</WelcomeText>
           <CampaignText
             initial={{ opacity: 0 }}

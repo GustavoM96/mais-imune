@@ -26,4 +26,9 @@ export const Container = styled.div`
     width: 100%;
     text-align: center;
   }
+  .skeletonGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;

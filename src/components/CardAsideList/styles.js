@@ -1,4 +1,5 @@
-import { FaGripLinesVertical } from "react-icons/fa";
+import { MdSwapHoriz } from "react-icons/md";
+
 import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
@@ -11,6 +12,7 @@ export const VaccinesContainer = styled.div`
   max-height: 53vh;
   flex-wrap: wrap;
   overflow-y: auto;
+  align-items: center;
 `;
 
 export const Header = styled.div`
@@ -28,9 +30,18 @@ export const Header = styled.div`
       cursor: pointer;
     }
   }
+  div {
+    width: 100%;
+  }
+  .menu-profile {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
 `;
 
 export const StyledSpan = styled.span`
+  display: block;
   color: ${(props) => (props.active ? "black" : Theme.colors.main_user)};
   font-size: 1.2rem;
   font-weight: 700;
@@ -40,8 +51,8 @@ export const StyledSpan = styled.span`
   }
 `;
 
-export const Separator = styled(FaGripLinesVertical)`
-  font-size: 0.8rem;
+export const Separator = styled(MdSwapHoriz)`
+  font-size: 1rem;
 `;
 
 export const SearchBar = styled.div`

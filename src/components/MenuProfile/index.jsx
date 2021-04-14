@@ -11,10 +11,13 @@ import CardAsideList from "../CardAsideList";
 import { useState } from "react";
 import { getUser } from "../../services/getUser";
 import Skeleton from "@material-ui/lab/Skeleton";
+import api from "../../services/api";
 
-function MenuProfile({ user = { name: "usuario" } }) {
+function MenuProfile() {
+  const [user, setUser] = useState();
   const open = useSelector((state) => state.open);
   const user_id = localStorage.getItem("user_id") || "";
+  const token = localStorage.getItem("token") || "";
 
   const { permission } = useSelector((state) => state.user);
   const { name } = useSelector((state) => state.user);
@@ -30,6 +33,24 @@ function MenuProfile({ user = { name: "usuario" } }) {
   const handleSetClose = () => {
     setOpenModal(false);
   };
+
+  useEffect(() => {
+    api
+      .get(`/users/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      .then((response) => {
+        console.log(
+          "🚀 ~ file: index.jsx ~ line 45 ~ .then ~ response",
+          response.data
+        );
+        setUser(response.data);
+      })
+      .catch((e) => console.log(e));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const dispatch = useDispatch((state) => state.open);
 

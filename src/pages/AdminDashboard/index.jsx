@@ -23,6 +23,7 @@ const Dashboard = () => {
     if (permission === 2) {
       history.push("/registro-vacina");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cards = [
@@ -60,7 +61,7 @@ const Dashboard = () => {
     <div className="flex">
       <MenuAside />
       <Container>
-        <h2>Dashboard</h2>
+        {/* <h2>Dashboard</h2> */}
         <Header />
         <h3>Cadastros</h3>
         <CardContainer>

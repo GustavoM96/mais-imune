@@ -19,12 +19,12 @@ export const DateText = styled.span`
 `;
 
 export const WeekDay = styled.span`
-  color: ${({ permission }) =>
-    permission === 3
-      ? Theme.colors.main_admin
-      : permission === 2
+  color: ${(props) =>
+    props.permission === 1
+      ? Theme.colors.main_user
+      : props.permission === 2
       ? Theme.colors.main_healthEmployee
-      : Theme.colors.main_user};
+      : Theme.colors.main_admin};
 `;
 
 export const MainArea = styled.div`
@@ -34,6 +34,7 @@ export const MainArea = styled.div`
       : permission === 2
       ? Theme.colors.main_healthEmployee
       : Theme.colors.main_user};
+  color: "#000";
   max-width: 1000px;
   height: 210px;
   padding: 30px 50px 15px 50px;

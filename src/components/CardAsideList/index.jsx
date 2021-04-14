@@ -33,7 +33,7 @@ function CardAsideList({ user }) {
   };
 
   useEffect(() => {
-    if (user.name !== "usuario") {
+    if (user && user.name !== "usuario") {
       setUserVaccines(user.vaccines.filter((vac, ind) => ind < 5));
       console.log(user.vaccines);
       console.log(userVaccines);
@@ -77,6 +77,13 @@ function CardAsideList({ user }) {
         </div>
       </Header>
       <>
+        {!user && (
+          <div className="skeleton">
+            <Skeleton variant="rect" width={250} height={70} />
+            <Skeleton variant="rect" width={250} height={70} />
+            <Skeleton variant="rect" width={250} height={70} />
+          </div>
+        )}
         {!allVaccines ? (
           <VaccinesContainer>
             {vaccines.map((vaccine, index) => (

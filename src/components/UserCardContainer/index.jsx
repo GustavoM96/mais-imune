@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { useEffect } from "react";
 import api from "../../services/api";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 function UserCardContainer({ user }) {
   // const [value, setValue] = useState("");
@@ -81,11 +82,17 @@ function UserCardContainer({ user }) {
           <StyledSpan active={!allVaccines} onClick={toogleAllVaccinesOff}>
             Minhas vacinas
           </StyledSpan>
+        </div>
+        <div>
           <Separator />
+        </div>
+
+        <div>
           <StyledSpan active={allVaccines} onClick={toogleAllVaccinesOn}>
             Todas Vacinas
           </StyledSpan>
         </div>
+
         <SearchBar>
           <input
             onInput={(e) => {
@@ -98,6 +105,13 @@ function UserCardContainer({ user }) {
         </SearchBar>
       </Header>
       <>
+        {!user && (
+          <div className="skeleton">
+            <Skeleton variant="rect" width={250} height={210} />
+            <Skeleton variant="rect" width={250} height={210} />
+            <Skeleton variant="rect" width={250} height={210} />
+          </div>
+        )}
         {allVaccines ? (
           <VaccinesContainer>
             {vaccinesFiltered.map((vaccine, index) => (

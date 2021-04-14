@@ -10,6 +10,7 @@ import { ArrowLeft, ArrowRight, Container, EditIcon } from "./styles";
 import CardAsideList from "../CardAsideList";
 import { useState } from "react";
 import { getUser } from "../../services/getUser";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);

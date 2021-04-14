@@ -1,4 +1,5 @@
-import { FaGripLinesVertical } from "react-icons/fa";
+import { MdSwapHoriz } from "react-icons/md";
+
 import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
@@ -9,6 +10,10 @@ export const Container = styled.div`
   height: 50vh;
   @media (min-height: 800px) {
     height: 63vh;
+  }
+  .skeleton {
+    display: flex;
+    justify-content: space-around;
   }
 `;
 
@@ -59,8 +64,8 @@ export const StyledSpan = styled.span`
   }
 `;
 
-export const Separator = styled(FaGripLinesVertical)`
-  font-size: 0.8rem;
+export const Separator = styled(MdSwapHoriz)`
+  font-size: 1.5rem;
 `;
 
 export const SearchBar = styled.div`

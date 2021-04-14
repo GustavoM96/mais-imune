@@ -4,7 +4,7 @@ import api from "./api";
 const token = localStorage.getItem("token") || "";
 const user_id = localStorage.getItem("user_id") || "";
 
-export const getUser = (dispatch, id) => {
+export const getUser = (dispatch, id = user_id) => {
   if (user_id && token) {
     const headers = {
       headers: { Authorization: `Bearer ${JSON.parse(token)}` },

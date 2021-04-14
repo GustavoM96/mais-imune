@@ -12,12 +12,12 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
-import { Text } from "../Input/style";
+import { ErrorMessage, Header, Text } from "../Input/style";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeInfo } from "../../store/modules/User/actions";
 
-const FormEditProfile = ({ handleClose }) => {
+const FormEditProfile = ({ handleSetClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
   // const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch((state) => state.user);
@@ -25,6 +25,7 @@ const FormEditProfile = ({ handleClose }) => {
 
   const [valueInputName, setValueInputName] = useState("user.name");
   const [valueInputEmail, setValueInputEmail] = useState("user.email");
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -46,24 +47,30 @@ const FormEditProfile = ({ handleClose }) => {
 
   const handleData = (data) => {
     console.log(data);
-
-    api
-      .patch(`/users/${user.id}`, data, headers)
-      .then((resp) => {
-        console.log(resp);
-        toast.dark("✔️ Alteração feita com sucesso", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      api
+        .patch(`/users/${user.id}`, data, headers)
+        .then((resp) => {
+          console.log(resp);
+          toast.dark("✔️ Alteração feita com sucesso", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          dispatch(changeInfo(data.name, data.email));
+          handleSetClose();
+          setIsEditProfile(false);
+        })
+        .catch((error) => {
+          setIsEditProfile(false);
+          console.log(error);
         });
-        dispatch(changeInfo(data.name, data.email));
-        handleClose();
-      })
-      .catch((error) => console.log(error));
+    }
   };
 
   const handleValueName = (e) => {
@@ -78,9 +85,13 @@ const FormEditProfile = ({ handleClose }) => {
   return (
     <Container>
       <Title>Editar Perfil</Title>
+
       <Form onSubmit={handleSubmit(handleData)}>
         <div>
-          <Text>Nome Completo</Text>
+          <Header>
+            <Text>Nome Completo</Text>
+            <ErrorMessage>{errors.name?.message}</ErrorMessage>
+          </Header>
           <InputEdit
             defaultValue={user.name}
             name="name"
@@ -90,7 +101,10 @@ const FormEditProfile = ({ handleClose }) => {
           />
         </div>
         <div>
-          <Text>Email</Text>
+          <Header>
+            <Text>Email</Text>
+            <ErrorMessage>{errors.email?.message}</ErrorMessage>
+          </Header>
           <InputEdit
             onInput={handleValueEmail}
             defaultValue={user.email}

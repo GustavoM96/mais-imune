@@ -8,6 +8,11 @@ import { getUser } from "./services/getUser";
 import "./styles/globals.css";
 
 function App() {
+  const dispatchUser = useDispatch((state) => state.user);
+
+  useEffect(() => {
+    getUser(dispatchUser);
+  }, []);
   return (
     <div className="flex">
       <ToastContainer />

@@ -75,7 +75,7 @@ const FormVaccineBond = ({ handleClose }) => {
         })
         .catch((error) => {
           console.log(error);
-          toast.error("🥳  Falha ao realizar vinculo !", {
+          toast.error(" ✖️ Falha ao realizar vinculo !", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,

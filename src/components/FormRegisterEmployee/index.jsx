@@ -2,9 +2,9 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { toast } from "react-toastify";
 
 import { nameFormat } from "../../utils";
+import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
 
 import Button from "../Button";
 import Input from "../Input";
@@ -36,7 +36,6 @@ const FormRegisterEmployee = ({ handleClose }) => {
     cpf: yup
       .string("")
       .length(11, "Digite o CPF sem pontos e traços")
-      // .matches(/^(\d{3}.){2}\d{3}-\d{2}$/, 'CPF inválido')
       .required("Campo obrigatório"),
   });
 
@@ -48,52 +47,21 @@ const FormRegisterEmployee = ({ handleClose }) => {
 
   const handleData = (data) => {
     data.name = nameFormat(data.name);
-    data.permission = 2;
-    data.vaccines = [];
 
-    console.log(data);
+    const newData = { ...data, permission: 2, vaccines: [] };
 
-    // let NameFormated = "";
-
-    // for (let i = 0; i < data.name.length; i++) {
-    //   if (i === 0) {
-    //     NameFormated += data.name[i].toUpperCase();
-    //   }
-    //   if (data.name[i - 1] === " ") {
-    //     NameFormated += data.name[i].toUpperCase();
-    //   } else if (i !== 0 && data.name[i - 1] !== " ") {
-    //     NameFormated += data.name[i];
-    //   }
-    // }
-
-    // data.name = NameFormated.trim();
+    console.log(newData);
 
     api
-      .post("/users", data, headers)
+      .post("/users", newData, headers)
       .then((response) => {
-        toast.dark(" ✔️  Cadastro realizado com sucesso", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toastRegisterSuccess();
         console.log(response.data);
         handleClose();
       })
       .catch((error) => {
+        toastRegisterError();
         console.log(error);
-        toast.error(" ✖️ Falha ao cadastrar. Tente novamente", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
       });
   };
   return (

@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { InputEdit } from "./style";
 import Button from "../Button";
-import { toast } from "react-toastify";
 
 import {
   Container,
@@ -16,6 +15,8 @@ import { ErrorMessage, Header, Text } from "../Input/style";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeInfo } from "../../store/modules/User/actions";
+
+import { toastEditSuccess, toastEditError } from "../../utils/toastify";
 
 const FormEditProfile = ({ handleSetClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -52,21 +53,14 @@ const FormEditProfile = ({ handleSetClose }) => {
       api
         .patch(`/users/${user.id}`, data, headers)
         .then((resp) => {
-          console.log(resp);
-          toast.dark("✔️ Alteração feita com sucesso", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toastEditSuccess();
           dispatch(changeInfo(data.name, data.email));
           handleSetClose();
           setIsEditProfile(false);
+          console.log(resp);
         })
         .catch((error) => {
+          toastEditError();
           setIsEditProfile(false);
           console.log(error);
         });

@@ -2,10 +2,11 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { toast } from "react-toastify";
 
 import Button from "../Button";
 import Input from "../Input";
+
+import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
 
 import {
   Container,
@@ -42,29 +43,11 @@ const FormRegisterLocal = ({ handleClose }) => {
     api
       .post("/locals", newData, headers)
       .then((response) => {
-        toast.dark(" ✔️ Cadastro realizado com sucesso", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-
+        toastRegisterSuccess();
         handleClose();
       })
       .catch((error) => {
-        toast.error(" ✖️ Falha ao realizar o cadastro. Tente novamente", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-
+        toastRegisterError();
         console.log(error);
       });
   };

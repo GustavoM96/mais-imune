@@ -2,6 +2,7 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 
 import Button from "../Button";
 import Input from "../Input";
@@ -12,7 +13,6 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
-import { toast } from "react-toastify";
 
 const FormRegisterLocal = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -38,12 +38,11 @@ const FormRegisterLocal = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    data.vaccines = [];
-
+    const newData = { ...data, vaccines: [] };
     api
-      .post("/locals", data, headers)
+      .post("/locals", newData, headers)
       .then((response) => {
-        toast.dark("UBS registrada com sucesso !", {
+        toast.dark(" ✔️ Cadastro realizado com sucesso", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -52,11 +51,11 @@ const FormRegisterLocal = ({ handleClose }) => {
           draggable: true,
           progress: undefined,
         });
-        console.log(response);
+
         handleClose();
       })
       .catch((error) => {
-        toast.error("🤯 Falha ao registrar UBS !", {
+        toast.error(" ✖️ Falha ao realizar o cadastro. Tente novamente", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -65,6 +64,7 @@ const FormRegisterLocal = ({ handleClose }) => {
           draggable: true,
           progress: undefined,
         });
+
         console.log(error);
       });
   };
@@ -74,7 +74,7 @@ const FormRegisterLocal = ({ handleClose }) => {
       <Form onSubmit={handleSubmit(handleData)}>
         <Input
           name="name"
-          text="Nome Completo"
+          text="Nome"
           error={errors.name?.message}
           register={register}
         />

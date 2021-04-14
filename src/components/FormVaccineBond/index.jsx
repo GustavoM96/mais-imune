@@ -46,7 +46,7 @@ const FormVaccineBond = ({ handleClose }) => {
       local[0].vaccines.includes(vaccine[0].id) ||
       local[0].vaccines.filter((elem) => elem.id === vaccine[0].id).length > 0
     ) {
-      toast.dark("✋ Essa vacina já está vinculada à unidade !!", {
+      toast.dark(" ✖️ Essa vacina já está vinculada à unidade !!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -61,7 +61,7 @@ const FormVaccineBond = ({ handleClose }) => {
       api
         .patch(`/locals/${local[0].id}`, newData, headers)
         .then((response) => {
-          toast.dark("🥳  Vínculo realizado com sucesso !!", {
+          toast.dark(" ✔️  Vínculo realizado com sucesso !!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,

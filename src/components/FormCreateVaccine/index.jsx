@@ -2,13 +2,13 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 
 import Button from "../Button";
 import Input from "../Input";
 
 import { Text } from "../Input/style";
 import { Container, Title, Form, TextArea, ButtonContainer } from "./style";
-import { toast } from "react-toastify";
 
 const FormCreateVaccine = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -31,7 +31,7 @@ const FormCreateVaccine = ({ handleClose }) => {
     api
       .post("/vaccines", data, headers)
       .then((response) => {
-        toast.info("Vacina cadastrada com sucesso !", {
+        toast.dark(" ✔️ Cadastro realizado com sucesso", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -40,12 +40,11 @@ const FormCreateVaccine = ({ handleClose }) => {
           draggable: true,
           progress: undefined,
         });
-        console.log(response);
+
         handleClose();
       })
       .catch((error) => {
-        console.log(error);
-        toast.error("Falha ao cadastrar vacina !", {
+        toast.error(" ✖️ Falha ao realizar o cadastro. Tente novamente", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -54,6 +53,8 @@ const FormCreateVaccine = ({ handleClose }) => {
           draggable: true,
           progress: undefined,
         });
+
+        console.log(error);
       });
   };
 

@@ -5,6 +5,13 @@ import { Theme } from "../../styles/colors";
 
 export const Container = styled.div`
   padding: 5px;
+  .skeleton {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 30vh;
+  }
 `;
 
 export const VaccinesContainer = styled.div`

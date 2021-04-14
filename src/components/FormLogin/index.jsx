@@ -12,9 +12,10 @@ import jwt_decode from "jwt-decode";
 import { Container } from "./styles";
 
 import api from "../../services/api";
-import { toast } from "react-toastify";
 import { getUser } from "../../services/getUser";
 import { useDispatch } from "react-redux";
+
+import { toastLoginSuccess, toastLoginError } from "../../utils/toastify";
 
 function FormLogin() {
   const history = useHistory();
@@ -73,15 +74,7 @@ function FormLogin() {
     api
       .post("/login", data)
       .then((response) => {
-        toast.dark("💉  Bem vindo !!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toastLoginSuccess();
         localStorage.clear();
         localStorage.setItem(
           "token",
@@ -90,15 +83,7 @@ function FormLogin() {
         redirect(response.data.accessToken);
       })
       .catch((e) => {
-        toast.error("😵 Falha ao logar !!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toastLoginError();
         console.log(e);
       });
 

@@ -6,7 +6,7 @@ const name = localStorage.getItem("name") || "";
 const defaultState = {
   token: token,
   id: user_id,
-  name: name,
+  name: "carregando",
   permission: "carregando",
   email: "carregando",
   permission: "carregando",

@@ -18,11 +18,16 @@ function UserCardContainer({ user }) {
   const [allVaccines, setAllVaccines] = useState(false);
   const [vaccines, setVaccines] = useState([]);
   const [userVaccines, setUserVaccines] = useState([]);
+  const [vaccinesFiltered, setVaccinesFiltered] = useState([]);
+  const [userVaccinesFiltered, setUserVaccinesFiltered] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+
   const token = localStorage.getItem("token") || "";
 
   useEffect(() => {
     if (user) {
       setUserVaccines(user.vaccines);
+      setUserVaccinesFiltered(user.vaccines);
     }
     api
       .get("/vaccines", {
@@ -30,16 +35,36 @@ function UserCardContainer({ user }) {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
       })
-      .then((response) => setVaccines(response.data))
-      .catch((e) => console.log(e));
+      .then((response) => {
+        setVaccines(response.data);
+        setVaccinesFiltered(response.data);
+      })
+      .catch((e) => console.log("ERRRRO"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (user) {
       setUserVaccines(user.vaccines);
+      setUserVaccinesFiltered(user.vaccines);
     }
   }, [user]);
+
+  const handleInput = (e) => {
+    const text = e.target.value;
+    setInputValue(text);
+
+    setVaccinesFiltered(
+      vaccines.filter((vaccine) =>
+        vaccine.name.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+      )
+    );
+    setUserVaccinesFiltered(
+      userVaccines.filter((vaccine) =>
+        vaccine.name.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+      )
+    );
+  };
 
   const toogleAllVaccinesOn = () => {
     setAllVaccines(true);
@@ -62,14 +87,20 @@ function UserCardContainer({ user }) {
           </StyledSpan>
         </div>
         <SearchBar>
-          <input />
+          <input
+            onInput={(e) => {
+              handleInput(e);
+            }}
+            value={inputValue}
+            placeholder={"digite o nome da vacina"}
+          />
           <GrFormSearch />
         </SearchBar>
       </Header>
       <>
         {allVaccines ? (
           <VaccinesContainer>
-            {vaccines.map((vaccine, index) => (
+            {vaccinesFiltered.map((vaccine, index) => (
               <CardVaccine
                 key={index}
                 vaccine={vaccine.name}
@@ -80,7 +111,7 @@ function UserCardContainer({ user }) {
         ) : (
           user && (
             <VaccinesContainer>
-              {userVaccines.map((vaccine, index) => (
+              {userVaccinesFiltered.map((vaccine, index) => (
                 <CardVaccine
                   key={index}
                   date={vaccine.aplication}

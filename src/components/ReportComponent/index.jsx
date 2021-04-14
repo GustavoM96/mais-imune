@@ -3,6 +3,20 @@ import { Container } from "./styles";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import { cpfFormat, nameFormat } from "../../utils";
+import Skeleton from "@material-ui/lab/Skeleton";
+
+const mockUsers = [
+  "Wesley",
+  "Silvio",
+  "Lucas",
+  "Gustavo",
+  "Luciano",
+  "Howard",
+  "Gabriel",
+  "Filipe",
+  "Davis",
+  "Amanda",
+];
 
 const ReportComponent = () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -42,6 +56,7 @@ const ReportComponent = () => {
     };
 
     getUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -55,18 +70,35 @@ const ReportComponent = () => {
             <th>Vacina</th>
           </tr>
         </thead>
+
         <tbody>
-          {users &&
-            users
-              .sort((a, b) => {
-                return a.date - b.date;
-              })
-              .map((elem, index) => (
+          {users[0]
+            ? users
+                .sort((a, b) => {
+                  return a.date - b.date;
+                })
+                .map((elem, index) => (
+                  <tr key={index}>
+                    <td>{elem.date}</td>
+                    <td>{elem.user}</td>
+                    <td>{elem.userCpf}</td>
+                    <td>{elem.name}</td>
+                  </tr>
+                ))
+            : mockUsers.map((_, index) => (
                 <tr key={index}>
-                  <td>{elem.date}</td>
-                  <td>{elem.user}</td>
-                  <td>{elem.userCpf}</td>
-                  <td>{elem.name}</td>
+                  <td>
+                    <Skeleton variant="text" />
+                  </td>
+                  <td>
+                    <Skeleton variant="text" />
+                  </td>
+                  <td>
+                    <Skeleton variant="text" />
+                  </td>
+                  <td>
+                    <Skeleton variant="text" />
+                  </td>
                 </tr>
               ))}
         </tbody>

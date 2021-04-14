@@ -10,6 +10,7 @@ import { ArrowLeft, ArrowRight, Container, EditIcon } from "./styles";
 import CardAsideList from "../CardAsideList";
 import { useState } from "react";
 import { getUser } from "../../services/getUser";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 function MenuProfile({ user = { name: "usuario" } }) {
   const open = useSelector((state) => state.open);
@@ -26,15 +27,11 @@ function MenuProfile({ user = { name: "usuario" } }) {
   const handleClose = () => {
     setOpenModal(!openModal);
   };
+  const handleSetClose = () => {
+    setOpenModal(false);
+  };
 
   const dispatch = useDispatch((state) => state.open);
-
-  const dispatchUser = useDispatch((state) => state.user);
-
-  useEffect(() => {
-    getUser(dispatchUser, user_id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Container open={open}>
@@ -52,14 +49,11 @@ function MenuProfile({ user = { name: "usuario" } }) {
         )}
       </div>
       <TransitionModal open={openModal} handleClose={handleClose}>
-        <FormEditProfile handleClose={handleClose} />
+        <FormEditProfile handleSetClose={handleSetClose} />
       </TransitionModal>
       <div open={open} className="header">
         <div>
           <h3>Meu Perfil</h3>
-          Vem do store/permission
-          <br />
-          {permission}
           <figure>
             <img src={profile} alt="Profile" />
           </figure>

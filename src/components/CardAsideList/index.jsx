@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import api from "../../services/api";
 import CardAside from "../CardAside";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 function CardAsideList({ user }) {
   const [value, setValue] = useState("");
@@ -63,13 +64,16 @@ function CardAsideList({ user }) {
     <Container>
       <Header>
         <div>
-          <StyledSpan active={!allVaccines} onClick={toogleAllVaccinesOff}>
-            Próximas vacinas
-          </StyledSpan>
-          <Separator />
-          <StyledSpan active={allVaccines} onClick={toogleAllVaccinesOn}>
-            Últimas vacinas
-          </StyledSpan>
+          <h3>Vacinas</h3>
+          <div className="menu-profile">
+            <StyledSpan active={!allVaccines} onClick={toogleAllVaccinesOff}>
+              Próximas
+            </StyledSpan>
+            <Separator />
+            <StyledSpan active={allVaccines} onClick={toogleAllVaccinesOn}>
+              Últimas
+            </StyledSpan>
+          </div>
         </div>
       </Header>
       <>

@@ -31,6 +31,7 @@ export const Container = styled.div`
       ? Theme.colors.main_healthEmployee
       : Theme.colors.main_admin};
 
+  color: #000;
   transition: 0.5s ease-in-out;
   display: flex;
   flex-direction: column;

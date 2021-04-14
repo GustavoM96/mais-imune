@@ -6,13 +6,14 @@ import * as yup from "yup";
 import Button from "../Button";
 import Input from "../Input";
 
+import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
+
 import {
   Container,
   Title,
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
-import { toast } from "react-toastify";
 
 const FormRegisterLocal = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -38,33 +39,15 @@ const FormRegisterLocal = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    data.vaccines = [];
-
+    const newData = { ...data, vaccines: [] };
     api
-      .post("/locals", data, headers)
+      .post("/locals", newData, headers)
       .then((response) => {
-        toast.dark("UBS registrada com sucesso !", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(response);
+        toastRegisterSuccess();
         handleClose();
       })
       .catch((error) => {
-        toast.error("🤯 Falha ao registrar UBS !", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toastRegisterError();
         console.log(error);
       });
   };
@@ -74,7 +57,7 @@ const FormRegisterLocal = ({ handleClose }) => {
       <Form onSubmit={handleSubmit(handleData)}>
         <Input
           name="name"
-          text="Nome Completo"
+          text="Nome"
           error={errors.name?.message}
           register={register}
         />

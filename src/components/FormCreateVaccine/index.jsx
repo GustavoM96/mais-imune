@@ -8,7 +8,8 @@ import Input from "../Input";
 
 import { Text } from "../Input/style";
 import { Container, Title, Form, TextArea, ButtonContainer } from "./style";
-import { toast } from "react-toastify";
+
+import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
 
 const FormCreateVaccine = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -31,29 +32,12 @@ const FormCreateVaccine = ({ handleClose }) => {
     api
       .post("/vaccines", data, headers)
       .then((response) => {
-        toast.info("Vacina cadastrada com sucesso !", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(response);
+        toastRegisterSuccess();
         handleClose();
       })
       .catch((error) => {
+        toastRegisterError();
         console.log(error);
-        toast.error("Falha ao cadastrar vacina !", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
       });
   };
 

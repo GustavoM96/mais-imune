@@ -52,8 +52,8 @@ function routes() {
     <Switch>
       <NotLogedRouter exact path="/" component={Home} />
       <NotLogedRouter path="/login" component={Login} />
+      <NotLogedRouter path="/registro" component={Register} />
       <LogedRouter path="/minhas_vacinas" component={UserVaccines} />
-      <LogedRouter path="/registro" component={Register} />
       <LogedRouter path="/vacinas-eletivas" component={ElectiveVaccines} />
       <LogedRouter path="/registro-vacina" component={RegisterVacine} />
       <LogedRouter path="/relatorio" component={UserReport} />

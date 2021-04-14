@@ -16,10 +16,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useHistory } from "react-router-dom";
 
-import { toast } from "react-toastify";
+import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
 
 //services
 import api from "../../services/api";
+
+import { nameFormat } from "../../utils";
 
 const FormRegister = () => {
   const history = useHistory();
@@ -42,7 +44,6 @@ const FormRegister = () => {
       .string()
       //eslint-disable-next-line no-useless-escape
       .length(11, "Digite o CPF sem pontos e traços")
-      // .matches(/^(\d{3}\.){2}\d{3}\-\d{2}$/, "Digite um CPF válido!")
       .required("Campo obrigatório"),
 
     password: yup
@@ -56,49 +57,19 @@ const FormRegister = () => {
   });
 
   const handleData = (data) => {
-    data.permission = 1;
-    data.vaccines = [];
+    data.name = nameFormat(data.name);
 
-    let NameFormated = "";
-
-    for (let i = 0; i < data.name.length; i++) {
-      if (i === 0) {
-        NameFormated += data.name[i].toUpperCase();
-      }
-      if (data.name[i - 1] === " ") {
-        NameFormated += data.name[i].toUpperCase();
-      } else if (i !== 0 && data.name[i - 1] !== " ") {
-        NameFormated += data.name[i];
-      }
-    }
-
-    data.name = NameFormated.trim();
+    const newData = { ...data, permission: 1, vaccines: [] };
 
     api
-      .post("/users", data)
+      .post("/users", newData)
       .then((response) => {
-        toast.dark("🥳  Registro realizado com sucesso !!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toastRegisterSuccess();
         console.log("response.data", response.data);
         history.push("/login");
       })
       .catch((e) => {
-        toast.error("🤯 Falha ao registrar. Tente novamente !!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toastRegisterError();
         console.log(e);
       });
 

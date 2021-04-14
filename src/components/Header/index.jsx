@@ -72,12 +72,14 @@ const Header = ({ title }) => {
   return (
     <Container>
       <DateText>
-        <WeekDay>{currentWeekDay()}</WeekDay>, {currentDate()}
+        <WeekDay permission={permission}>{currentWeekDay()}</WeekDay>,{" "}
+        {currentDate()}
       </DateText>
       <MainArea permission={permission}>
         <TextArea permission={permission}>
-          <WelcomeText>Olá, {name}</WelcomeText>
+          <WelcomeText permission={permission}>Olá, {name}</WelcomeText>
           <CampaignText
+            permission={permission}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}

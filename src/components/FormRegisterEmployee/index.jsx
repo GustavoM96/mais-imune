@@ -12,8 +12,9 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
+import { toast } from "react-toastify";
 
-const FormRegisterEmployee = () => {
+const FormRegisterEmployee = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
@@ -21,6 +22,10 @@ const FormRegisterEmployee = () => {
   const schema = yup.object().shape({
     name: yup
       .string("Campo deve ser preenchido com texto")
+      .matches(
+        /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/,
+        "Seu nome deve conter apenas letras"
+      )
       .required("Campo obrigatório"),
     email: yup
       .string("Campo deve ser preenchido com texto")
@@ -40,8 +45,52 @@ const FormRegisterEmployee = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    const newData = { ...data, permission: 2, vaccines: [] };
-    api.post("/users", newData, headers).catch((error) => console.log(error));
+    data.permission = 2;
+    data.vaccines = [];
+
+    let NameFormated = "";
+
+    for (let i = 0; i < data.name.length; i++) {
+      if (i === 0) {
+        NameFormated += data.name[i].toUpperCase();
+      }
+      if (data.name[i - 1] === " ") {
+        NameFormated += data.name[i].toUpperCase();
+      } else if (i !== 0 && data.name[i - 1] !== " ") {
+        NameFormated += data.name[i];
+      }
+    }
+
+    data.name = NameFormated.trim();
+    console.log(data);
+
+    api
+      .post("/users", data, headers)
+      .then((response) => {
+        toast.dark("🥳  Registro realizado com sucesso !!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log(response);
+        handleClose();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("🤯 Falha ao registrar. Tente novamente !!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
   return (
     <Container>

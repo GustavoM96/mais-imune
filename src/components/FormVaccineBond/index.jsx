@@ -73,7 +73,18 @@ const FormVaccineBond = ({ handleClose }) => {
           console.log("response.data", response.data);
           handleClose();
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          toast.error("🥳  Falha ao realizar vinculo !", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
     }
   };
 

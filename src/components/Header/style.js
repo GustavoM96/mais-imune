@@ -19,7 +19,12 @@ export const DateText = styled.span`
 `;
 
 export const WeekDay = styled.span`
-  color: ${Theme.colors.text_second};
+  color: ${({ permission }) =>
+    permission === 3
+      ? Theme.colors.main_admin
+      : permission === 2
+      ? Theme.colors.main_healthEmployee
+      : Theme.colors.main_user};
 `;
 
 export const MainArea = styled.div`
@@ -29,7 +34,6 @@ export const MainArea = styled.div`
       : permission === 2
       ? Theme.colors.main_healthEmployee
       : Theme.colors.main_user};
-  color: "#000";
   max-width: 1000px;
   height: 210px;
   padding: 30px 50px 15px 50px;
@@ -37,7 +41,6 @@ export const MainArea = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-top: 50px;
-
   @media (max-width: 450px) {
     padding: 17px 35px 10px 35px;
     border-radius: 30px;
@@ -59,7 +62,8 @@ export const TextArea = styled.div`
 export const WelcomeText = styled.h2`
   font-size: 25px;
   margin: 0;
-  /* color: ${Theme.colors.text_fourth}; */
+  color: ${({ permission }) =>
+    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
   @media (max-width: 450px) {
     font-size: 22px;
   }
@@ -67,7 +71,8 @@ export const WelcomeText = styled.h2`
 
 export const CampaignText = styled(motion.p)`
   font-size: 16px;
-  /* color: ${Theme.colors.text_fourth}; */
+  color: ${({ permission }) =>
+    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
   @media (max-width: 450px) {
     font-size: 14px;
   }

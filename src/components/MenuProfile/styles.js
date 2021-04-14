@@ -1,4 +1,5 @@
-import { BiArrowFromLeft, BiArrowFromRight } from "react-icons/bi";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+
 import { FaGripLinesVertical } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
 import styled from "styled-components";
@@ -55,21 +56,14 @@ export const Separator = styled(FaGripLinesVertical)`
   font-size: 0.8rem;
 `;
 
-export const ArrowLeft = styled(BiArrowFromRight)`
-  @media (max-width: 800px) {
-    display: none;
-  }
+export const ArrowLeft = styled(RiArrowLeftSLine)`
   font-size: 2rem;
-
   :hover {
     cursor: pointer;
   }
 `;
 
-export const ArrowRight = styled(BiArrowFromLeft)`
-  @media (max-width: 800px) {
-    display: none;
-  }
+export const ArrowRight = styled(RiArrowRightSLine)`
   font-size: 2rem;
 
   :hover {

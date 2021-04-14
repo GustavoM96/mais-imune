@@ -77,7 +77,7 @@ const Header = ({ title }) => {
       </DateText>
       <MainArea permission={permission}>
         <TextArea>
-          <WelcomeText>Olá, {userName}</WelcomeText>
+          <WelcomeText>Olá, {name}</WelcomeText>
           <CampaignText
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

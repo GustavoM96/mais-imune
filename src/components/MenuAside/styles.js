@@ -61,7 +61,12 @@ export const IconContainer = styled.div`
   align-items: center;
   transition: 0.3s ease-in-out;
   text-align: center;
-  flex-wrap: wrap;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+
+  border-right: ${(props) => props.page && "2px solid black"};
+
   img {
     margin: 0 1.3rem;
     width: 27px;

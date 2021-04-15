@@ -93,13 +93,15 @@ export const CampaignText = styled(motion.p)`
 `;
 
 export const Img = styled.img`
-  width: 42%;
+  /* width: 42%; */
+  width: 330px;
+
   position: absolute;
   right: 0;
   bottom: 0;
-  @media (max-width: 1366px) {
+  /* @media (max-width: 1366px) {
     width: 38%;
-  }
+  } */
   @media (max-width: 600px) {
     display: none;
   }

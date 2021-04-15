@@ -94,3 +94,20 @@ export const SearchBar = styled.div`
     font-size: 1.8rem;
   }
 `;
+
+export const NoVaccines = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+  height: 60%;
+  h2,
+  img {
+    margin: 0;
+  }
+  h2 {
+    margin-right: 0.2rem;
+  }
+`;

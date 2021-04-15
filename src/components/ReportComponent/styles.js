@@ -8,17 +8,21 @@ export const Container = styled.div`
 
   background: ${Theme.colors.background_second};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  overflow: auto;
   height: 40%;
+  overflow-y: auto;
 
-  table,
-  tr {
+  h3 {
+    text-align: center;
+    margin: 3% 0%;
+  }
+
+  table {
     width: 100%;
     text-align: center;
     border-collapse: collapse;
   }
 
-  table thead tr th,
+  th,
   td {
     border: 1px solid black;
   }
@@ -41,7 +45,11 @@ export const Container = styled.div`
     width: 80%;
     overflow-x: auto;
 
-    table thead tr th,
+    h3 {
+      min-width: 600px;
+    }
+
+    th,
     td {
       min-width: 150px;
     }

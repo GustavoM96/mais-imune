@@ -60,6 +60,8 @@ const FormVaccineBond = ({ handleClose }) => {
         })
         .catch((error) => {
           toastRegisterError();
+          setIsEditProfile(false);
+
           console.log(error);
         });
     }

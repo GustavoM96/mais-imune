@@ -76,6 +76,8 @@ const FormProfessionalRegister = () => {
             draggable: true,
             progress: undefined,
           });
+          setIsEditProfile(false);
+
           console.log(e);
         });
 

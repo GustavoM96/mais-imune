@@ -40,6 +40,8 @@ const FormCreateVaccine = ({ handleClose }) => {
           handleClose();
         })
         .catch((error) => {
+          setIsEditProfile(false);
+
           toastRegisterError();
           console.log(error);
         });

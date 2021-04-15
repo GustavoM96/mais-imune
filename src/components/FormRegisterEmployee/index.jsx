@@ -65,6 +65,7 @@ const FormRegisterEmployee = ({ handleClose }) => {
         })
         .catch((error) => {
           toastRegisterError();
+          setIsEditProfile(false);
           console.log(error);
         });
     }

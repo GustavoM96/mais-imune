@@ -89,6 +89,8 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
           handleClose();
         })
         .catch((e) => {
+          setIsEditProfile(false);
+
           toastRegisterError();
           console.log(e);
         });

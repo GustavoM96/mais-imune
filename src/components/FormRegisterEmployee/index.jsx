@@ -15,9 +15,11 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
+import { useState } from "react";
 
 const FormRegisterEmployee = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -46,23 +48,27 @@ const FormRegisterEmployee = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    data.name = nameFormat(data.name);
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      data.name = nameFormat(data.name);
 
-    const newData = { ...data, permission: 2, vaccines: [] };
+      const newData = { ...data, permission: 2, vaccines: [] };
 
-    console.log(newData);
+      console.log(newData);
 
-    api
-      .post("/users", newData, headers)
-      .then((response) => {
-        toastRegisterSuccess();
-        console.log(response.data);
-        handleClose();
-      })
-      .catch((error) => {
-        toastRegisterError();
-        console.log(error);
-      });
+      api
+        .post("/users", newData, headers)
+        .then((response) => {
+          toastRegisterSuccess();
+          console.log(response.data);
+          handleClose();
+        })
+        .catch((error) => {
+          toastRegisterError();
+          setIsEditProfile(false);
+          console.log(error);
+        });
+    }
   };
   return (
     <Container>

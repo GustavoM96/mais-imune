@@ -16,6 +16,7 @@ import { Container, Title, Form, ButtonContainer } from "./style";
 const FormVaccineBond = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
+  const [isEditProfile, setIsEditProfile] = useState(false);
   const [vaccineList, setVaccineList] = useState([]);
   const [localList, setLocalList] = useState([]);
   const [vaccines, setVaccines] = useState([]);
@@ -59,6 +60,8 @@ const FormVaccineBond = ({ handleClose }) => {
         })
         .catch((error) => {
           toastRegisterError();
+          setIsEditProfile(false);
+
           console.log(error);
         });
     }

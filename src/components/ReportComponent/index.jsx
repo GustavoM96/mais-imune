@@ -2,7 +2,7 @@ import { Container } from "./styles";
 
 import { useState, useEffect } from "react";
 import api from "../../services/api";
-import { cpfFormat, nameFormat } from "../../utils";
+import { cpfFormat, nameFormat, dateFormat } from "../../utils";
 import Skeleton from "@material-ui/lab/Skeleton";
 
 const mockUsers = [
@@ -39,7 +39,7 @@ const ReportComponent = () => {
           vaccine.user = nameFormat(user);
           vaccine.userCpf = userCpf;
           vaccine.name = array[i].vaccines[j].name;
-          vaccine.date = array[i].vaccines[j].aplication;
+          vaccine.date = dateFormat(array[i].vaccines[j].aplication);
 
           output.push(vaccine);
         }

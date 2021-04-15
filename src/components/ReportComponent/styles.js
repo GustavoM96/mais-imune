@@ -23,10 +23,6 @@ export const Container = styled.div`
     border: 1px solid black;
   }
 
-  table thead tr th {
-    background-color: ${Theme.colors.main_admin};
-  }
-
   .skeletonGrid {
     width: 100%;
     display: grid;
@@ -50,4 +46,11 @@ export const Container = styled.div`
       min-width: 150px;
     }
   }
+`;
+
+export const TableHead = styled.th`
+  background-color: ${(props) =>
+    props.permission === 3
+      ? Theme.colors.main_admin
+      : Theme.colors.main_healthEmployee};
 `;

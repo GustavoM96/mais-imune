@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeInfo } from "../../store/modules/User/actions";
 
 import { toastEditSuccess, toastEditError } from "../../utils/toastify";
+import { nameFormat } from "../../utils";
 
 const FormEditProfile = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -50,6 +51,7 @@ const FormEditProfile = ({ handleClose }) => {
     console.log(data);
     if (!isEditProfile) {
       setIsEditProfile(true);
+      data.name = nameFormat(data.name);
       api
         .patch(`/users/${user.id}`, data, headers)
         .then((resp) => {
@@ -63,15 +65,6 @@ const FormEditProfile = ({ handleClose }) => {
           console.log(error);
         });
     }
-  };
-
-  const handleValueName = (e) => {
-    setValueInputName(e.target.value);
-    console.log("e.target.value");
-  };
-  const handleValueEmail = (e) => {
-    setValueInputEmail(e.target.value);
-    console.log("e.target.value");
   };
 
   return (
@@ -98,7 +91,6 @@ const FormEditProfile = ({ handleClose }) => {
             <ErrorMessage>{errors.email?.message}</ErrorMessage>
           </Header>
           <InputEdit
-            onInput={handleValueEmail}
             defaultValue={user.email}
             name="email"
             type="email"

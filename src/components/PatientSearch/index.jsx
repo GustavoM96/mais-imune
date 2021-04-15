@@ -10,7 +10,7 @@ import { Conteiner, BoldText, TextConteiner, InputConteiner } from "./style";
 const PatientSearch = () => {
   const [search, setSearch] = useState(false);
   const [cpf, setCpf] = useState();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
   const [open, setOpen] = useState(false);
 
   let token = localStorage.getItem("token") || "";
@@ -25,10 +25,11 @@ const PatientSearch = () => {
       .then((response) => {
         setUser(response.data);
       })
-      .catch((e) => console.log(e));
-    setTimeout(function () {
-      setSearch(true);
-    }, 1000);
+      .catch((e) => {
+        console.log(e);
+      });
+    setTimeout(() => setSearch(true), 1000);
+
     console.log(user);
   };
 
@@ -51,7 +52,7 @@ const PatientSearch = () => {
         <Button text="Buscar" handleClick={handleClick} />
       </InputConteiner>
       {search ? (
-        cpf ? (
+        user[0] ? (
           <Conteiner>
             <TextConteiner>
               <h2>Dados do usuario</h2>

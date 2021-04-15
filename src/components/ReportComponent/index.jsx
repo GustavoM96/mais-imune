@@ -39,9 +39,7 @@ const ReportComponent = () => {
           vaccine.user = nameFormat(user);
           vaccine.userCpf = userCpf;
           vaccine.name = array[i].vaccines[j].name;
-          vaccine.date = array[i].vaccines[j].aplication;
-
-          console.log(dateFormat(vaccine.date));
+          vaccine.date = dateFormat(array[i].vaccines[j].aplication);
 
           output.push(vaccine);
         }

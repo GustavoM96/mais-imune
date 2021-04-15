@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export const cpfFormat = (cpf) => {
   cpf = cpf.replace(/[^\d]/g, "");
 
@@ -14,21 +16,10 @@ export const nameFormat = (name) => {
   return newName.join(" ");
 };
 
-// Revisar função dateFormat
 export const dateFormat = (date) => {
   date = date.split("-");
 
-  console.log(date);
-
-  const newDate = new Date(date[0], date[1], date[2]);
+  const newDate = format(new Date(date[0], date[1], date[2]), "dd/MM/yyyy");
 
   return newDate;
 };
-
-// export const dateFormat = (date) => {
-//   return date.toLocaleDateString("pt-br", {
-//     year: "numeric",
-//     month: "2-digit",
-//     day: "2-digit",
-//   });
-// };

@@ -15,11 +15,16 @@ export const Container = styled.div`
   tr {
     width: 100%;
     text-align: center;
+    border-collapse: collapse;
   }
 
   table thead tr th,
   td {
     border: 1px solid black;
+  }
+
+  table thead tr th {
+    background-color: ${Theme.colors.main_admin};
   }
 
   .skeletonGrid {

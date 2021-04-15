@@ -14,6 +14,7 @@ import {
   CheckBoxArea,
   CheckBox,
   Checked,
+  Link
 } from "./style";
 
 import { useState, useEffect } from "react";
@@ -84,7 +85,20 @@ const Header = ({ title }) => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {messages.campaigns[checkedBox]}
+            {messages.campaigns[checkedBox].text.split(' ').map((word) => {
+
+              return word === messages.campaigns[checkedBox].link ? (
+                                                              <Link 
+                                                                  href={messages.campaigns[checkedBox].link}
+                                                                  rel='noreferrer'
+                                                                  target='_blank'>{`${messages.campaigns[checkedBox].link} `}                                                                 
+                                                              </Link>
+                                                            ) : (
+                                                              <>
+                                                                {`${word} `}
+                                                              </>
+                                                            )
+            })}
           </CampaignText>
           <CheckBoxArea>
             {messages.campaigns.map((msg, index) => (

@@ -140,3 +140,13 @@ export const Checked = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
 `;
+
+export const Link = styled.a`
+  font-size: 16px;
+  text-decoration: none;
+  color: ${({ permission }) =>
+    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
+  @media (max-width: 1366px) {
+    font-size: 14px;
+  }
+`

@@ -4,13 +4,12 @@ import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
 export const Container = styled.div`
+  width: 100%;
   @media (max-width: 800px) {
     height: 100vh;
   }
-  height: 50vh;
-  @media (min-height: 800px) {
-    height: 63vh;
-  }
+  height: 63vh;
+
   .skeleton {
     display: flex;
     justify-content: space-around;
@@ -55,7 +54,7 @@ export const Header = styled.div`
 `;
 
 export const StyledSpan = styled.span`
-  color: ${(props) => (props.active ? "black" : Theme.colors.main_user)};
+  color: ${(props) => (!props.active ? "black" : Theme.colors.main_user)};
   font-size: 1.2rem;
   font-weight: 700;
 

@@ -75,8 +75,7 @@ export const TextArea = styled.div`
 export const WelcomeText = styled.h2`
   font-size: 25px;
   margin: 0;
-  color: ${({ permission }) =>
-    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
+  color: #000;
   @media (max-width: 1366px) {
     font-size: 22px;
   }
@@ -87,8 +86,7 @@ export const WelcomeText = styled.h2`
 
 export const CampaignText = styled(motion.p)`
   font-size: 16px;
-  color: ${({ permission }) =>
-    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
+
   @media (max-width: 1366px) {
     font-size: 14px;
   }
@@ -144,9 +142,8 @@ export const Checked = styled.div`
 export const Link = styled.a`
   font-size: 16px;
   text-decoration: none;
-  color: ${({ permission }) =>
-    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
+  color: ${Theme.colors.background_first};
   @media (max-width: 1366px) {
     font-size: 14px;
   }
-`
+`;

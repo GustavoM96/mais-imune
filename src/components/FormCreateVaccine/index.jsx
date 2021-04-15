@@ -55,6 +55,7 @@ const FormCreateVaccine = ({ handleClose }) => {
         <Input
           name="name"
           text="Nome"
+          placeholder="Insira o nome da vacina aqui!"
           error={errors.name?.message}
           register={register}
         />

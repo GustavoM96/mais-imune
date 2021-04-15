@@ -77,6 +77,7 @@ const FormRegisterEmployee = ({ handleClose }) => {
         <Input
           name="name"
           text="Nome Completo"
+          placeholder="Insira o nome do profissional aqui!"
           error={errors.name?.message}
           register={register}
         />
@@ -84,12 +85,14 @@ const FormRegisterEmployee = ({ handleClose }) => {
           name="email"
           text="Email"
           type="email"
+          placeholder="Insira o e-mail do profissional aqui!"
           error={errors.email?.message}
           register={register}
         />
         <Input
           name="cpf"
           text="CPF"
+          placeholder="Insira o CPF do profissional aqui!"
           error={errors.cpf?.message}
           register={register}
         />
@@ -97,6 +100,7 @@ const FormRegisterEmployee = ({ handleClose }) => {
           name="password"
           type="password"
           text="Senha"
+          placeholder="Insira a senha do profissional aqui!"
           error={errors.password?.message}
           register={register}
         />

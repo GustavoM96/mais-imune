@@ -65,18 +65,21 @@ const FormRegisterLocal = ({ handleClose }) => {
         <Input
           name="name"
           text="Nome"
+          placeholder="Insira o nome do estabelecimento aqui!"
           error={errors.name?.message}
           register={register}
         />
         <Input
           name="street"
           text="Endereço"
+          placeholder="Insira o endereço do estabelecimento aqui!"
           error={errors.street?.message}
           register={register}
         />
         <Input
           name="district"
           text="Bairro"
+          placeholder="Insira o nome do bairro aqui!"
           error={errors.district?.message}
           register={register}
         />

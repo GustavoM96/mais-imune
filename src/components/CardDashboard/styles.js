@@ -7,9 +7,9 @@ export const Container = styled.div`
   background: ${Theme.colors.background_second};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0.8rem;
-  @media (max-height: 800px) {
+  /* @media (max-height: 800px) {
     height: 10rem;
-  }
+  } */
 
   h4,
   p {
@@ -20,6 +20,6 @@ export const Container = styled.div`
     margin-bottom: 25%;
     @media (max-height: 500px) {
       display: none;
-    }
+    } */
   }
 `;

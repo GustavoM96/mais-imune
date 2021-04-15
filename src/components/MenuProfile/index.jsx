@@ -27,7 +27,7 @@ function MenuProfile() {
   const [openModal, setOpenModal] = useState(false);
 
   const level = JSON.parse(localStorage.getItem("permission")) || 1;
-  // const userName = JSON.parse(localStorage.getItem("name")) || 1;
+  // const name = JSON.parse(localStorage.getItem("name")) || 1;
 
   const handleClose = () => {
     setOpenModal(!openModal);

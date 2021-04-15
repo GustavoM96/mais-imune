@@ -17,6 +17,7 @@ const Input = ({
   register,
   options,
   handleChange,
+  placeholder,
   children,
 }) => {
   return (
@@ -57,6 +58,7 @@ const Input = ({
           <InputStyled
             type={type}
             name={name}
+            placeholder={placeholder}
             {...register(name)}
             error={error}
           />

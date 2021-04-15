@@ -61,7 +61,7 @@ const RegisterVacine = () => {
     <div className="flex">
       <MenuAside />
       <Container>
-        {/* <h2>RegisterVacine</h2> */}
+        <h2>Registro de Vacinas</h2>
         <Header />
         <h3>Busca por paciente</h3>
         <PatientSearch></PatientSearch>

@@ -1,5 +1,6 @@
 import CardVaccine from "../CardVaccine";
 import { GrFormSearch } from "react-icons/gr";
+import logo from "../../assets/+imuneLogo.svg";
 
 import {
   Container,
@@ -8,6 +9,7 @@ import {
   VaccinesContainer,
   SearchBar,
   StyledSpan,
+  NoVaccines,
 } from "./styles";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -122,18 +124,24 @@ function UserCardContainer({ user }) {
               />
             ))}
           </VaccinesContainer>
+        ) : user && userVaccinesFiltered.length > 0 ? (
+          <VaccinesContainer>
+            {userVaccinesFiltered.map((vaccine, index) => (
+              <CardVaccine
+                key={index}
+                date={vaccine.aplication}
+                vaccine={vaccine.name}
+                description={vaccine.description}
+              />
+            ))}
+          </VaccinesContainer>
         ) : (
-          user && (
-            <VaccinesContainer>
-              {userVaccinesFiltered.map((vaccine, index) => (
-                <CardVaccine
-                  key={index}
-                  date={vaccine.aplication}
-                  vaccine={vaccine.name}
-                  description={vaccine.description}
-                />
-              ))}
-            </VaccinesContainer>
+          user &&
+          userVaccinesFiltered.length === 0 && (
+            <NoVaccines>
+              {/* <img src={logo} alt="Logo"></img> */}
+              <h2>Sem vacinas cadastradas.</h2>
+            </NoVaccines>
           )
         )}
       </>

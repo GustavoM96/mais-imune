@@ -61,6 +61,9 @@ export const ArrowLeft = styled(RiArrowLeftSLine)`
   :hover {
     cursor: pointer;
   }
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const ArrowRight = styled(RiArrowRightSLine)`
@@ -68,6 +71,9 @@ export const ArrowRight = styled(RiArrowRightSLine)`
 
   :hover {
     cursor: pointer;
+  }
+  @media (max-width: 800px) {
+    display: none;
   }
 `;
 

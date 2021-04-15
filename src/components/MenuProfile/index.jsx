@@ -13,6 +13,8 @@ import { getUser } from "../../services/getUser";
 import Skeleton from "@material-ui/lab/Skeleton";
 import api from "../../services/api";
 
+import { nameFormat } from "../../utils/index";
+
 function MenuProfile() {
   const [user, setUser] = useState();
   const open = useSelector((state) => state.open);
@@ -79,7 +81,7 @@ function MenuProfile() {
             <img src={profile} alt="Profile" />
           </figure>
           <div>
-            <span>{name}</span>
+            <span>{nameFormat(name)}</span>
             <EditIcon onClick={handleClose} />
           </div>
         </div>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
 export const Container = styled.div`
+  border-radius: 15px;
   padding: 60px 30px 40px 30px;
   display: flex;
   flex-direction: column;

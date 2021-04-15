@@ -1,6 +1,8 @@
 import doc_kid from "../../assets/doc_kid.svg";
 import { messages } from "../../mock/data";
 
+import { nameFormat } from "../../utils/index";
+
 import {
   Container,
   Title,
@@ -14,7 +16,7 @@ import {
   CheckBoxArea,
   CheckBox,
   Checked,
-  Link
+  Link,
 } from "./style";
 
 import { useState, useEffect } from "react";
@@ -78,26 +80,27 @@ const Header = ({ title }) => {
       </DateText>
       <MainArea permission={permission}>
         <TextArea permission={permission}>
-          <WelcomeText permission={permission}>Olá, {name}</WelcomeText>
+          <WelcomeText permission={permission}>
+            Olá, {nameFormat(name)}
+          </WelcomeText>
           <CampaignText
             permission={permission}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {messages.campaigns[checkedBox].text.split(' ').map((word) => {
-
+            {messages.campaigns[checkedBox].text.split(" ").map((word) => {
               return word === messages.campaigns[checkedBox].link ? (
-                                                              <Link 
-                                                                  href={messages.campaigns[checkedBox].link}
-                                                                  rel='noreferrer'
-                                                                  target='_blank'>{`${messages.campaigns[checkedBox].link} `}                                                                 
-                                                              </Link>
-                                                            ) : (
-                                                              <>
-                                                                {`${word} `}
-                                                              </>
-                                                            )
+                <Link
+                  href={messages.campaigns[checkedBox].link}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {`${messages.campaigns[checkedBox].link} `}
+                </Link>
+              ) : (
+                <>{`${word} `}</>
+              );
             })}
           </CampaignText>
           <CheckBoxArea>

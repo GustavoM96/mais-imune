@@ -22,7 +22,7 @@ export const toastRegisterError = () => {
 };
 
 export const toastLoginSuccess = () => {
-  return toast.dark(" ✔️  Sejam bem-vindo", options);
+  return toast.dark(" ✔️  Seja bem-vindo", options);
 };
 
 export const toastLoginError = () => {

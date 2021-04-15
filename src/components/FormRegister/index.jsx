@@ -95,6 +95,7 @@ const FormRegister = () => {
             text="Nome"
             name="name"
             error={errors.name?.message}
+            placeholder="Insira seu nome aqui!"
             setError={setError}
             type="text"
             register={register}
@@ -105,6 +106,7 @@ const FormRegister = () => {
             text="E-mail"
             name="email"
             error={errors.email?.message}
+            placeholder="email"
             setError={setError}
             type="text"
             register={register}
@@ -117,6 +119,7 @@ const FormRegister = () => {
             error={errors.cpf?.message}
             setError={setError}
             type="text"
+            placeholder="Insira seu cpf neste formato: 00000000000"
             register={register}
           />
         </div>
@@ -127,6 +130,7 @@ const FormRegister = () => {
             error={errors.password?.message}
             setError={setError}
             type="password"
+            placeholder="senha"
             register={register}
           />
         </div>

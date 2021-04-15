@@ -104,6 +104,7 @@ const FormProfessionalRegister = () => {
             text="Nome"
             name="name"
             error={errors.name?.message}
+            placeholder="Insira o nome do prfissional aqui!"
             setError={setError}
             type="text"
             register={register}
@@ -115,6 +116,7 @@ const FormProfessionalRegister = () => {
             name="email"
             error={errors.email?.message}
             setError={setError}
+            placeholder="Insira o e-mail do prfissional aqui!"
             type="text"
             register={register}
           />
@@ -123,6 +125,7 @@ const FormProfessionalRegister = () => {
           <Input
             text="CPF"
             name="cpf"
+            placeholder="Insira o cpf do prfissional neste formato: 00000000000"
             error={errors.cpf?.message}
             setError={setError}
             type="text"
@@ -135,6 +138,7 @@ const FormProfessionalRegister = () => {
             name="password"
             error={errors.password?.message}
             setError={setError}
+            placeholder="Insira a senha aqui!"
             type="password"
             register={register}
           />

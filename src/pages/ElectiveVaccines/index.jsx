@@ -43,6 +43,7 @@ function ElectiveVaccines() {
     <div className="flex">
       <MenuAside />
       <Container>
+        <h2>Vacinas Eletivas</h2>
         <Header />
         <SelectElectiveVaccine />
       </Container>

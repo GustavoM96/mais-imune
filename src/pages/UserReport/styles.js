@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   padding: 1rem;
   width: 90%;
+  h2 {
+    margin-top: 0;
+  }
   h2,
   h3 {
     font-weight: 700;

@@ -41,6 +41,7 @@ export const StyledForm = styled.div`
 `;
 
 export const FormConteiner = styled.div`
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   width: 500px;

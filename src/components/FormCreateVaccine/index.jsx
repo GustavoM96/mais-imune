@@ -8,6 +8,7 @@ import Input from "../Input";
 
 import { Text } from "../Input/style";
 import { Container, Title, Form, TextArea, ButtonContainer } from "./style";
+import { useState } from "react";
 
 import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
 
@@ -15,6 +16,7 @@ const FormCreateVaccine = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const schema = yup.object().shape({
     name: yup
@@ -29,16 +31,21 @@ const FormCreateVaccine = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    api
-      .post("/vaccines", data, headers)
-      .then((response) => {
-        toastRegisterSuccess();
-        handleClose();
-      })
-      .catch((error) => {
-        toastRegisterError();
-        console.log(error);
-      });
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      api
+        .post("/vaccines", data, headers)
+        .then((response) => {
+          toastRegisterSuccess();
+          handleClose();
+        })
+        .catch((error) => {
+          setIsEditProfile(false);
+
+          toastRegisterError();
+          console.log(error);
+        });
+    }
   };
 
   return (

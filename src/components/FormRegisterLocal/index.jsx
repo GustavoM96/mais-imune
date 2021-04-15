@@ -14,10 +14,12 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
+import { useState } from "react";
 
 const FormRegisterLocal = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
+  const [isEditProfile, setIsEditProfile] = useState(false);
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
   const schema = yup.object().shape({
@@ -39,17 +41,22 @@ const FormRegisterLocal = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    const newData = { ...data, vaccines: [] };
-    api
-      .post("/locals", newData, headers)
-      .then((response) => {
-        toastRegisterSuccess();
-        handleClose();
-      })
-      .catch((error) => {
-        toastRegisterError();
-        console.log(error);
-      });
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      const newData = { ...data, vaccines: [] };
+      api
+        .post("/locals", newData, headers)
+        .then((response) => {
+          toastRegisterSuccess();
+          handleClose();
+        })
+        .catch((error) => {
+          toastRegisterError();
+          setIsEditProfile(false);
+
+          console.log(error);
+        });
+    }
   };
   return (
     <Container>

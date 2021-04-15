@@ -19,6 +19,7 @@ import api from "../../services/api";
 
 const FormProfessionalRegister = () => {
   const history = useHistory();
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório!"),
@@ -44,39 +45,44 @@ const FormProfessionalRegister = () => {
   });
 
   const handleData = (data) => {
-    data.permission = 2;
-    data.vaccines = [];
-    console.log(data);
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      data.permission = 2;
+      data.vaccines = [];
+      console.log(data);
 
-    api
-      .post("/users", data)
-      .then((response) => {
-        toast.dark("🥳  Registro realizado com sucesso !!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log("response.data", response.data);
-        history.push("/login");
-      })
-      .catch((e) => {
-        toast.error("🤯 Falha ao registrar. Tente novamente !!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(e);
-      });
+      api
+        .post("/users", data)
+        .then((response) => {
+          toast.dark("🥳  Registro realizado com sucesso !!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          console.log("response.data", response.data);
+          history.push("/login");
+        })
+        .catch((e) => {
+          toast.error("🤯 Falha ao registrar. Tente novamente !!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setIsEditProfile(false);
 
-    reset();
+          console.log(e);
+        });
+
+      reset();
+    }
   };
 
   const {

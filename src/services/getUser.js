@@ -6,7 +6,12 @@ import jwt_decode from "jwt-decode";
 const tokenGet = JSON.parse(localStorage.getItem("token")) || "";
 const user_id = tokenGet ? jwt_decode(tokenGet).sub : 0;
 
-export const getUser = (dispatch, id = user_id, token = tokenGet) => {
+export const getUser = (
+  dispatch,
+  history = null,
+  id = user_id,
+  token = tokenGet
+) => {
   console.log(id);
   const headers = {
     headers: { Authorization: `Bearer ${token}` },
@@ -18,5 +23,10 @@ export const getUser = (dispatch, id = user_id, token = tokenGet) => {
       console.log(resp.data);
       dispatch(signIn(token, resp.data));
     })
-    .catch((resp) => console.log(resp));
+    .catch((resp) => {
+      if (history) {
+        localStorage.clear();
+        history.push("/login");
+      }
+    });
 };

@@ -45,7 +45,7 @@ const PatientSearch = () => {
       <InputConteiner>
         <InputData
           type="text"
-          placeholder="digite seu cpf"
+          placeholder="Digite o cpf do paciente"
           onChange={(e) => setCpf(e.target.value)}
         ></InputData>
         <Button text="Buscar" handleClick={handleClick} />

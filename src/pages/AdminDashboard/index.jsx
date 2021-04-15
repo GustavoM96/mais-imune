@@ -61,7 +61,7 @@ const Dashboard = () => {
     <div className="flex">
       <MenuAside />
       <Container>
-        {/* <h2>Dashboard</h2> */}
+        <h2>Dashboard</h2>
         <Header />
         <h3>Cadastros</h3>
         <CardContainer>

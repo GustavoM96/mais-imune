@@ -16,7 +16,8 @@ import {
   FormConteiner,
   ErrorMessage,
 } from "./style";
-import { toast } from "react-toastify";
+
+import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
 
 let token = localStorage.getItem("token");
 
@@ -83,28 +84,12 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
           },
         })
         .then((response) => {
-          toast.info("Registro de vacina realizado com sucesso !", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toastRegisterSuccess();
           console.log(response.data);
           handleClose();
         })
         .catch((e) => {
-          toast.error("Falha ao registrar vacina, tente novamente", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toastRegisterError();
           console.log(e);
         });
     }

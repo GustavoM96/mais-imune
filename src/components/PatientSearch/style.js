@@ -16,6 +16,10 @@ export const Conteiner = styled.div`
   button {
     height: 50px;
     margin-top: 5%;
+
+    @media (max-width: 800px) {
+      height: 80px;
+    }
   }
 `;
 export const BoldText = styled.p`

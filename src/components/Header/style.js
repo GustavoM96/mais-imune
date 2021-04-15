@@ -10,6 +10,9 @@ export const Title = styled.h1`
   font-weight: 700;
   color: ${Theme.colors.text_first};
   margin-left: 30px;
+  @media (max-width: 1366px) {
+    font-size: 22px;
+  }
 `;
 
 export const DateText = styled.span`
@@ -42,6 +45,12 @@ export const MainArea = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-top: 50px;
+  @media (max-width: 1366px) {
+    padding: 23px 42px 13px 42px;
+    border-radius: 42px;
+    margin-top: 42px;
+    height: 190px;
+  }
   @media (max-width: 450px) {
     padding: 17px 35px 10px 35px;
     border-radius: 30px;
@@ -55,6 +64,9 @@ export const TextArea = styled.div`
   box-sizing: border-box;
   flex-flow: column;
   justify-content: space-between;
+  @media (max-width: 1366px) {
+    width: 62%;
+  }
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -63,18 +75,19 @@ export const TextArea = styled.div`
 export const WelcomeText = styled.h2`
   font-size: 25px;
   margin: 0;
-  color: ${({ permission }) =>
-    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
-  @media (max-width: 450px) {
+  color: #000;
+  @media (max-width: 1366px) {
     font-size: 22px;
+  }
+  @media (max-width: 450px) {
+    font-size: 20px;
   }
 `;
 
 export const CampaignText = styled(motion.p)`
   font-size: 16px;
-  color: ${({ permission }) =>
-    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
-  @media (max-width: 450px) {
+
+  @media (max-width: 1366px) {
     font-size: 14px;
   }
 `;
@@ -84,6 +97,9 @@ export const Img = styled.img`
   position: absolute;
   right: 0;
   bottom: 0;
+  @media (max-width: 1366px) {
+    width: 38%;
+  }
   @media (max-width: 600px) {
     display: none;
   }
@@ -101,9 +117,14 @@ export const CheckBox = styled.div`
   background-color: ${Theme.colors.background_third};
   margin: 5px;
   position: relative;
-  @media (max-width: 450px) {
+  @media (max-width: 1366px) {
+    margin: 4px;
     width: 12px;
     height: 12px;
+  }
+  @media (max-width: 450px) {
+    width: 10px;
+    height: 10px;
   }
 `;
 
@@ -116,4 +137,13 @@ export const Checked = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+`;
+
+export const Link = styled.a`
+  font-size: 16px;
+  text-decoration: none;
+  color: ${Theme.colors.background_first};
+  @media (max-width: 1366px) {
+    font-size: 14px;
+  }
 `;

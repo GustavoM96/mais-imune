@@ -44,6 +44,7 @@ function Dashboard() {
     <div className="flex">
       <MenuAside />
       <Container>
+        <h2>Minhas Vacinas</h2>
         <Header />
         <UserCardContainer user={user} />
       </Container>

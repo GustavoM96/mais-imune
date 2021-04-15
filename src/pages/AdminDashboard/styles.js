@@ -4,8 +4,11 @@ export const Container = styled.div`
   padding: 1rem;
   width: 90%;
 
-  h2,
-  h3 {
+  h2 {
+    margin-top: 0;
+  }
+  h3,
+  h2 {
     font-weight: 700;
     margin-left: 1.8rem;
   }
@@ -21,4 +24,9 @@ export const CardContainer = styled.div`
   overflow-x: auto;
   display: flex;
   justify-content: space-around;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;

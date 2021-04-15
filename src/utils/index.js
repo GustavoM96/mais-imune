@@ -23,3 +23,13 @@ export const dateFormat = (date) => {
 
   return newDate;
 };
+
+export const dateSort = (a, b) => {
+  let dateA = a.split("-");
+  let dateB = b.split("-");
+
+  dateA = new Date(dateA[0], dateA[1], dateA[2]);
+  dateB = new Date(dateB[0], dateB[1], dateB[2]);
+
+  return dateA - dateB;
+};

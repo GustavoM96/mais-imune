@@ -1,9 +1,11 @@
-import { Container } from "./styles";
+import { Container, TableHead } from "./styles";
 
 import { useState, useEffect } from "react";
 import api from "../../services/api";
-import { cpfFormat, nameFormat, dateFormat } from "../../utils";
+import { cpfFormat, nameFormat, dateFormat, dateSort } from "../../utils";
 import Skeleton from "@material-ui/lab/Skeleton";
+
+import { useSelector } from "react-redux";
 
 const mockUsers = [
   "Wesley",
@@ -20,6 +22,8 @@ const mockUsers = [
 
 const ReportComponent = () => {
   const token = JSON.parse(localStorage.getItem("token"));
+
+  const user = useSelector((state) => state.user);
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -39,7 +43,7 @@ const ReportComponent = () => {
           vaccine.user = nameFormat(user);
           vaccine.userCpf = userCpf;
           vaccine.name = array[i].vaccines[j].name;
-          vaccine.date = dateFormat(array[i].vaccines[j].aplication);
+          vaccine.date = array[i].vaccines[j].aplication;
 
           output.push(vaccine);
         }
@@ -64,10 +68,10 @@ const ReportComponent = () => {
       <table>
         <thead>
           <tr>
-            <th>Data</th>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Vacina</th>
+            <TableHead permission={user.permission}>Data</TableHead>
+            <TableHead permission={user.permission}>Nome</TableHead>
+            <TableHead permission={user.permission}>CPF</TableHead>
+            <TableHead permission={user.permission}>Vacina</TableHead>
           </tr>
         </thead>
 
@@ -75,11 +79,11 @@ const ReportComponent = () => {
           {users[0]
             ? users
                 .sort((a, b) => {
-                  return a.date - b.date;
+                  return dateSort(a.date, b.date);
                 })
                 .map((elem, index) => (
                   <tr key={index}>
-                    <td>{elem.date}</td>
+                    <td>{dateFormat(elem.date)}</td>
                     <td>{elem.user}</td>
                     <td>{elem.userCpf}</td>
                     <td>{elem.name}</td>

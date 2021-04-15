@@ -16,9 +16,19 @@ export const nameFormat = (name) => {
 
 // Revisar função dateFormat
 export const dateFormat = (date) => {
-  return date.toLocaleDateString("pt-br", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+  date = date.split("-");
+
+  console.log(date);
+
+  const newDate = new Date(date[0], date[1], date[2]);
+
+  return newDate;
 };
+
+// export const dateFormat = (date) => {
+//   return date.toLocaleDateString("pt-br", {
+//     year: "numeric",
+//     month: "2-digit",
+//     day: "2-digit",
+//   });
+// };

@@ -17,7 +17,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeInfo } from "../../store/modules/User/actions";
 
-const FormEditProfile = ({ handleSetClose }) => {
+const FormEditProfile = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
   // const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch((state) => state.user);
@@ -63,8 +63,7 @@ const FormEditProfile = ({ handleSetClose }) => {
             progress: undefined,
           });
           dispatch(changeInfo(data.name, data.email));
-          handleSetClose();
-          setIsEditProfile(false);
+          handleClose();
         })
         .catch((error) => {
           setIsEditProfile(false);

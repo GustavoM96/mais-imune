@@ -15,9 +15,11 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
+import { useState } from "react";
 
 const FormRegisterEmployee = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -47,54 +49,57 @@ const FormRegisterEmployee = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    data.name = nameFormat(data.name);
-    data.permission = 2;
-    data.vaccines = [];
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      data.name = nameFormat(data.name);
+      data.permission = 2;
+      data.vaccines = [];
 
-    console.log(data);
+      console.log(data);
 
-    // let NameFormated = "";
+      // let NameFormated = "";
 
-    // for (let i = 0; i < data.name.length; i++) {
-    //   if (i === 0) {
-    //     NameFormated += data.name[i].toUpperCase();
-    //   }
-    //   if (data.name[i - 1] === " ") {
-    //     NameFormated += data.name[i].toUpperCase();
-    //   } else if (i !== 0 && data.name[i - 1] !== " ") {
-    //     NameFormated += data.name[i];
-    //   }
-    // }
+      // for (let i = 0; i < data.name.length; i++) {
+      //   if (i === 0) {
+      //     NameFormated += data.name[i].toUpperCase();
+      //   }
+      //   if (data.name[i - 1] === " ") {
+      //     NameFormated += data.name[i].toUpperCase();
+      //   } else if (i !== 0 && data.name[i - 1] !== " ") {
+      //     NameFormated += data.name[i];
+      //   }
+      // }
 
-    // data.name = NameFormated.trim();
+      // data.name = NameFormated.trim();
 
-    api
-      .post("/users", data, headers)
-      .then((response) => {
-        toast.dark(" ✔️  Cadastro realizado com sucesso", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+      api
+        .post("/users", data, headers)
+        .then((response) => {
+          toast.dark(" ✔️  Cadastro realizado com sucesso", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          console.log(response.data);
+          handleClose();
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error(" ✖️ Falha ao cadastrar. Tente novamente", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
-        console.log(response.data);
-        handleClose();
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error(" ✖️ Falha ao cadastrar. Tente novamente", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+    }
   };
   return (
     <Container>

@@ -23,6 +23,7 @@ let token = localStorage.getItem("token");
 const FormVacinaUser = ({ userInfo, handleClose }) => {
   const [vacinesList, setVacinesList] = useState([]);
   const [vacine, setVacine] = useState();
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const schema = yup.object().shape({
     id: yup
@@ -56,53 +57,57 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
   };
 
   const handleData = (data) => {
-    let vacina = {};
-    vacina.vaccines = userInfo[0].vaccines;
-    data.id = parseInt(data.id);
+    if (!isEditProfile) {
+      setIsEditProfile(true);
 
-    for (let i = 0; i < vacinesList.length; i++) {
-      if (vacinesList[i].id === data.id) {
-        data.name = vacinesList[i].name;
-        data.required = vacinesList[i].required;
-        data.description = vacinesList[i].description;
-        data.doses = vacinesList[i].doses;
+      let vacina = {};
+      vacina.vaccines = userInfo[0].vaccines;
+      data.id = parseInt(data.id);
+
+      for (let i = 0; i < vacinesList.length; i++) {
+        if (vacinesList[i].id === data.id) {
+          data.name = vacinesList[i].name;
+          data.required = vacinesList[i].required;
+          data.description = vacinesList[i].description;
+          data.doses = vacinesList[i].doses;
+        }
       }
+
+      vacina.vaccines.push(data);
+      data = vacina;
+
+      api
+        .patch(`/users/${userInfo[0].id}`, data, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        })
+        .then((response) => {
+          toast.info("Registro de vacina realizado com sucesso !", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          console.log(response.data);
+          handleClose();
+        })
+        .catch((e) => {
+          toast.error("Falha ao registrar vacina, tente novamente", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          console.log(e);
+        });
     }
-
-    vacina.vaccines.push(data);
-    data = vacina;
-
-    api
-      .patch(`/users/${userInfo[0].id}`, data, {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(token)}`,
-        },
-      })
-      .then((response) => {
-        toast.info("Registro de vacina realizado com sucesso !", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(response.data);
-        handleClose();
-      })
-      .catch((e) => {
-        toast.error("Falha ao registrar vacina, tente novamente", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(e);
-      });
   };
 
   return (

@@ -9,11 +9,13 @@ import Input from "../Input";
 
 import { Text } from "../Input/style";
 import { Container, Title, Form, TextArea, ButtonContainer } from "./style";
+import { useState } from "react";
 
 const FormCreateVaccine = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const schema = yup.object().shape({
     name: yup
@@ -28,34 +30,37 @@ const FormCreateVaccine = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    api
-      .post("/vaccines", data, headers)
-      .then((response) => {
-        toast.dark(" ✔️ Cadastro realizado com sucesso", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      api
+        .post("/vaccines", data, headers)
+        .then((response) => {
+          toast.dark(" ✔️ Cadastro realizado com sucesso", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
 
-        handleClose();
-      })
-      .catch((error) => {
-        toast.error(" ✖️ Falha ao realizar o cadastro. Tente novamente", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+          handleClose();
+        })
+        .catch((error) => {
+          toast.error(" ✖️ Falha ao realizar o cadastro. Tente novamente", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
 
-        console.log(error);
-      });
+          console.log(error);
+        });
+    }
   };
 
   return (

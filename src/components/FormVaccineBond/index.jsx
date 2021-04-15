@@ -16,6 +16,7 @@ import { Container, Title, Form, ButtonContainer } from "./style";
 const FormVaccineBond = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
+  const [isEditProfile, setIsEditProfile] = useState(false);
   const [vaccineList, setVaccineList] = useState([]);
   const [localList, setLocalList] = useState([]);
   const [vaccines, setVaccines] = useState([]);
@@ -39,52 +40,55 @@ const FormVaccineBond = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    const vaccine = vaccines.filter((elem) => elem.name === data.vaccines);
-    const local = locals.filter((elem) => elem.name === data.locals);
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      const vaccine = vaccines.filter((elem) => elem.name === data.vaccines);
+      const local = locals.filter((elem) => elem.name === data.locals);
 
-    if (
-      local[0].vaccines.includes(vaccine[0].id) ||
-      local[0].vaccines.filter((elem) => elem.id === vaccine[0].id).length > 0
-    ) {
-      toast.dark(" ✖️ Essa vacina já está vinculada à unidade !!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } else {
-      const newData = { vaccines: [...local[0].vaccines, vaccine[0]] };
-
-      api
-        .patch(`/locals/${local[0].id}`, newData, headers)
-        .then((response) => {
-          toast.dark(" ✔️  Vínculo realizado com sucesso !!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-          console.log("response.data", response.data);
-          handleClose();
-        })
-        .catch((error) => {
-          console.log(error);
-          toast.error(" ✖️ Falha ao realizar vinculo !", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+      if (
+        local[0].vaccines.includes(vaccine[0].id) ||
+        local[0].vaccines.filter((elem) => elem.id === vaccine[0].id).length > 0
+      ) {
+        toast.dark(" ✖️ Essa vacina já está vinculada à unidade !!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
+      } else {
+        const newData = { vaccines: [...local[0].vaccines, vaccine[0]] };
+
+        api
+          .patch(`/locals/${local[0].id}`, newData, headers)
+          .then((response) => {
+            toast.dark(" ✔️  Vínculo realizado com sucesso !!", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            console.log("response.data", response.data);
+            handleClose();
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error(" ✖️ Falha ao realizar vinculo !", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          });
+      }
     }
   };
 

@@ -70,7 +70,7 @@ function MenuProfile() {
         )}
       </div>
       <TransitionModal open={openModal} handleClose={handleClose}>
-        <FormEditProfile handleSetClose={handleSetClose} />
+        <FormEditProfile handleClose={handleClose} />
       </TransitionModal>
       <div open={open} className="header">
         <div>

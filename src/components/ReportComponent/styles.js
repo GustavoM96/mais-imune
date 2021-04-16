@@ -120,9 +120,3 @@ export const ReportButton = styled.button`
     background-color: ${darken(0.04, Theme.colors.callToAction_first)};
   }
 `;
-
-// background-color: ${(props) =>
-//   props.permission === 3
-//     ? Theme.colors.callToAction_first
-//     : Theme.colors.main_healthEmployee};
-// color: ${Theme.colors.text_first};

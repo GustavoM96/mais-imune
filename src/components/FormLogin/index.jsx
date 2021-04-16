@@ -99,7 +99,6 @@ function FormLogin() {
             setError={setError}
             name="email"
             text="Email"
-            placeholder="Insira seu E-mail aqui!"
             register={register}
             error={errors.email?.message}
           />
@@ -111,7 +110,6 @@ function FormLogin() {
             name="password"
             text="Password"
             type="password"
-            placeholder="Insira sua senha de cadastro aqui!"
             error={errors.password?.message}
             register={register}
           />

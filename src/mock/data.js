@@ -9,11 +9,11 @@ export const messages = {
       link: ''
     },
     {
-      text: `Coronavírus: o que você precisa saber e como previnir em https://coronavirus.saude.gov.br/. `,
+      text: `Coronavírus: o que você precisa saber e como previnir no https://coronavirus.saude.gov.br/. `,
       link: 'https://coronavirus.saude.gov.br/.'
     },
     {
-      text: `Acesse https://quandovouservacinado.vacinacao-covid19.com/ e veja a sua previsão de vacinação para a Covid-19.`,
+      text: `Acesse o https://quandovouservacinado.vacinacao-covid19.com/ e veja a sua previsão de vacinação para a Covid-19.`,
       link: 'https://quandovouservacinado.vacinacao-covid19.com/'
     }
   ],

@@ -11,6 +11,7 @@ import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const RegisterVacine = () => {
   const history = useHistory();
@@ -58,7 +59,12 @@ const RegisterVacine = () => {
   ];
 
   return (
-    <div className="flex">
+    <motion.div
+      className="flex"
+      initial={{ translateY: "-100%" }}
+      animate={{ translateY: "0%" }}
+      transition={{ duration: 0.5 }}
+    >
       <MenuAside />
       <Container>
         <h2>Registro de Vacinas</h2>
@@ -67,7 +73,7 @@ const RegisterVacine = () => {
         <PatientSearch></PatientSearch>
       </Container>
       <MenuProfile />
-    </div>
+    </motion.div>
   );
 };
 

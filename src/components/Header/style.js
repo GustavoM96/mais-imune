@@ -5,9 +5,7 @@ import { motion } from "framer-motion";
 
 export const Container = styled.header`
   .no-border {
-    @media (max-width: 800px) {
-      margin: 0;
-    }
+    margin: 0;
   }
 `;
 

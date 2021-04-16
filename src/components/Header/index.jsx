@@ -91,19 +91,6 @@ const Header = ({ title }) => {
           >
             {messages.campaigns[checkedBox].text.split(" ").map((word) => {
               return word === messages.campaigns[checkedBox].link ? (
-<<<<<<< HEAD
-                                                              <Link 
-                                                                  href={messages.campaigns[checkedBox].link}
-                                                                  rel='noreferrer'
-                                                                  target='_blank'>
-                                                                    site                                                                
-                                                              </Link>
-                                                            ) : (
-                                                              <>
-                                                                {`${word} `}
-                                                              </>
-                                                            )
-=======
                 <Link
                   href={messages.campaigns[checkedBox].link}
                   rel="noreferrer"
@@ -114,7 +101,6 @@ const Header = ({ title }) => {
               ) : (
                 <>{`${word} `}</>
               );
->>>>>>> f2e28604bde7f914768836ca5c0368f2a95feee4
             })}
           </CampaignText>
           <CheckBoxArea>

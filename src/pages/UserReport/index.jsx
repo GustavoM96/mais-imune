@@ -19,20 +19,21 @@ const UserReport = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <motion.div
-      className="flex"
-      initial={{ translateY: "-100%" }}
-      animate={{ translateY: "0%" }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="flex">
       <MenuAside />
       <Container>
         <h2>Relatório</h2>
         <Header />
-        <ReportComponent />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <ReportComponent />
+        </motion.div>
       </Container>
       <MenuProfile />
-    </motion.div>
+    </div>
   );
 };
 

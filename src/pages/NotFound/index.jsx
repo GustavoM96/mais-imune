@@ -16,7 +16,7 @@ function NotFound() {
       transition={{ duration: 0.5 }}
     >
       <Container>
-        <Button text="Home" handleClick={() => history.push("/")} />
+        <Button text="Voltar" handleClick={() => history.push("/")} />
         <figure>
           <img src={fourzerofour} alt="Não Encontrado" />
         </figure>

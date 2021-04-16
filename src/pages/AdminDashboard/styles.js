@@ -20,13 +20,11 @@ export const Container = styled.div`
 `;
 
 export const CardContainer = styled.div`
-  width: 100%;
   overflow-x: auto;
   display: flex;
-  justify-content: space-around;
-
-  @media (max-width: 800px) {
-    flex-direction: column;
-    align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  @media (max-width: 630px) {
+    justify-content: space-around;
   }
 `;

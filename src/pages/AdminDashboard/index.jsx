@@ -60,35 +60,35 @@ const Dashboard = () => {
   ];
 
   return (
-    <motion.div
-      className="flex"
-      initial={{ scaleY: 0 }}
-      animate={{ scaleY: 1 }}
-      exit={{ scaleY: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="flex">
       <MenuAside />
       <Container>
         <h2>Dashboard</h2>
         <Header />
         <h3>Cadastros</h3>
-        <CardContainer>
-          {cards.map((card, index) => (
-            <CardContainer>
-              <CardDashboard
-                key={index}
-                icon={card[0]}
-                title={card[1]}
-                text={card[2]}
-                buttonText={card[3]}
-                form={card[4]}
-              />
-            </CardContainer>
-          ))}
-        </CardContainer>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <CardContainer>
+            {cards.map((card, index) => (
+              <CardContainer>
+                <CardDashboard
+                  key={index}
+                  icon={card[0]}
+                  title={card[1]}
+                  text={card[2]}
+                  buttonText={card[3]}
+                  form={card[4]}
+                />
+              </CardContainer>
+            ))}
+          </CardContainer>
+        </motion.div>
       </Container>
       <MenuProfile />
-    </motion.div>
+    </div>
   );
 };
 

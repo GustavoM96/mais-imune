@@ -59,21 +59,22 @@ const RegisterVacine = () => {
   ];
 
   return (
-    <motion.div
-      className="flex"
-      initial={{ translateY: "-100%" }}
-      animate={{ translateY: "0%" }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="flex">
       <MenuAside />
       <Container>
         <h2>Registro de Vacinas</h2>
         <Header />
-        <h3>Busca por paciente</h3>
-        <PatientSearch></PatientSearch>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <h3>Busca por paciente</h3>
+          <PatientSearch></PatientSearch>
+        </motion.div>
       </Container>
       <MenuProfile />
-    </motion.div>
+    </div>
   );
 };
 

@@ -41,20 +41,21 @@ function ElectiveVaccines() {
   }, []);
 
   return (
-    <motion.div
-      className="flex"
-      initial={{ translateY: "-100%" }}
-      animate={{ translateY: "0%" }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="flex">
       <MenuAside />
       <Container>
         <h2>Vacinas Eletivas</h2>
         <Header />
-        <SelectElectiveVaccine />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <SelectElectiveVaccine />
+        </motion.div>
       </Container>
       <MenuProfile user={user} />
-    </motion.div>
+    </div>
   );
 }
 

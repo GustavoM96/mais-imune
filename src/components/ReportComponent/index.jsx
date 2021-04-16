@@ -1,9 +1,10 @@
-import { Container, TableHead } from "./styles";
+import { Container } from "./styles";
+
+import ReportToPrint from "./reportToPrint";
 
 import { useState, useEffect } from "react";
 import api from "../../services/api";
-import { cpfFormat, nameFormat, dateFormat, dateSort } from "../../utils";
-import Skeleton from "@material-ui/lab/Skeleton";
+import { cpfFormat, nameFormat } from "../../utils";
 
 import { useSelector } from "react-redux";
 
@@ -65,51 +66,11 @@ const ReportComponent = () => {
 
   return (
     <Container>
-      <h3>Relatório de pacientes vacinados</h3>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <TableHead permission={user.permission}>Data</TableHead>
-              <TableHead permission={user.permission}>Nome</TableHead>
-              <TableHead permission={user.permission}>CPF</TableHead>
-              <TableHead permission={user.permission}>Vacina</TableHead>
-            </tr>
-          </thead>
-
-          <tbody>
-            {users[0]
-              ? users
-                  .sort((a, b) => {
-                    return dateSort(a.date, b.date);
-                  })
-                  .map((elem, index) => (
-                    <tr key={index}>
-                      <td>{dateFormat(elem.date)}</td>
-                      <td>{elem.user}</td>
-                      <td>{elem.userCpf}</td>
-                      <td>{elem.name}</td>
-                    </tr>
-                  ))
-              : mockUsers.map((_, index) => (
-                  <tr key={index}>
-                    <td>
-                      <Skeleton variant="text" />
-                    </td>
-                    <td>
-                      <Skeleton variant="text" />
-                    </td>
-                    <td>
-                      <Skeleton variant="text" />
-                    </td>
-                    <td>
-                      <Skeleton variant="text" />
-                    </td>
-                  </tr>
-                ))}
-          </tbody>
-        </table>
-      </div>
+      <ReportToPrint
+        permission={user.permission}
+        users={users}
+        mockUsers={mockUsers}
+      />
     </Container>
   );
 };

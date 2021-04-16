@@ -6,6 +6,7 @@ import MenuProfile from "../../components/MenuProfile";
 import ReportComponent from "../../components/ReportComponent";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import { motion } from "framer-motion";
 
 const UserReport = () => {
   const history = useHistory();
@@ -18,7 +19,12 @@ const UserReport = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="flex">
+    <motion.div
+      className="flex"
+      initial={{ translateY: "-100%" }}
+      animate={{ translateY: "0%" }}
+      transition={{ duration: 0.5 }}
+    >
       <MenuAside />
       <Container>
         <h2>Relatório</h2>
@@ -26,7 +32,7 @@ const UserReport = () => {
         <ReportComponent />
       </Container>
       <MenuProfile />
-    </div>
+    </motion.div>
   );
 };
 

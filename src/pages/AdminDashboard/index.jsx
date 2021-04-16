@@ -11,6 +11,8 @@ import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { easeIn, easeInOut } from "polished";
 
 const Dashboard = () => {
   const history = useHistory();
@@ -58,7 +60,13 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="flex">
+    <motion.div
+      className="flex"
+      initial={{ scaleY: 0 }}
+      animate={{ scaleY: 1 }}
+      exit={{ scaleY: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <MenuAside />
       <Container>
         <h2>Dashboard</h2>
@@ -66,7 +74,7 @@ const Dashboard = () => {
         <h3>Cadastros</h3>
         <CardContainer>
           {cards.map((card, index) => (
-            <>
+            <CardContainer>
               <CardDashboard
                 key={index}
                 icon={card[0]}
@@ -75,12 +83,12 @@ const Dashboard = () => {
                 buttonText={card[3]}
                 form={card[4]}
               />
-            </>
+            </CardContainer>
           ))}
         </CardContainer>
       </Container>
       <MenuProfile />
-    </div>
+    </motion.div>
   );
 };
 

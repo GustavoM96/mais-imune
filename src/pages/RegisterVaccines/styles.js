@@ -6,6 +6,7 @@ export const Container = styled.div`
 
   @media (min-width: 800px) {
     width: 65%;
+    max-width: 1000px;
   }
   h2 {
     margin-top: 0;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
@@ -25,6 +26,7 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
   const [vacinesList, setVacinesList] = useState([]);
   const [vacine, setVacine] = useState();
   const [isEditProfile, setIsEditProfile] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const schema = yup.object().shape({
     id: yup
@@ -71,6 +73,7 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
           data.required = vacinesList[i].required;
           data.description = vacinesList[i].description;
           data.doses = vacinesList[i].doses;
+          data.professional = user.name || user.user;
         }
       }
 

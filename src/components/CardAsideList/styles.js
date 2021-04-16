@@ -49,7 +49,9 @@ export const Header = styled.div`
 
 export const StyledSpan = styled.span`
   display: block;
-  color: ${(props) => (props.active ? "black" : Theme.colors.main_user)};
+  color: ${(props) => (props.active ? Theme.colors.main_user : "black")};
+  border-bottom: ${(props) =>
+    props.active && "1px solid " + Theme.colors.main_user};
   font-size: 1.2rem;
   font-weight: 700;
 

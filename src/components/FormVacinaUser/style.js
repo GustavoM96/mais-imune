@@ -31,7 +31,7 @@ export const LabelStyled = styled.div`
 export const StyledForm = styled.div`
   position: relative;
   top: 20%;
-  right: 37%;
+  right: 33%;
   background-color: ${Theme.colors.background_first};
   width: 250px;
   height: 300px;

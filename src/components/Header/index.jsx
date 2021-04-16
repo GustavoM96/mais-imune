@@ -80,7 +80,7 @@ const Header = ({ title }) => {
       </DateText>
       <MainArea permission={permission}>
         <TextArea permission={permission}>
-          <WelcomeText permission={permission}>
+          <WelcomeText className="no-border" permission={permission}>
             Olá, {nameFormat(name)}
           </WelcomeText>
           <CampaignText

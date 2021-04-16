@@ -45,10 +45,15 @@ const ReportComponent = () => {
           vaccine.userCpf = userCpf;
           vaccine.name = array[i].vaccines[j].name;
           vaccine.date = array[i].vaccines[j].aplication;
+          vaccine.professional = array[i].vaccines[j].professional;
 
           output.push(vaccine);
         }
       }
+    }
+
+    if (user.permission === 2) {
+      output = output.filter((elem) => elem.professional === user.name);
     }
 
     setUsers(output);

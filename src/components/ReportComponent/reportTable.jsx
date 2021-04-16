@@ -1,6 +1,6 @@
 import React from "react";
 import { ReportContainer, TableHead } from "./styles";
-import { dateFormat, dateSort } from "../../utils";
+import { dateFormat, dateSort, nameFormat } from "../../utils";
 import Skeleton from "@material-ui/lab/Skeleton";
 
 export default class ReportTable extends React.Component {
@@ -15,6 +15,11 @@ export default class ReportTable extends React.Component {
                 <TableHead permission={this.props.permission}>Data</TableHead>
                 <TableHead permission={this.props.permission}>Nome</TableHead>
                 <TableHead permission={this.props.permission}>CPF</TableHead>
+                {this.props.permission === 3 && (
+                  <TableHead permission={this.props.permission}>
+                    Profissional
+                  </TableHead>
+                )}
                 <TableHead permission={this.props.permission}>Vacina</TableHead>
               </tr>
             </thead>
@@ -30,6 +35,13 @@ export default class ReportTable extends React.Component {
                         <td>{dateFormat(elem.date)}</td>
                         <td>{elem.user}</td>
                         <td>{elem.userCpf}</td>
+                        {this.props.permission === 3 && (
+                          <td>
+                            {!elem.professional
+                              ? elem.professional
+                              : nameFormat(elem.professional)}
+                          </td>
+                        )}
                         <td>{elem.name}</td>
                       </tr>
                     ))
@@ -44,6 +56,11 @@ export default class ReportTable extends React.Component {
                       <td>
                         <Skeleton variant="text" />
                       </td>
+                      {this.props.permission === 3 && (
+                        <td>
+                          <Skeleton variant="text" />
+                        </td>
+                      )}
                       <td>
                         <Skeleton variant="text" />
                       </td>

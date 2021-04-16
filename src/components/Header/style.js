@@ -149,7 +149,9 @@ export const Checked = styled.div`
 export const Link = styled.a`
   font-size: 16px;
   text-decoration: none;
-  color: ${Theme.colors.background_first};
+  font-weight: 700;
+  color: ${({ permission }) =>
+    permission === 1 ? Theme.colors.text_first : Theme.colors.text_fourth};
   @media (max-width: 1366px) {
     font-size: 14px;
   }

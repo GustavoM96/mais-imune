@@ -10,7 +10,7 @@ export const SelectInput = styled.select`
   border: none;
   background-color: ${Theme.colors.background_first};
   margin-bottom: 30px;
-  box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.62);
+  box-shadow: 0 4px 6px ${Theme.colors.boxShadow_primary};
 `;
 export const InputData = styled.input`
   outline: none;
@@ -19,7 +19,7 @@ export const InputData = styled.input`
   padding: 5px;
   border: none;
   background-color: ${Theme.colors.background_first};
-  box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.62);
+  box-shadow: 0 4px 6px ${Theme.colors.boxShadow_primary};
   margin-bottom: 30px;
 `;
 
@@ -47,7 +47,7 @@ export const FormConteiner = styled.div`
   width: 500px;
   height: 500px;
   background-color: ${Theme.colors.background_first};
-  box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.62);
+  box-shadow: 0 4px 6px ${Theme.colors.boxShadow_primary};
 `;
 
 export const ErrorMessage = styled.p`

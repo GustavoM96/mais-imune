@@ -12,7 +12,9 @@ const ReportToPrint = ({ permission, users, mockUsers }) => {
 
   return (
     <div>
-      <ReportButton onClick={handlePrint}>Imprimir</ReportButton>
+      <ReportButton onClick={handlePrint} permission={permission}>
+        Imprimir
+      </ReportButton>
 
       <ComponentToPrint
         ref={componentRef}

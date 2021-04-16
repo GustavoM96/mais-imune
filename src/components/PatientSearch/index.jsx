@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Button from "../Button";
 import api from "../../services/api";
 import Modal from "../Modal";
-import FormVacinaUser from "../form-vacina-user";
-import { InputData } from "../form-vacina-user/style";
+import FormVacinaUser from "../FormVacinaUser";
+import { InputData } from "../FormVacinaUser/style";
 import { Conteiner, BoldText, TextConteiner, InputConteiner } from "./style";
 
 const PatientSearch = () => {

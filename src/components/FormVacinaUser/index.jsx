@@ -108,7 +108,7 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
             onChange={handleChange}
             {...register("id", { required: true })}
           >
-            <option value=""></option>
+            <option value="">Selecione a vacina</option>
             {vacinesList.map((vacine, index) => (
               <option value={vacine.id} key={index}>
                 {vacine.name}

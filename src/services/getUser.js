@@ -24,7 +24,7 @@ export const getUser = (
       dispatch(signIn(token, resp.data));
     })
     .catch((resp) => {
-      if (history) {
+      if (history && history.location.pathname !== "/") {
         localStorage.clear();
         history.push("/login");
       }

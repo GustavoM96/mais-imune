@@ -8,6 +8,7 @@ import jwt_decode from "jwt-decode";
 
 import { Container } from "./styles";
 import { useHistory } from "react-router";
+import { motion } from "framer-motion";
 
 function ElectiveVaccines() {
   const [user, setUser] = useState();
@@ -40,7 +41,12 @@ function ElectiveVaccines() {
   }, []);
 
   return (
-    <div className="flex">
+    <motion.div
+      className="flex"
+      initial={{ translateY: "-100%" }}
+      animate={{ translateY: "0%" }}
+      transition={{ duration: 0.5 }}
+    >
       <MenuAside />
       <Container>
         <h2>Vacinas Eletivas</h2>
@@ -48,7 +54,7 @@ function ElectiveVaccines() {
         <SelectElectiveVaccine />
       </Container>
       <MenuProfile user={user} />
-    </div>
+    </motion.div>
   );
 }
 

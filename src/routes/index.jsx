@@ -10,6 +10,7 @@ import NotFound from "../pages/NotFound";
 import RegisterVacine from "../pages/RegisterVaccines";
 import ElectiveVaccines from "../pages/ElectiveVaccines";
 import { isLoged } from "../services/isLoged";
+import { AnimatePresence } from "framer-motion";
 
 function LogedRouter({ component: Component, ...rest }) {
   return (
@@ -49,17 +50,19 @@ function NotLogedRouter({ component: Component, ...rest }) {
 
 function routes() {
   return (
-    <Switch>
-      <NotLogedRouter exact path="/" component={Home} />
-      <NotLogedRouter path="/login" component={Login} />
-      <NotLogedRouter path="/registro" component={Register} />
-      <LogedRouter path="/minhas_vacinas" component={UserVaccines} />
-      <LogedRouter path="/vacinas-eletivas" component={ElectiveVaccines} />
-      <LogedRouter path="/registro-vacina" component={RegisterVacine} />
-      <LogedRouter path="/relatorio" component={UserReport} />
-      <LogedRouter path="/dashboard" component={Dashboard} />
-      <Route component={NotFound} />
-    </Switch>
+    <AnimatePresence>
+      <Switch>
+        <NotLogedRouter exact path="/" component={Home} />
+        <NotLogedRouter path="/login" component={Login} />
+        <NotLogedRouter path="/registro" component={Register} />
+        <LogedRouter path="/minhas_vacinas" component={UserVaccines} />
+        <LogedRouter path="/vacinas-eletivas" component={ElectiveVaccines} />
+        <LogedRouter path="/registro-vacina" component={RegisterVacine} />
+        <LogedRouter path="/relatorio" component={UserReport} />
+        <LogedRouter path="/dashboard" component={Dashboard} />
+        <Route component={NotFound} />
+      </Switch>
+    </AnimatePresence>
   );
 }
 

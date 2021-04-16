@@ -8,6 +8,7 @@ import api from "../../services/api";
 import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
 import { useHistory } from "react-router";
+import { motion } from "framer-motion";
 
 function Dashboard() {
   const [user, setUser] = useState();
@@ -41,7 +42,12 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className="flex">
+    <motion.div
+      className="flex"
+      initial={{ translateY: "-100%" }}
+      animate={{ translateY: "0%" }}
+      transition={{ duration: 0.5 }}
+    >
       <MenuAside />
       <Container>
         <h2>Minhas Vacinas</h2>
@@ -49,7 +55,7 @@ function Dashboard() {
         <UserCardContainer user={user} />
       </Container>
       <MenuProfile user={user} />
-    </div>
+    </motion.div>
   );
 }
 

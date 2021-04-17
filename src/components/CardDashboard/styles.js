@@ -6,8 +6,9 @@ export const Container = styled.div`
   width: 165px;
   background: ${Theme.colors.background_second};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 0.8rem;
-    height: 14rem;
+  margin: 0.5rem;
+
+  height: 15rem;
 
   h4,
   p {
@@ -18,6 +19,6 @@ export const Container = styled.div`
     margin-bottom: 25%;
     @media (max-height: 500px) {
       display: none;
-    } */
+    }
   }
 `;

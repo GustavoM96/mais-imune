@@ -9,45 +9,57 @@ export const SelectInput = styled.select`
   padding: 5px;
   border: none;
   background-color: ${Theme.colors.background_first};
-  margin-bottom: 30px;
   box-shadow: 0 4px 6px ${Theme.colors.boxShadow_primary};
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: blue;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:focus {
+      color: #000;
+    }
+  }
 `;
 export const InputData = styled.input`
   outline: none;
-  min-width: 200px;
-  min-height: 25px;
+  width: 100%;
   padding: 5px;
   border: none;
-  background-color: ${Theme.colors.background_first};
   box-shadow: 0 4px 6px ${Theme.colors.boxShadow_primary};
-  margin-bottom: 30px;
 `;
 
 export const LabelStyled = styled.div`
-  font-weight: 350;
-  font-size: 1.2rem;
+  /* font-weight: 350;
+  font-size: 1.2rem; */
 `;
 
 export const StyledForm = styled.div`
-  position: relative;
-  top: 20%;
-  right: 33%;
-  background-color: ${Theme.colors.background_first};
-  width: 250px;
-  height: 300px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  justify-content: space-between;
 `;
 
-export const FormConteiner = styled.div`
-  border-radius: 15px;
+export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  width: 500px;
-  height: 500px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2rem;
+
+  border-radius: 15px;
+
   background-color: ${Theme.colors.background_first};
   box-shadow: 0 4px 6px ${Theme.colors.boxShadow_primary};
+  div {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    select {
+      width: 100%;
+    }
+  }
 `;
 
 export const ErrorMessage = styled.p`

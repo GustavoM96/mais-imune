@@ -16,10 +16,10 @@ export const Container = styled.div`
 
 export const VaccinesContainer = styled.div`
   display: flex;
-  max-height: 53vh;
+  flex-direction: column;
+  min-height: 415px;
   flex-wrap: wrap;
   overflow-y: auto;
-  align-items: center;
 `;
 
 export const Header = styled.div`

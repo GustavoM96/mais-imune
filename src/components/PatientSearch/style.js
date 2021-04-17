@@ -40,17 +40,20 @@ export const TextConteiner = styled.div`
 
 export const InputConteiner = styled.div`
   min-width: 20%;
+  max-width: 225px;
   min-height: 10%;
+  width: 80%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 3%;
 
-  input {
-    max-width: 10%;
+  span {
   }
 
   button {
     max-width: 8%;
+    margin-top: 15px;
   }
 `;

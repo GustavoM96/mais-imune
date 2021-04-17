@@ -6,18 +6,42 @@ import Modal from "../Modal";
 import FormVacinaUser from "../FormVacinaUser";
 import { InputData } from "../FormVacinaUser/style";
 import { Conteiner, BoldText, TextConteiner, InputConteiner } from "./style";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Input from "../Input";
 
 const PatientSearch = () => {
   const [search, setSearch] = useState(false);
   const [cpf, setCpf] = useState();
   const [user, setUser] = useState();
   const [open, setOpen] = useState(false);
+  const schema = yup.object().shape({
+    cpf: yup
+      .string("")
+      .matches(
+        /[0-9]{3}?[0-9]{3}?[0-9]{3}?[0-9]{2}/,
+        "Digite um CPF válido sem pontos e traço"
+      )
+      .max(11, "Máximo de 11 dígitos")
+      .required("Campo obrigatório"),
+  });
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   let token = localStorage.getItem("token") || "";
 
-  const handleClick = () => {
+  const handleData = (data) => {
+    setSearch(false);
     api
-      .get(`/users?cpf=${cpf}`, {
+      .get(`/users?cpf=${data.cpf}`, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
@@ -43,14 +67,21 @@ const PatientSearch = () => {
 
   return (
     <div>
-      <InputConteiner>
-        <InputData
-          type="text"
-          placeholder="Digite o CPF do paciente"
-          onChange={(e) => setCpf(e.target.value)}
-        ></InputData>
-        <Button text="Buscar" handleClick={handleClick} />
-      </InputConteiner>
+      <form onSubmit={handleSubmit(handleData)}>
+        <InputConteiner>
+          <Input
+            name="cpf"
+            type="text"
+            placeholder={"Digite o CPF do paciente"}
+            setError={setError}
+            error={errors.cpf?.message}
+            register={register}
+
+            // onChange={(e) => setCpf(e.target.value)}
+          />
+          <Button text="Buscar" />
+        </InputConteiner>
+      </form>
       {search ? (
         user[0] ? (
           <Conteiner>

@@ -11,7 +11,13 @@ import Input from "../Input";
 
 import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
 
-import { Container, Title, Form, ButtonContainer } from "./style";
+import {
+  Container,
+  Title,
+  Form,
+  ButtonContainer,
+  InputContainer,
+} from "./style";
 
 const FormVaccineBond = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -93,20 +99,30 @@ const FormVaccineBond = ({ handleClose }) => {
     <Container>
       <Title>Vínculo de Vacinas</Title>
       <Form onSubmit={handleSubmit(handleData)}>
-        <Input
-          name="vaccines"
-          text="Vacinas"
-          type="select"
-          options={vaccineList}
-          register={register}
-        />
-        <Input
-          name="locals"
-          text="Estabelecimentos"
-          type="select"
-          options={localList}
-          register={register}
-        />
+        <InputContainer>
+          <Input
+            name="vaccines"
+            text="Vacinas"
+            type="select"
+            options={vaccineList}
+            register={register}
+          >
+            <option value={null}>Selecione a vacina</option>
+          </Input>
+        </InputContainer>
+
+        <InputContainer>
+          <Input
+            name="locals"
+            text="Unidade"
+            type="select"
+            options={localList}
+            register={register}
+          >
+            <option value={null}>Selecione a unidade</option>
+          </Input>
+        </InputContainer>
+
         <ButtonContainer>
           <Button text="Cadastrar" type="submit" marginTop="20" />
         </ButtonContainer>

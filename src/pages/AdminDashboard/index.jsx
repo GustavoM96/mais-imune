@@ -72,9 +72,9 @@ const Dashboard = () => {
         >
           <CardContainer>
             {cards.map((card, index) => (
-              <CardContainer>
+              <CardContainer key={index}>
                 <CardDashboard
-                  key={index}
+                  // key={index}
                   icon={card[0]}
                   title={card[1]}
                   text={card[2]}

@@ -27,6 +27,8 @@ export const BoldText = styled.p`
   font-weight: normal;
   font-size: 1rem;
   margin: 0;
+  text-align: center;
+  /* border: 1px solid red; */
 `;
 
 export const TextConteiner = styled.div`

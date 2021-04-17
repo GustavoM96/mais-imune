@@ -25,6 +25,7 @@ const FormRegisterLocal = ({ handleClose }) => {
   const schema = yup.object().shape({
     name: yup
       .string("Campo deve ser preenchido com texto")
+      .matches(/.*\S.*/, "Digite um nome válido")
       .required("Campo obrigatório"),
     street: yup
       .string("Campo deve ser preenchido com texto")

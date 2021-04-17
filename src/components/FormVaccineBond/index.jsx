@@ -41,28 +41,33 @@ const FormVaccineBond = ({ handleClose }) => {
   const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    const vaccine = vaccines.filter((elem) => elem.name === data.vaccines);
-    const local = locals.filter((elem) => elem.name === data.locals);
-
     if (
-      local[0].vaccines.includes(vaccine[0].id) ||
-      local[0].vaccines.filter((elem) => elem.id === vaccine[0].id).length > 0
+      data.vaccines !== "Selecione a vacina" &&
+      data.locals !== "Selecione a unidade"
     ) {
-      toastRegisterError();
-    } else {
-      const newData = { vaccines: [...local[0].vaccines, vaccine[0]] };
+      const vaccine = vaccines.filter((elem) => elem.name === data.vaccines);
+      const local = locals.filter((elem) => elem.name === data.locals);
 
-      api
-        .patch(`/locals/${local[0].id}`, newData, headers)
-        .then((response) => {
-          toastRegisterSuccess();
-          handleClose();
-        })
-        .catch((error) => {
-          toastRegisterError();
+      if (
+        local[0].vaccines.includes(vaccine[0].id) ||
+        local[0].vaccines.filter((elem) => elem.id === vaccine[0].id).length > 0
+      ) {
+        toastRegisterError();
+      } else {
+        const newData = { vaccines: [...local[0].vaccines, vaccine[0]] };
 
-          console.log(error);
-        });
+        api
+          .patch(`/locals/${local[0].id}`, newData, headers)
+          .then((response) => {
+            toastRegisterSuccess();
+            handleClose();
+          })
+          .catch((error) => {
+            toastRegisterError();
+
+            console.log(error);
+          });
+      }
     }
   };
 

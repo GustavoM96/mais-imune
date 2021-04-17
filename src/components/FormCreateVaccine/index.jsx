@@ -31,6 +31,7 @@ const FormCreateVaccine = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
+    data.doses = "1";
     if (!isEditProfile) {
       setIsEditProfile(true);
       api
@@ -63,13 +64,6 @@ const FormCreateVaccine = ({ handleClose }) => {
           text="Obrigatório?"
           type="checkbox"
           error={errors.required?.message}
-          register={register}
-        />
-        <Input
-          name="doses"
-          text="Doses"
-          type="select"
-          options={[1, 2, 3]}
           register={register}
         />
 

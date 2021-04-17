@@ -30,13 +30,9 @@ const PatientSearch = () => {
         console.log(e);
       });
     setTimeout(() => setSearch(true), 1000);
-
-    console.log(user);
   };
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  useEffect(() => {}, [user]);
 
   const handleClose = () => {
     setOpen(!open);

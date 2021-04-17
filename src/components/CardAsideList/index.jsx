@@ -30,8 +30,6 @@ function CardAsideList({ user }) {
   useEffect(() => {
     if (user && user.name !== "usuario") {
       setUserVaccines(user.vaccines.filter((vac, ind) => ind < 5));
-      console.log(user.vaccines);
-      console.log(userVaccines);
 
       api
         .get("/vaccines", {
@@ -44,8 +42,6 @@ function CardAsideList({ user }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
-  console.log(userVaccines);
 
   const toogleAllVaccinesOn = () => {
     setAllVaccines(true);

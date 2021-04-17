@@ -39,10 +39,6 @@ function MenuProfile() {
         },
       })
       .then((response) => {
-        console.log(
-          "🚀 ~ file: index.jsx ~ line 45 ~ .then ~ response",
-          response.data
-        );
         setUser(response.data);
       })
       .catch((e) => console.log(e));

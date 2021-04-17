@@ -69,7 +69,6 @@ const FormRegister = () => {
       .post("/users", newData)
       .then((response) => {
         toastRegisterSuccess();
-        console.log("response.data", response.data);
         history.push("/login");
       })
       .catch((e) => {

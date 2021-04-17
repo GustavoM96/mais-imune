@@ -41,7 +41,6 @@ const FormEditProfile = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    console.log(data);
     if (!isEditProfile) {
       setIsEditProfile(true);
       data.name = nameFormat(data.name);

@@ -66,13 +66,10 @@ const FormRegisterEmployee = ({ handleClose }) => {
 
       const newData = { ...data, permission: 2, vaccines: [] };
 
-      console.log(newData);
-
       api
         .post("/users", newData, headers)
         .then((response) => {
           toastRegisterSuccess();
-          console.log(response.data);
           handleClose();
         })
         .catch((error) => {

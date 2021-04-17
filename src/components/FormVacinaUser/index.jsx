@@ -44,7 +44,6 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
         setVaccinesList(response.data);
       })
       .catch((e) => console.log(e));
-    console.log(userInfo[0]);
   }, [userInfo, token]);
 
   useEffect(() => {

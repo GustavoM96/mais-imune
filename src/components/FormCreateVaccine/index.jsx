@@ -43,7 +43,6 @@ const FormCreateVaccine = ({ handleClose }) => {
           setIsEditProfile(false);
 
           toastRegisterError();
-          console.log(error);
         });
     }
   };

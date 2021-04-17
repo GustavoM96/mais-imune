@@ -27,11 +27,6 @@ function LocalRequiredVaccine({ vaccine }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(
-    "🚀 ~ file: index.jsx ~ line 6 ~ LocalRequiredVaccine ~ vaccine",
-    vaccine
-  );
-
   return (
     <Container>
       <h3>Compareça em uma das unidades abaixo</h3>

@@ -56,7 +56,6 @@ const FormVaccineBond = ({ handleClose }) => {
         .patch(`/locals/${local[0].id}`, newData, headers)
         .then((response) => {
           toastRegisterSuccess();
-          console.log("response.data", response.data);
           handleClose();
         })
         .catch((error) => {

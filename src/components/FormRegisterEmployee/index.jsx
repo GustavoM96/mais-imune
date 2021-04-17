@@ -37,7 +37,10 @@ const FormRegisterEmployee = ({ handleClose }) => {
       .required("Campo obrigatório"),
     cpf: yup
       .string("")
-      .length(11, "Digite o CPF sem pontos e traços")
+      .matches(
+        /[0-9]{3}?[0-9]{3}?[0-9]{3}?[0-9]{2}/,
+        "Digite um CPF válido sem pontos e traço"
+      )
       .required("Campo obrigatório"),
   });
 

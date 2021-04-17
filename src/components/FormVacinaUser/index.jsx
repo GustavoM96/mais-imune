@@ -21,9 +21,6 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
   let token = localStorage.getItem("token");
 
   const schema = yup.object().shape({
-    vaccine: yup
-      .string("Este campo deve ser preenchido")
-      .required("Este campo deve ser preenchido"),
     date: yup.string().required("Escolha a data de aplicação"),
   });
 
@@ -65,38 +62,41 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
   }, [filteredVaccines]);
 
   const handleData = (data) => {
-    const vaccine = vaccinesList.filter((elem) => elem.name === data.vaccine);
-    const newData = {
-      vaccines: [
-        ...userInfo[0].vaccines,
-        {
-          ...vaccine[0],
-          aplication: data.date,
-          professional: user.name,
-        },
-      ],
-    };
-    api
-      .patch(`/users/${userInfo[0].id}`, newData, {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(token)}`,
-        },
-      })
-      .then((response) => {
-        toastRegisterSuccess();
-        handleClose();
-      })
-      .catch((e) => {
-        toastRegisterError();
-        console.log(e);
-      });
+    if (data.vaccine !== "Selecione a vacina") {
+      const vaccine = vaccinesList.filter((elem) => elem.name === data.vaccine);
+      const newData = {
+        vaccines: [
+          ...userInfo[0].vaccines,
+          {
+            ...vaccine[0],
+            aplication: data.date,
+            professional: user.name,
+          },
+        ],
+      };
+      api
+        .patch(`/users/${userInfo[0].id}`, newData, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        })
+        .then((response) => {
+          toastRegisterSuccess();
+          handleClose();
+        })
+        .catch((e) => {
+          toastRegisterError();
+          console.log(e);
+        });
+    } else {
+      toastRegisterError();
+    }
   };
   return (
     <Container>
       <h3>Registrar vacinação</h3>
       <form onSubmit={handleSubmit(handleData)}>
         <Input
-          // text="Selecione a vacina"
           options={vaccinesName}
           type="select"
           name="vaccine"
@@ -105,6 +105,8 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
         >
           <option value={null}>Selecione a vacina</option>
         </Input>
+        <ErrorMessage>{errors.vaccine?.message}</ErrorMessage>
+
         <div>
           <LabelStyled>Data da aplicação</LabelStyled>
           <InputData type="date" {...register("date", { required: true })} />

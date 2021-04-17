@@ -16,7 +16,10 @@ function NotFound() {
       transition={{ duration: 0.5 }}
     >
       <Container>
-        <Button text="Voltar" handleClick={() => history.push("/")} />
+        <Button
+          text="Voltar"
+          handleClick={() => history.push("/minhas_vacinas")}
+        />
         <figure>
           <img src={fourzerofour} alt="Não Encontrado" />
         </figure>

@@ -59,6 +59,7 @@ const PatientSearch = () => {
 
   const handleClose = () => {
     setOpen(!open);
+    setSearch(false);
   };
 
   return (
@@ -81,7 +82,7 @@ const PatientSearch = () => {
       {search ? (
         user[0] ? (
           <Conteiner>
-            <h2>Dados do usuario</h2>
+            <h2>Dados do usuário</h2>
             <TextConteiner>
               <BoldText>Nome: {nameFormat(user[0]?.name)}</BoldText>
               <BoldText>CPF: {cpfFormat(user[0]?.cpf)}</BoldText>

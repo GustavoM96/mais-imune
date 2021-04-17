@@ -49,7 +49,7 @@ const Header = ({ title }) => {
       "Quarta-feira",
       "Quinta-feira",
       "Sexta-feira",
-      "Sabado",
+      "Sábado",
     ];
     const today = new Date().getDay();
     return days[today];

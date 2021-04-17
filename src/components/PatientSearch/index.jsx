@@ -30,6 +30,7 @@ const PatientSearch = () => {
     handleSubmit,
     setError,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -46,6 +47,7 @@ const PatientSearch = () => {
       })
       .then((response) => {
         setUser(response.data);
+        reset();
       })
       .catch((e) => {
         console.log(e);

@@ -1,9 +1,4 @@
-import { Container, CardContainer } from "./styles";
-
-import registerUserIcon from "../../assets/register_users_access2.svg";
-import vaccineRegisterIcon from "../../assets/register_vaccine_icon.svg";
-import stablishmentRegisterIcon from "../../assets/register_stablishment_icon.svg";
-import vaccineBondRegisterIcon from "../../assets/register_vaccine_bond_icon.svg";
+import { Container } from "./styles";
 
 import Header from "../../components/Header";
 import PatientSearch from "../../components/PatientSearch";
@@ -26,37 +21,6 @@ const RegisterVacine = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const cards = [
-    [
-      registerUserIcon,
-      "Cadastro de Profissionais de Saúde",
-      "Cadastre perfis de profissionais de saúde",
-      "Cadastrar",
-      "formRegisterEmployee",
-    ],
-    [
-      vaccineRegisterIcon,
-      "Cadastro de vacinas",
-      "Cadastre novas vacinas",
-      "Cadastrar",
-      "formCreateVaccine",
-    ],
-    [
-      stablishmentRegisterIcon,
-      "Cadastro de estabelecimentos",
-      "Cadastre novos estabelecimentos",
-      "Cadastrar",
-      "formRegisterLocal",
-    ],
-    [
-      vaccineBondRegisterIcon,
-      "Vínculo de vacinas",
-      "Vincule a vacina a um estabelecimento de saúde",
-      "Adicionar",
-      "formVaccineBond",
-    ],
-  ];
 
   return (
     <div className="flex">

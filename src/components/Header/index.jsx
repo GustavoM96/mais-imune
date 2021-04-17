@@ -5,7 +5,6 @@ import { nameFormat } from "../../utils/index";
 
 import {
   Container,
-  Title,
   DateText,
   WeekDay,
   MainArea,
@@ -26,14 +25,7 @@ const Header = ({ title }) => {
   const [checkedBox, setCheckedBox] = useState(0);
 
   const permission = JSON.parse(localStorage.getItem("permission")) || 1;
-  const userName = JSON.parse(localStorage.getItem("name")) || 1;
   const { name } = useSelector((state) => state.user);
-
-  // const capitalize = (str) => {
-  //   str = str.trim().split(" ");
-  //   str = str.map((word) => word[0].toUpperCase() + word.slice(1));
-  //   return str.join(" ");
-  // };
 
   const createLinkedObj = () => {
     let result = {};
@@ -91,17 +83,16 @@ const Header = ({ title }) => {
           >
             {messages.campaigns[checkedBox].text.split(" ").map((word) => {
               return word === messages.campaigns[checkedBox].link ? (
-                                                              <Link 
-                                                                  href={messages.campaigns[checkedBox].link}
-                                                                  rel='noreferrer'
-                                                                  target='_blank'>
-                                                                    site                                                                
-                                                              </Link>
-                                                            ) : (
-                                                              <>
-                                                                {`${word} `}
-                                                              </>
-                                                            )
+                <Link
+                  href={messages.campaigns[checkedBox].link}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  site
+                </Link>
+              ) : (
+                <>{`${word} `}</>
+              );
             })}
           </CampaignText>
           <CheckBoxArea>

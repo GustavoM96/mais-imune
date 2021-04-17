@@ -1,7 +1,5 @@
-import api from "../../../services/api";
 const token = localStorage.getItem("token") || "";
 const user_id = localStorage.getItem("user_id") || "";
-const name = localStorage.getItem("name") || "";
 
 const defaultState = {
   token: token,
@@ -9,7 +7,6 @@ const defaultState = {
   name: "carregando",
   permission: "carregando",
   email: "carregando",
-  permission: "carregando",
   vaccine: "carregando",
 };
 

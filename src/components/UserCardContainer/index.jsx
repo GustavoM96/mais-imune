@@ -1,6 +1,5 @@
 import CardVaccine from "../CardVaccine";
 import { GrFormSearch } from "react-icons/gr";
-import logo from "../../assets/+imuneLogo.svg";
 
 import {
   Container,
@@ -139,7 +138,6 @@ function UserCardContainer({ user }) {
           user &&
           userVaccinesFiltered.length === 0 && (
             <NoVaccines>
-              {/* <img src={logo} alt="Logo"></img> */}
               <h2>Sem vacinas cadastradas.</h2>
             </NoVaccines>
           )

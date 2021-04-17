@@ -10,7 +10,6 @@ import NotFound from "../pages/NotFound";
 import RegisterVacine from "../pages/RegisterVaccines";
 import ElectiveVaccines from "../pages/ElectiveVaccines";
 import { isLoged } from "../services/isLoged";
-import { AnimatePresence } from "framer-motion";
 
 function LogedRouter({ component: Component, ...rest }) {
   return (

@@ -22,7 +22,6 @@ import {
 const FormVaccineBond = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
-  const [isEditProfile, setIsEditProfile] = useState(false);
   const [vaccineList, setVaccineList] = useState([]);
   const [localList, setLocalList] = useState([]);
   const [vaccines, setVaccines] = useState([]);
@@ -39,11 +38,7 @@ const FormVaccineBond = ({ handleClose }) => {
       .required("Campo obrigatório"),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
     const vaccine = vaccines.filter((elem) => elem.name === data.vaccines);
@@ -66,7 +61,6 @@ const FormVaccineBond = ({ handleClose }) => {
         })
         .catch((error) => {
           toastRegisterError();
-          setIsEditProfile(false);
 
           console.log(error);
         });
@@ -93,6 +87,7 @@ const FormVaccineBond = ({ handleClose }) => {
     };
 
     getLocals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

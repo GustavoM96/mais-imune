@@ -1,12 +1,8 @@
-import CardVaccine from "../CardVaccine";
-import { GrFormSearch } from "react-icons/gr";
-
 import {
   Container,
   Header,
   Separator,
   VaccinesContainer,
-  SearchBar,
   StyledSpan,
 } from "./styles";
 import { useState } from "react";
@@ -16,7 +12,6 @@ import CardAside from "../CardAside";
 import Skeleton from "@material-ui/lab/Skeleton";
 
 function CardAsideList({ user }) {
-  const [value, setValue] = useState("");
   const [allVaccines, setAllVaccines] = useState(false);
   const [vaccines, setVaccines] = useState([]);
   const [userVaccines, setUserVaccines] = useState([]);

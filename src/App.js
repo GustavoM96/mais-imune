@@ -14,6 +14,7 @@ function App() {
 
   useEffect(() => {
     getUser(dispatchUser, history);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="flex">

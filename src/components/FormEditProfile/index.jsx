@@ -13,7 +13,6 @@ import { changeInfo } from "../../store/modules/User/actions";
 import { toastEditSuccess, toastEditError } from "../../utils/toastify";
 
 import { nameFormat } from "../../utils";
-import Input from "../Input";
 
 const FormEditProfile = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -21,8 +20,6 @@ const FormEditProfile = ({ handleClose }) => {
   const dispatch = useDispatch((state) => state.user);
   const user = useSelector((state) => state.user);
 
-  const [valueInputName, setValueInputName] = useState("user.name");
-  const [valueInputEmail, setValueInputEmail] = useState("user.email");
   const [isEditProfile, setIsEditProfile] = useState(false);
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };

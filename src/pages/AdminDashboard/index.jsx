@@ -12,7 +12,6 @@ import MenuProfile from "../../components/MenuProfile";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { easeIn, easeInOut } from "polished";
 
 const Dashboard = () => {
   const history = useHistory();

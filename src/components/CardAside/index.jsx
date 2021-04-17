@@ -1,8 +1,6 @@
 import { Container } from "./styles";
-import Button from "../Button";
 import TransitionModal from "../../components/Modal";
 import { useState } from "react";
-import FormRegister from "../FormRegister";
 
 import ListAltIcon from "../../assets/list_alt.svg";
 import LocalRequiredVaccine from "../LocalRequiredVaccine";

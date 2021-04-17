@@ -53,7 +53,9 @@ const ReportComponent = () => {
     }
 
     if (user.permission === 2) {
-      output = output.filter((elem) => elem.professional === user.name);
+      output = output.filter(
+        (elem) => nameFormat(elem.professional) === user.name
+      );
     }
 
     setUsers(output);

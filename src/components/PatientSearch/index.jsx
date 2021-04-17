@@ -6,6 +6,7 @@ import Modal from "../Modal";
 import FormVacinaUser from "../FormVacinaUser";
 import { InputData } from "../FormVacinaUser/style";
 import { Conteiner, BoldText, TextConteiner, InputConteiner } from "./style";
+import { cpfFormat, nameFormat } from "../../utils";
 
 const PatientSearch = () => {
   const [search, setSearch] = useState(false);
@@ -54,22 +55,15 @@ const PatientSearch = () => {
       {search ? (
         user[0] ? (
           <Conteiner>
+            <h2>Dados do usuario</h2>
             <TextConteiner>
-              <h2>Dados do usuario</h2>
-              <BoldText>Nome: {user[0]?.name}</BoldText>
-              <BoldText>CPF: {user[0]?.cpf}</BoldText>
+              <BoldText>Nome: {nameFormat(user[0]?.name)}</BoldText>
+              <BoldText>CPF: {cpfFormat(user[0]?.cpf)}</BoldText>
             </TextConteiner>
-
             <Modal open={open} handleClose={handleClose}>
-              <FormVacinaUser
-                userInfo={user}
-                handleClose={handleClose}
-              ></FormVacinaUser>
+              <FormVacinaUser userInfo={user} handleClose={handleClose} />
             </Modal>
-            <Button
-              text="Registrar Vacinação"
-              handleClick={() => setOpen(true)}
-            ></Button>
+            <Button text="Vacinar" handleClick={() => setOpen(true)}></Button>
           </Conteiner>
         ) : (
           <BoldText>CPF não cadastrado</BoldText>

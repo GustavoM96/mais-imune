@@ -18,7 +18,7 @@ export const Header = styled.div`
 
 export const Text = styled.span`
   color: ${Theme.colors.text_first};
-  font-size: 20px;
+  /* font-size: 20px; */
   @media (max-width: 800px) {
     font-size: 14px;
   }

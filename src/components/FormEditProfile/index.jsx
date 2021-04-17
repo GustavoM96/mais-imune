@@ -2,22 +2,18 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { InputEdit } from "./style";
 import Button from "../Button";
 
-import {
-  Container,
-  Title,
-  Form,
-  ButtonContainer,
-} from "../FormCreateVaccine/style";
+import { Container, Title, Form, ButtonContainer, InputEdit } from "./style";
 import { ErrorMessage, Header, Text } from "../Input/style";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeInfo } from "../../store/modules/User/actions";
 
 import { toastEditSuccess, toastEditError } from "../../utils/toastify";
+
 import { nameFormat } from "../../utils";
+import Input from "../Input";
 
 const FormEditProfile = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -78,7 +74,7 @@ const FormEditProfile = ({ handleClose }) => {
             <ErrorMessage>{errors.name?.message}</ErrorMessage>
           </Header>
           <InputEdit
-            defaultValue={user.name}
+            defaultValue={nameFormat(user.name)}
             name="name"
             type="name"
             error={errors.name?.message}

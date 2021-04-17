@@ -5,8 +5,8 @@ export const Container = styled.div`
   padding: 2rem;
   border-radius: 15px;
   background-color: ${Theme.colors.background_second};
-  width: 50rem;
-  height: 25rem;
+  min-height: 10rem;
+  min-width: 30rem;
 
   overflow-y: auto;
 

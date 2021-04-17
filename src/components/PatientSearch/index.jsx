@@ -46,7 +46,7 @@ const PatientSearch = () => {
       <InputConteiner>
         <InputData
           type="text"
-          placeholder="Digite o cpf do paciente"
+          placeholder="Digite o CPF do paciente"
           onChange={(e) => setCpf(e.target.value)}
         ></InputData>
         <Button text="Buscar" handleClick={handleClick} />
@@ -72,7 +72,7 @@ const PatientSearch = () => {
             ></Button>
           </Conteiner>
         ) : (
-          <BoldText>pagina nao encontrada</BoldText>
+          <BoldText>CPF não cadastrado</BoldText>
         )
       ) : null}
     </div>

@@ -27,6 +27,7 @@ const Input = ({
           <Text>{text}</Text>
           {register ? (
             <Select name={name} {...register(name)}>
+              {children}
               {options.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -69,5 +70,3 @@ const Input = ({
 };
 
 export default Input;
-
-

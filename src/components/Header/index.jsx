@@ -86,10 +86,10 @@ const Header = ({ title }) => {
               .map((word, index) => {
                 return word === messages.campaigns[checkedBox].link ? (
                   <Link
-                    key={index}
                     href={messages.campaigns[checkedBox].link}
                     rel="noreferrer"
                     target="_blank"
+                    key={index}
                   >
                     site
                   </Link>

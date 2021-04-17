@@ -5,34 +5,26 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
-import calculateVac from "./calculateVac";
+import Input from "../Input";
 
 import Button from "../Button";
-import {
-  SelectInput,
-  InputData,
-  LabelStyled,
-  StyledForm,
-  FormConteiner,
-  ErrorMessage,
-} from "./style";
+import { InputData, LabelStyled, Container, ErrorMessage } from "./style";
 
 import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
 
-let token = localStorage.getItem("token");
-
 const FormVacinaUser = ({ userInfo, handleClose }) => {
-  const [vacinesList, setVacinesList] = useState([]);
-  const [vacine, setVacine] = useState();
-  const [isEditProfile, setIsEditProfile] = useState(false);
+  const [vaccinesName, setVaccinesName] = useState([]);
+  const [vaccinesList, setVaccinesList] = useState([]);
+  const [filteredVaccines, setFilteredVaccines] = useState([]);
   const user = useSelector((state) => state.user);
 
+  let token = localStorage.getItem("token");
+
   const schema = yup.object().shape({
-    id: yup
+    vaccine: yup
       .string("Este campo deve ser preenchido")
       .required("Este campo deve ser preenchido"),
-    aplication: yup.string().required("Este campo deve ser preenchido"),
+    date: yup.string().required("Escolha a data de aplicação"),
   });
 
   const {
@@ -48,87 +40,81 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
       })
-      .then((response) =>
-        setVacinesList(calculateVac(response.data, userInfo[0]))
-      )
+      .then((response) => {
+        setVaccinesList(response.data);
+      })
       .catch((e) => console.log(e));
     console.log(userInfo[0]);
-  }, []);
+  }, [userInfo, token]);
 
-  const handleChange = (event) => {
-    setVacine(event.target.value);
-  };
+  useEffect(() => {
+    setFilteredVaccines(
+      // eslint-disable-next-line array-callback-return
+      vaccinesList.filter((vaccine) => {
+        if (!userInfo[0].vaccines.find((vac) => vac.id === vaccine.id)) {
+          return vaccine;
+        }
+      })
+    );
+  }, [vaccinesList, userInfo]);
+
+  useEffect(() => {
+    const names = [];
+
+    filteredVaccines.forEach((vaccine) => names.push(vaccine.name));
+    setVaccinesName(names);
+  }, [filteredVaccines]);
 
   const handleData = (data) => {
-    if (!isEditProfile) {
-      setIsEditProfile(true);
-
-      let vacina = {};
-      vacina.vaccines = userInfo[0].vaccines;
-      data.id = parseInt(data.id);
-
-      for (let i = 0; i < vacinesList.length; i++) {
-        if (vacinesList[i].id === data.id) {
-          data.name = vacinesList[i].name;
-          data.required = vacinesList[i].required;
-          data.description = vacinesList[i].description;
-          data.doses = vacinesList[i].doses;
-          data.professional = user.name || user.user;
-        }
-      }
-
-      vacina.vaccines.push(data);
-      data = vacina;
-
-      api
-        .patch(`/users/${userInfo[0].id}`, data, {
-          headers: {
-            Authorization: `Bearer ${JSON.parse(token)}`,
-          },
-        })
-        .then((response) => {
-          toastRegisterSuccess();
-          console.log(response.data);
-          handleClose();
-        })
-        .catch((e) => {
-          setIsEditProfile(false);
-
-          toastRegisterError();
-          console.log(e);
-        });
-    }
+    const vaccine = vaccinesList.filter((elem) => elem.name === data.vaccine);
+    const newData = {
+      vaccines: [
+        ...userInfo[0].vaccines,
+        {
+          ...vaccine[0],
+          aplication: data.date,
+          professional: user.name,
+        },
+      ],
+    };
+    api
+      .patch(`/users/${userInfo[0].id}`, newData, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      .then((response) => {
+        toastRegisterSuccess();
+        handleClose();
+      })
+      .catch((e) => {
+        toastRegisterError();
+        console.log(e);
+      });
   };
-
   return (
-    <FormConteiner>
+    <Container>
       <h3>Registrar vacinação</h3>
       <form onSubmit={handleSubmit(handleData)}>
-        <StyledForm>
-          <LabelStyled>Vacina</LabelStyled>
-          <SelectInput
-            value={vacine}
-            onChange={handleChange}
-            {...register("id", { required: true })}
-          >
-            <option value="">Selecione a vacina</option>
-            {vacinesList.map((vacine, index) => (
-              <option value={vacine.id} key={index}>
-                {vacine.name}
-              </option>
-            ))}
-          </SelectInput>
-          <ErrorMessage>{errors.id?.message}</ErrorMessage>
+        <Input
+          // text="Selecione a vacina"
+          options={vaccinesName}
+          type="select"
+          name="vaccine"
+          register={register}
+          error={errors.vaccine?.message}
+        >
+          <option value={null}>Selecione a vacina</option>
+        </Input>
+        <div>
           <LabelStyled>Data da aplicação</LabelStyled>
-          <InputData
-            type="date"
-            {...register("aplication", { required: true })}
-          ></InputData>
-          <ErrorMessage>{errors.aplication?.message}</ErrorMessage>
-          <Button type="submit" text={"Confirmar"}></Button>
-        </StyledForm>
+          <InputData type="date" {...register("date", { required: true })} />
+          <ErrorMessage>{errors.date?.message}</ErrorMessage>
+        </div>
+
+        <Button text="Confirmar" />
       </form>
-    </FormConteiner>
+    </Container>
   );
 };
 export default FormVacinaUser;

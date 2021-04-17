@@ -4,7 +4,6 @@ import Button from "../Button";
 import api from "../../services/api";
 import Modal from "../Modal";
 import FormVacinaUser from "../FormVacinaUser";
-import { InputData } from "../FormVacinaUser/style";
 import { Conteiner, BoldText, TextConteiner, InputConteiner } from "./style";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -14,7 +13,6 @@ import { cpfFormat, nameFormat } from "../../utils";
 
 const PatientSearch = () => {
   const [search, setSearch] = useState(false);
-  const [cpf, setCpf] = useState();
   const [user, setUser] = useState();
   const [open, setOpen] = useState(false);
   const schema = yup.object().shape({
@@ -49,6 +47,7 @@ const PatientSearch = () => {
       })
       .then((response) => {
         setUser(response.data);
+        reset();
       })
       .catch((e) => {
         console.log(e);

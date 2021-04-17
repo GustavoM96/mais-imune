@@ -88,7 +88,6 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
         handleClose();
       })
       .catch((e) => {
-        // setIsEditProfile(false);
         toastRegisterError();
         console.log(e);
       });
@@ -98,21 +97,21 @@ const FormVacinaUser = ({ userInfo, handleClose }) => {
       <h3>Registrar vacinação</h3>
       <form onSubmit={handleSubmit(handleData)}>
         <Input
-          text="Selecione a vacina"
+          // text="Selecione a vacina"
           options={vaccinesName}
           type="select"
           name="vaccine"
           register={register}
           error={errors.vaccine?.message}
         >
-          <option> </option>
+          <option value={null}>Selecione a vacina</option>
         </Input>
-        <LabelStyled>Data da aplicação</LabelStyled>
-        <InputData
-          type="date"
-          {...register("date", { required: true })}
-        ></InputData>
-        <ErrorMessage>{errors.date?.message}</ErrorMessage>
+        <div>
+          <LabelStyled>Data da aplicação</LabelStyled>
+          <InputData type="date" {...register("date", { required: true })} />
+          <ErrorMessage>{errors.date?.message}</ErrorMessage>
+        </div>
+
         <Button text="Confirmar" />
       </form>
     </Container>

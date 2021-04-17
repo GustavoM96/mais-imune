@@ -41,6 +41,15 @@ const FormRegisterEmployee = ({ handleClose }) => {
         /[0-9]{3}?[0-9]{3}?[0-9]{3}?[0-9]{2}/,
         "Digite um CPF válido sem pontos e traço"
       )
+      .max(11, "Máximo de 11 dígitos")
+      .required("Campo obrigatório"),
+    password: yup
+      .string()
+      .min(8, "Mínimo de 8 dígitos")
+      .matches(
+        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "Escolha ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial"
+      )
       .required("Campo obrigatório"),
   });
 

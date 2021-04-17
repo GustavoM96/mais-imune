@@ -47,6 +47,7 @@ const FormRegister = () => {
         /[0-9]{3}?[0-9]{3}?[0-9]{3}?[0-9]{2}/,
         "Digite um CPF válido sem pontos e traço"
       )
+      .max(11, "Máximo de 11 dígitos")
       .required("Campo obrigatório"),
 
     password: yup

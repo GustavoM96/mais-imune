@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../Input";
+import { cpfFormat, nameFormat } from "../../utils";
 
 const PatientSearch = () => {
   const [search, setSearch] = useState(false);
@@ -85,22 +86,15 @@ const PatientSearch = () => {
       {search ? (
         user[0] ? (
           <Conteiner>
+            <h2>Dados do usuario</h2>
             <TextConteiner>
-              <h2>Dados do usuario</h2>
-              <BoldText>Nome: {user[0]?.name}</BoldText>
-              <BoldText>CPF: {user[0]?.cpf}</BoldText>
+              <BoldText>Nome: {nameFormat(user[0]?.name)}</BoldText>
+              <BoldText>CPF: {cpfFormat(user[0]?.cpf)}</BoldText>
             </TextConteiner>
-
             <Modal open={open} handleClose={handleClose}>
-              <FormVacinaUser
-                userInfo={user}
-                handleClose={handleClose}
-              ></FormVacinaUser>
+              <FormVacinaUser userInfo={user} handleClose={handleClose} />
             </Modal>
-            <Button
-              text="Registrar Vacinação"
-              handleClick={() => setOpen(true)}
-            ></Button>
+            <Button text="Vacinar" handleClick={() => setOpen(true)}></Button>
           </Conteiner>
         ) : (
           <BoldText>CPF não cadastrado</BoldText>

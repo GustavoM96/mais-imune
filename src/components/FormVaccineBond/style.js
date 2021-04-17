@@ -28,6 +28,8 @@ export const Form = styled.form`
   box-sizing: border-box;
 `;
 
+export const InputContainer = styled.div``;
+
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;

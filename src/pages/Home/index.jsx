@@ -4,8 +4,9 @@ import Button from "../../components/Button";
 import HomeImg from "../../assets/doc_nurse.svg";
 import BlueBall from "../../assets/blue_ball.svg";
 import BlueBallLeft from "../../assets/blue_left_ball.png";
+import logo from "../../assets/+imuneLogoMini.svg";
 
-import { Container } from "./styles";
+import { Container, Logo } from "./styles";
 import { motion } from "framer-motion";
 
 function Home() {
@@ -19,6 +20,9 @@ function Home() {
     >
       <Container>
         <div className="message">
+          <figure>
+            <Logo src={logo} alt="Mais imune" />
+          </figure>
           <h1>
             +Imune<span>, a sua nova carteira de vacinação digital</span>
           </h1>

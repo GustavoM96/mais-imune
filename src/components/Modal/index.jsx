@@ -18,7 +18,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TransitionModal = ({ children, open, handleClose }) => {
+const TransitionModal = ({
+  children,
+  open,
+  handleClose,
+  disableBackdropClick = false,
+}) => {
   const classes = useStyles();
 
   return (
@@ -28,6 +33,7 @@ const TransitionModal = ({ children, open, handleClose }) => {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
+        disableBackdropClick={disableBackdropClick}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}

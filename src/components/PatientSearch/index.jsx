@@ -29,7 +29,6 @@ const PatientSearch = () => {
     register,
     handleSubmit,
     setError,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),

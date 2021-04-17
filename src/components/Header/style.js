@@ -48,17 +48,15 @@ export const MainArea = styled.div`
   border-radius: 50px;
   box-sizing: border-box;
   position: relative;
-  margin-top: 50px;
+  margin-top: 15px;
   @media (max-width: 1366px) {
     padding: 23px 42px 13px 42px;
     border-radius: 42px;
-    margin-top: 42px;
     height: 190px;
   }
   @media (max-width: 450px) {
     padding: 17px 35px 10px 35px;
     border-radius: 30px;
-    margin-top: 30px;
   }
 `;
 export const TextArea = styled.div`

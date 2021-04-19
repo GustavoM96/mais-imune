@@ -68,13 +68,6 @@ function CardAsideList({ user }) {
         </div>
       </Header>
       <>
-        {!user && (
-          <div className="skeleton">
-            <Skeleton variant="rect" width={250} height={70} />
-            <Skeleton variant="rect" width={250} height={70} />
-            <Skeleton variant="rect" width={250} height={70} />
-          </div>
-        )}
         {!allVaccines ? (
           <VaccinesContainer>
             {vaccines.map((vaccine, index) => (

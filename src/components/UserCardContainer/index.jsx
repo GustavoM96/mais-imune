@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import api from "../../services/api";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { dateFormat } from "../../utils";
 
 function UserCardContainer({ user }) {
   // const [value, setValue] = useState("");
@@ -128,7 +129,7 @@ function UserCardContainer({ user }) {
             {userVaccinesFiltered.map((vaccine, index) => (
               <CardVaccine
                 key={index}
-                date={vaccine.aplication}
+                date={dateFormat(vaccine.aplication)}
                 vaccine={vaccine.name}
                 description={vaccine.description}
               />

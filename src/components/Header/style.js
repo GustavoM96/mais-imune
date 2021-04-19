@@ -48,6 +48,7 @@ export const MainArea = styled.div`
   border-radius: 50px;
   box-sizing: border-box;
   position: relative;
+  z-index: -1;
   margin-top: 15px;
   @media (max-width: 1366px) {
     padding: 23px 42px 13px 42px;

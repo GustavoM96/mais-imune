@@ -6,12 +6,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { toast } from "react-toastify";
-
 import Button from "../Button";
 import Input from "../Input";
 
-import { Container, Title, Form, ButtonContainer } from "./style";
+import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
+
+import {
+  Container,
+  Title,
+  Form,
+  ButtonContainer,
+  InputContainer,
+} from "./style";
 
 const FormVaccineBond = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -32,11 +38,7 @@ const FormVaccineBond = ({ handleClose }) => {
       .required("Campo obrigatório"),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
     const vaccine = vaccines.filter((elem) => elem.name === data.vaccines);
@@ -46,34 +48,21 @@ const FormVaccineBond = ({ handleClose }) => {
       local[0].vaccines.includes(vaccine[0].id) ||
       local[0].vaccines.filter((elem) => elem.id === vaccine[0].id).length > 0
     ) {
-      toast.dark("✋ Essa vacina já está vinculada à unidade !!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toastRegisterError();
     } else {
       const newData = { vaccines: [...local[0].vaccines, vaccine[0]] };
 
       api
         .patch(`/locals/${local[0].id}`, newData, headers)
         .then((response) => {
-          toast.dark("🥳  Vínculo realizado com sucesso !!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-          console.log("response.data", response.data);
+          toastRegisterSuccess();
           handleClose();
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          toastRegisterError();
+
+          console.log(error);
+        });
     }
   };
 
@@ -97,26 +86,37 @@ const FormVaccineBond = ({ handleClose }) => {
     };
 
     getLocals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container>
       <Title>Vínculo de Vacinas</Title>
       <Form onSubmit={handleSubmit(handleData)}>
-        <Input
-          name="vaccines"
-          text="Vacinas"
-          type="select"
-          options={vaccineList}
-          register={register}
-        />
-        <Input
-          name="locals"
-          text="Estabelecimentos"
-          type="select"
-          options={localList}
-          register={register}
-        />
+        <InputContainer>
+          <Input
+            name="vaccines"
+            text="Vacinas"
+            type="select"
+            options={vaccineList}
+            register={register}
+          >
+            <option value={null}>Selecione a vacina</option>
+          </Input>
+        </InputContainer>
+
+        <InputContainer>
+          <Input
+            name="locals"
+            text="Unidade"
+            type="select"
+            options={localList}
+            register={register}
+          >
+            <option value={null}>Selecione a unidade</option>
+          </Input>
+        </InputContainer>
+
         <ButtonContainer>
           <Button text="Cadastrar" type="submit" marginTop="20" />
         </ButtonContainer>

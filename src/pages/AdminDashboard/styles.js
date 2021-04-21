@@ -4,8 +4,11 @@ export const Container = styled.div`
   padding: 1rem;
   width: 90%;
 
-  h2,
-  h3 {
+  h2 {
+    margin-top: 0;
+  }
+  h3,
+  h2 {
     font-weight: 700;
     margin-left: 1.8rem;
   }
@@ -17,8 +20,11 @@ export const Container = styled.div`
 `;
 
 export const CardContainer = styled.div`
-  width: 100%;
   overflow-x: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  @media (max-width: 630px) {
+    justify-content: space-around;
+  }
 `;

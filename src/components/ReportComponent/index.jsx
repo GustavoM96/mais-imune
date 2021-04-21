@@ -1,11 +1,30 @@
 import { Container } from "./styles";
 
+import ReportToPrint from "./reportToPrint";
+
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import { cpfFormat, nameFormat } from "../../utils";
 
+import { useSelector } from "react-redux";
+
+const mockUsers = [
+  "Wesley",
+  "Silvio",
+  "Lucas",
+  "Gustavo",
+  "Luciano",
+  "Howard",
+  "Gabriel",
+  "Filipe",
+  "Davis",
+  "Amanda",
+];
+
 const ReportComponent = () => {
   const token = JSON.parse(localStorage.getItem("token"));
+
+  const user = useSelector((state) => state.user);
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -26,10 +45,17 @@ const ReportComponent = () => {
           vaccine.userCpf = userCpf;
           vaccine.name = array[i].vaccines[j].name;
           vaccine.date = array[i].vaccines[j].aplication;
+          vaccine.professional = array[i].vaccines[j].professional;
 
           output.push(vaccine);
         }
       }
+    }
+
+    if (user.permission === 2) {
+      output = output.filter(
+        (elem) => nameFormat(elem.professional) === user.name
+      );
     }
 
     setUsers(output);
@@ -42,35 +68,16 @@ const ReportComponent = () => {
     };
 
     getUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container>
-      <table>
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Vacina</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users &&
-            users
-              .sort((a, b) => {
-                return a.date - b.date;
-              })
-              .map((elem, index) => (
-                <tr key={index}>
-                  <td>{elem.date}</td>
-                  <td>{elem.user}</td>
-                  <td>{elem.userCpf}</td>
-                  <td>{elem.name}</td>
-                </tr>
-              ))}
-        </tbody>
-      </table>
+      <ReportToPrint
+        permission={user.permission}
+        users={users}
+        mockUsers={mockUsers}
+      />
     </Container>
   );
 };

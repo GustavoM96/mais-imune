@@ -54,14 +54,16 @@ function MenuAside() {
           <>
             <DivMenu>
               <IconContainer
+                page={history.location.pathname === "/minhas_vacinas"}
                 onClick={() => history.push("/minhas_vacinas")}
                 level={level}
                 open={open}
               >
-                <img src={passbook} alt="Caderneta" />{" "}
+                <img src={passbook} alt="Caderneta" />
                 <span>Minhas Vacinas</span>
               </IconContainer>
               <IconContainer
+                page={history.location.pathname === "/vacinas-eletivas"}
                 onClick={() => history.push("/vacinas-eletivas")}
                 level={level}
                 open={open}
@@ -83,6 +85,7 @@ function MenuAside() {
           <>
             <DivMenu>
               <IconContainer
+                page={history.location.pathname === "/registro-vacina"}
                 onClick={() => history.push("/registro-vacina")}
                 level={level}
                 open={open}
@@ -91,6 +94,7 @@ function MenuAside() {
                 <span>Registro de Vacinação</span>
               </IconContainer>
               <IconContainer
+                page={history.location.pathname === "/relatorio"}
                 level={level}
                 open={open}
                 onClick={() => history.push("/relatorio")}
@@ -114,14 +118,17 @@ function MenuAside() {
               <IconContainer
                 level={level}
                 open={open}
+                page={history.location.pathname === "/dashboard"}
                 onClick={() => history.push("/dashboard")}
               >
                 <img src={dashboard} alt="Dashboard" />
+
                 <span>Dashboard</span>
               </IconContainer>
               <IconContainer
                 level={level}
                 open={open}
+                page={history.location.pathname === "/relatorio"}
                 onClick={() => history.push("/relatorio")}
               >
                 <img src={report} alt="Vacinas Eletivas" />

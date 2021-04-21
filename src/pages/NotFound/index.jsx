@@ -4,16 +4,24 @@ import Button from "../../components/Button";
 import fourzerofour from "../../assets/404.svg";
 
 import { Container } from "./styles";
+import { motion } from "framer-motion";
 
 function NotFound() {
   const history = useHistory();
   return (
-    <Container>
-      <Button text="Home" handleClick={() => history.push("/")} />
-      <figure>
-        <img src={fourzerofour} alt="Não Encontrado" />
-      </figure>
-    </Container>
+    <motion.div
+      className="flex"
+      initial={{ translateY: "-100%" }}
+      animate={{ translateY: "0%" }}
+      transition={{ duration: 0.5 }}
+    >
+      <Container>
+        <Button text="Voltar" handleClick={() => history.push("/")} />
+        <figure>
+          <img src={fourzerofour} alt="Não Encontrado" />
+        </figure>
+      </Container>
+    </motion.div>
   );
 }
 

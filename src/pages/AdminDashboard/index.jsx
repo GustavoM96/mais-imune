@@ -11,6 +11,7 @@ import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
   const history = useHistory();
@@ -23,6 +24,7 @@ const Dashboard = () => {
     if (permission === 2) {
       history.push("/registro-vacina");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cards = [
@@ -63,20 +65,26 @@ const Dashboard = () => {
         <h2>Dashboard</h2>
         <Header />
         <h3>Cadastros</h3>
-        <CardContainer>
-          {cards.map((card, index) => (
-            <>
-              <CardDashboard
-                key={index}
-                icon={card[0]}
-                title={card[1]}
-                text={card[2]}
-                buttonText={card[3]}
-                form={card[4]}
-              />
-            </>
-          ))}
-        </CardContainer>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <CardContainer>
+            {cards.map((card, index) => (
+              <CardContainer key={index}>
+                <CardDashboard
+                  // key={index}
+                  icon={card[0]}
+                  title={card[1]}
+                  text={card[2]}
+                  buttonText={card[3]}
+                  form={card[4]}
+                />
+              </CardContainer>
+            ))}
+          </CardContainer>
+        </motion.div>
       </Container>
       <MenuProfile />
     </div>

@@ -9,11 +9,15 @@ import Instructions from "../Instructions";
 import { ArrowLeft, ArrowRight, Container, EditIcon } from "./styles";
 import CardAsideList from "../CardAsideList";
 import { useState } from "react";
-import { getUser } from "../../services/getUser";
+import api from "../../services/api";
 
-function MenuProfile({ user = { name: "usuario" } }) {
+import { nameFormat } from "../../utils/index";
+
+function MenuProfile() {
+  const [user, setUser] = useState();
   const open = useSelector((state) => state.open);
   const user_id = localStorage.getItem("user_id") || "";
+  const token = localStorage.getItem("token") || "";
 
   const { permission } = useSelector((state) => state.user);
   const { name } = useSelector((state) => state.user);
@@ -21,20 +25,27 @@ function MenuProfile({ user = { name: "usuario" } }) {
   const [openModal, setOpenModal] = useState(false);
 
   const level = JSON.parse(localStorage.getItem("permission")) || 1;
-  // const userName = JSON.parse(localStorage.getItem("name")) || 1;
+  // const name = JSON.parse(localStorage.getItem("name")) || 1;
 
   const handleClose = () => {
     setOpenModal(!openModal);
   };
 
-  const dispatch = useDispatch((state) => state.open);
-
-  const dispatchUser = useDispatch((state) => state.user);
-
   useEffect(() => {
-    getUser(dispatchUser, user_id);
+    api
+      .get(`/users/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((e) => console.log(e));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const dispatch = useDispatch((state) => state.open);
 
   return (
     <Container open={open}>
@@ -57,14 +68,11 @@ function MenuProfile({ user = { name: "usuario" } }) {
       <div open={open} className="header">
         <div>
           <h3>Meu Perfil</h3>
-          Vem do store/permission
-          <br />
-          {permission}
           <figure>
             <img src={profile} alt="Profile" />
           </figure>
           <div>
-            <span>{name}</span>
+            <span>{nameFormat(name)}</span>
             <EditIcon onClick={handleClose} />
           </div>
         </div>

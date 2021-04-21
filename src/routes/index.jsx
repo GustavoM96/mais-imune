@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import UserVaccines from "../pages/UserVaccines";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -9,18 +9,55 @@ import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import RegisterVacine from "../pages/RegisterVaccines";
 import ElectiveVaccines from "../pages/ElectiveVaccines";
+import { isLoged } from "../services/isLoged";
+
+function LogedRouter({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isLoged() ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: "/login", state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+}
+function NotLogedRouter({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        !isLoged() ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/minhas_vacinas",
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
 function routes() {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/minhas_vacinas" component={UserVaccines} />
-      <Route path="/registro" component={Register} />
-      <Route path="/vacinas-eletivas" component={ElectiveVaccines} />
-      <Route path="/registro-vacina" component={RegisterVacine} />
-      <Route path="/relatorio" component={UserReport} />
-      <Route path="/dashboard" component={Dashboard} />
+      <NotLogedRouter path="/login" component={Login} />
+      <NotLogedRouter path="/registro" component={Register} />
+      <LogedRouter path="/minhas_vacinas" component={UserVaccines} />
+      <LogedRouter path="/vacinas-eletivas" component={ElectiveVaccines} />
+      <LogedRouter path="/registro-vacina" component={RegisterVacine} />
+      <LogedRouter path="/relatorio" component={UserReport} />
+      <LogedRouter path="/dashboard" component={Dashboard} />
       <Route component={NotFound} />
     </Switch>
   );

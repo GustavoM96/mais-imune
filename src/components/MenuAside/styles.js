@@ -31,6 +31,7 @@ export const Container = styled.div`
       ? Theme.colors.main_healthEmployee
       : Theme.colors.main_admin};
 
+  color: #000;
   transition: 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -60,7 +61,12 @@ export const IconContainer = styled.div`
   align-items: center;
   transition: 0.3s ease-in-out;
   text-align: center;
-  flex-wrap: wrap;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+
+  border-right: ${(props) => props.page && "2px solid black"};
+
   img {
     margin: 0 1.3rem;
     width: 27px;

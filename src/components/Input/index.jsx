@@ -17,6 +17,7 @@ const Input = ({
   register,
   options,
   handleChange,
+  placeholder,
   children,
 }) => {
   return (
@@ -26,6 +27,7 @@ const Input = ({
           <Text>{text}</Text>
           {register ? (
             <Select name={name} {...register(name)}>
+              {children}
               {options.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -57,6 +59,7 @@ const Input = ({
           <InputStyled
             type={type}
             name={name}
+            placeholder={placeholder}
             {...register(name)}
             error={error}
           />

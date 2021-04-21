@@ -8,6 +8,7 @@ import api from "../../services/api";
 import MenuAside from "../../components/MenuAside";
 import MenuProfile from "../../components/MenuProfile";
 import { useHistory } from "react-router";
+import { motion } from "framer-motion";
 
 function Dashboard() {
   const [user, setUser] = useState();
@@ -43,10 +44,19 @@ function Dashboard() {
   return (
     <div className="flex">
       <MenuAside />
+
       <Container>
+        <h2>Minhas Vacinas</h2>
         <Header />
-        <UserCardContainer user={user} />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <UserCardContainer user={user} />
+        </motion.div>
       </Container>
+
       <MenuProfile user={user} />
     </div>
   );

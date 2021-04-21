@@ -1,14 +1,18 @@
-import { FaGripLinesVertical } from "react-icons/fa";
+import { MdSwapHoriz } from "react-icons/md";
+
 import styled from "styled-components";
 import { Theme } from "../../styles/colors";
 
 export const Container = styled.div`
+  width: 100%;
   @media (max-width: 800px) {
     height: 100vh;
   }
-  height: 50vh;
-  @media (min-height: 800px) {
-    height: 63vh;
+  height: 63vh;
+
+  .skeleton {
+    display: flex;
+    justify-content: space-around;
   }
 `;
 
@@ -50,7 +54,7 @@ export const Header = styled.div`
 `;
 
 export const StyledSpan = styled.span`
-  color: ${(props) => (props.active ? "black" : Theme.colors.main_user)};
+  color: ${(props) => (!props.active ? "black" : Theme.colors.main_user)};
   font-size: 1.2rem;
   font-weight: 700;
 
@@ -59,8 +63,8 @@ export const StyledSpan = styled.span`
   }
 `;
 
-export const Separator = styled(FaGripLinesVertical)`
-  font-size: 0.8rem;
+export const Separator = styled(MdSwapHoriz)`
+  font-size: 1.5rem;
 `;
 
 export const SearchBar = styled.div`
@@ -87,5 +91,22 @@ export const SearchBar = styled.div`
   }
   svg {
     font-size: 1.8rem;
+  }
+`;
+
+export const NoVaccines = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+  height: 60%;
+  h2,
+  img {
+    margin: 0;
+  }
+  h2 {
+    margin-right: 0.2rem;
   }
 `;

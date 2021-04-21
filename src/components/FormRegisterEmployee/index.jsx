@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { nameFormat } from "../../utils";
+import { toastRegisterSuccess, toastRegisterError } from "../../utils/toastify";
+
 import Button from "../Button";
 import Input from "../Input";
 
@@ -12,15 +15,21 @@ import {
   Form,
   ButtonContainer,
 } from "../FormCreateVaccine/style";
+import { useState } from "react";
 
-const FormRegisterEmployee = () => {
+const FormRegisterEmployee = ({ handleClose }) => {
   const token = JSON.parse(localStorage.getItem("token"));
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const headers = { headers: { Authorization: `Bearer ${token}` } };
 
   const schema = yup.object().shape({
     name: yup
       .string("Campo deve ser preenchido com texto")
+      .matches(
+        /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/,
+        "Seu nome deve conter apenas letras"
+      )
       .required("Campo obrigatório"),
     email: yup
       .string("Campo deve ser preenchido com texto")
@@ -28,8 +37,19 @@ const FormRegisterEmployee = () => {
       .required("Campo obrigatório"),
     cpf: yup
       .string("")
-      .length(11, "Digite o CPF sem pontos e traços")
-      // .matches(/^(\d{3}.){2}\d{3}-\d{2}$/, 'CPF inválido')
+      .matches(
+        /[0-9]{3}?[0-9]{3}?[0-9]{3}?[0-9]{2}/,
+        "Digite um CPF válido sem pontos e traço"
+      )
+      .max(11, "Máximo de 11 dígitos")
+      .required("Campo obrigatório"),
+    password: yup
+      .string()
+      .min(8, "Mínimo de 8 dígitos")
+      .matches(
+        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "Escolha ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial"
+      )
       .required("Campo obrigatório"),
   });
 
@@ -40,8 +60,24 @@ const FormRegisterEmployee = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleData = (data) => {
-    const newData = { ...data, permission: 2, vaccines: [] };
-    api.post("/users", newData, headers).catch((error) => console.log(error));
+    if (!isEditProfile) {
+      setIsEditProfile(true);
+      data.name = nameFormat(data.name);
+
+      const newData = { ...data, permission: 2, vaccines: [] };
+
+      api
+        .post("/users", newData, headers)
+        .then((response) => {
+          toastRegisterSuccess();
+          handleClose();
+        })
+        .catch((error) => {
+          toastRegisterError();
+          setIsEditProfile(false);
+          console.log(error);
+        });
+    }
   };
   return (
     <Container>

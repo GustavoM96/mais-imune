@@ -1,9 +1,10 @@
 import doc_kid from "../../assets/doc_kid.svg";
 import { messages } from "../../mock/data";
 
+import { nameFormat } from "../../utils/index";
+
 import {
   Container,
-  Title,
   DateText,
   WeekDay,
   MainArea,
@@ -14,6 +15,7 @@ import {
   CheckBoxArea,
   CheckBox,
   Checked,
+  Link,
 } from "./style";
 
 import { useState, useEffect } from "react";
@@ -23,14 +25,7 @@ const Header = ({ title }) => {
   const [checkedBox, setCheckedBox] = useState(0);
 
   const permission = JSON.parse(localStorage.getItem("permission")) || 1;
-  const userName = JSON.parse(localStorage.getItem("name")) || 1;
   const { name } = useSelector((state) => state.user);
-
-  // const capitalize = (str) => {
-  //   str = str.trim().split(" ");
-  //   str = str.map((word) => word[0].toUpperCase() + word.slice(1));
-  //   return str.join(" ");
-  // };
 
   const createLinkedObj = () => {
     let result = {};
@@ -71,19 +66,37 @@ const Header = ({ title }) => {
 
   return (
     <Container>
-      <Title>{title}</Title>
       <DateText>
-        <WeekDay>{currentWeekDay()}</WeekDay>, {currentDate()}
+        <WeekDay permission={permission}>{currentWeekDay()}</WeekDay>,{" "}
+        {currentDate()}
       </DateText>
       <MainArea permission={permission}>
-        <TextArea>
-          <WelcomeText>Olá, {name}</WelcomeText>
+        <TextArea permission={permission}>
+          <WelcomeText className="no-border" permission={permission}>
+            Olá, {nameFormat(name)}
+          </WelcomeText>
           <CampaignText
+            permission={permission}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {messages.campaigns[checkedBox]}
+            {messages.campaigns[checkedBox].text
+              .split(" ")
+              .map((word, index) => {
+                return word === messages.campaigns[checkedBox].link ? (
+                  <Link
+                    href={messages.campaigns[checkedBox].link}
+                    rel="noreferrer"
+                    target="_blank"
+                    key={index}
+                  >
+                    site
+                  </Link>
+                ) : (
+                  <>{`${word} `}</>
+                );
+              })}
           </CampaignText>
           <CheckBoxArea>
             {messages.campaigns.map((msg, index) => (

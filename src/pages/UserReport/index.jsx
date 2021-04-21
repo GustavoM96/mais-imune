@@ -6,6 +6,7 @@ import MenuProfile from "../../components/MenuProfile";
 import ReportComponent from "../../components/ReportComponent";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import { motion } from "framer-motion";
 
 const UserReport = () => {
   const history = useHistory();
@@ -23,7 +24,13 @@ const UserReport = () => {
       <Container>
         <h2>Relatório</h2>
         <Header />
-        <ReportComponent />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <ReportComponent />
+        </motion.div>
       </Container>
       <MenuProfile />
     </div>

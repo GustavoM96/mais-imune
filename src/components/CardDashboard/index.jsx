@@ -24,13 +24,13 @@ const CardDashboard = ({ icon, title, text, buttonText, form }) => {
       <Button handleClick={handleClose} text={buttonText} />
       <TransitionModal open={open} handleClose={handleClose}>
         {form === "formRegisterEmployee" ? (
-          <FormRegisterEmployee />
+          <FormRegisterEmployee handleClose={handleClose} />
         ) : form === "formCreateVaccine" ? (
-          <FormCreateVaccine />
+          <FormCreateVaccine handleClose={handleClose} />
         ) : form === "formVaccineBond" ? (
           <FormVaccineBond handleClose={handleClose} />
         ) : (
-          <FormRegisterLocal />
+          <FormRegisterLocal handleClose={handleClose} />
         )}
       </TransitionModal>
     </Container>

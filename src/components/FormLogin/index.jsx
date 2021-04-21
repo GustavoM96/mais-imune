@@ -3,6 +3,9 @@ import Button from "../Button";
 import loginImg from "../../assets/login.svg";
 import { AiOutlineForm } from "react-icons/ai";
 
+import TransitionModal from "../Modal";
+import PageLoader from "../PageLoader";
+
 import * as yup from "yup";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
@@ -12,12 +15,25 @@ import jwt_decode from "jwt-decode";
 import { Container } from "./styles";
 
 import api from "../../services/api";
-import { toast } from "react-toastify";
+import { useState } from "react";
 import { getUser } from "../../services/getUser";
 import { useDispatch } from "react-redux";
 
+import { toastLoginSuccess, toastLoginError } from "../../utils/toastify";
+
 function FormLogin() {
   const history = useHistory();
+
+  const [isPageLoading, setIsPageLoading] = useState(false);
+
+  const handleOpen = () => {
+    setIsPageLoading(true);
+  };
+
+  const handleClose = () => {
+    setIsPageLoading(false);
+  };
+
   const dispatch = useDispatch((state) => state.user);
 
   const schema = yup.object().shape({
@@ -56,7 +72,8 @@ function FormLogin() {
           "permission",
           JSON.stringify(response.data.permission)
         );
-        getUser(dispatch, response.data.id, true);
+
+        getUser(dispatch, null, response.data.id, token);
         if (response.data.permission === 3) {
           history.push("/dashboard");
         } else if (response.data.permission === 2) {
@@ -69,39 +86,29 @@ function FormLogin() {
   };
 
   const dataForm = (data) => {
-    api
-      .post("/login", data)
-      .then((response) => {
-        toast.dark("💉  Bem vindo !!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        localStorage.clear();
-        localStorage.setItem(
-          "token",
-          JSON.stringify(response.data.accessToken)
-        );
-        redirect(response.data.accessToken);
-      })
-      .catch((e) => {
-        toast.error("😵 Falha ao logar !!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(e);
-      });
+    handleOpen();
 
-    reset();
+    setTimeout(function () {
+      api
+        .post("/login", data)
+        .then((response) => {
+          handleClose();
+          toastLoginSuccess();
+          localStorage.clear();
+          localStorage.setItem(
+            "token",
+            JSON.stringify(response.data.accessToken)
+          );
+          redirect(response.data.accessToken);
+        })
+        .catch((e) => {
+          handleClose();
+          toastLoginError();
+          console.log(e);
+        });
+
+      reset();
+    }, 700);
   };
 
   return (
@@ -138,6 +145,14 @@ function FormLogin() {
       <figure>
         <img src={loginImg} alt="" />
       </figure>
+
+      <TransitionModal
+        open={isPageLoading}
+        disableBackdropClick
+        handleClose={handleClose}
+      >
+        <PageLoader />
+      </TransitionModal>
     </Container>
   );
 }

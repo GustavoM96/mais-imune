@@ -24,16 +24,15 @@ const Instructions = ({ permission }) => {
           <h3>Instruções</h3>
           <ol>
             <li>
-              Para acessar o dashboard de cadastros, acesse a opção Dashboard no
-              menu lateral.
+              Para acessar o menu de cadastros, acesse a opção Dashboard no menu
+              lateral.
             </li>
             <li>
               Para criar novos acessos de profissionais de saúde, clique na
               opção Cadastro de Profissionais de Saúde.
             </li>
             <li>
-              Para cadastro de novas vacinas, acessa a opção cadastro de
-              vacinas.
+              Cadastre novas vacinas, acessando a opção cadastro de vacinas.
             </li>
             <li>
               Para cadastrar novas unidades de saúde, clique na opção Cadastro

@@ -1,6 +1,6 @@
 # Mais Imune
 
-<img src="https://i.imgur.com/QBPsCAC.png" alt="Portfolio"/>
+<img src="https://i.imgur.com/QBPsCAC.png" alt="Mais Imune"/>
 
 
 ## Introdução
